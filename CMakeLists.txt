@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(NEAT-Life source/main.cpp
         source/events.cpp
         headers/events.hpp
+        source/board.cpp
+        headers/board.hpp
 )
 
 set(SFML_STATIC_LIBRARIES TRUE)
