@@ -5,14 +5,10 @@
 
 int main()
 {
-    auto window = sf::RenderWindow{{700, 700}, "NEAT-Life"};
+    auto window = sf::RenderWindow{{1000, 1000}, "NEAT-Life"};
 //    window.setFramerateLimit(60);
 
-    // TODO: you need to look into not having cells anymore (the vector of vectors of booleans)
-    //   - instead you need to search live_cells for the {row_index, column_index}
-    //   - or think of some other smart why ig
-
-    Board board(350, 350);
+    Board board(500, 500);
     board.set_cell({25, 25}, true);
     board.set_cell({26, 25}, true);
     board.set_cell({27, 25}, true);
