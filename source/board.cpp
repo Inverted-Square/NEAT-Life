@@ -1,13 +1,13 @@
 #include "board.hpp"
 
-bool Board::cell_stays_live(const std::pair<const int, const int> &row_column)
+bool Board::cell_stays_live(const coord &row_column)
 {
     int live_neighbour_count = 0;
-    for (const auto &direction : DIRECTIONS)
+    for (const auto &direction : board_config::directions)
     {
-        const int row_index = neg_mod(row_column.first + direction[0], ROWS);
-        const int column_index = neg_mod(row_column.second + direction[1], COLUMNS);
-        const std::pair<const int, const int> row_column_indices = {row_index, column_index};
+        const int row_index = neg_mod(row_column.first + direction[0], board_config::rows);
+        const int column_index = neg_mod(row_column.second + direction[1], board_config::columns);
+        const coord row_column_indices = {row_index, column_index};
         if (coord_map_contains(live_cell_activities, {row_index, column_index}))
         {
             ++live_neighbour_count;
@@ -27,26 +27,36 @@ bool Board::cell_stays_live(const std::pair<const int, const int> &row_column)
     return live_neighbour_count == 2 || live_neighbour_count == 3;
 }
 
-void Board::set_cell(const std::pair<int, int> &row_column, const bool state)
+void Board::add_vertex_to(sf::VertexArray& vertex_array, const coord &row_column)
 {
-    if (!coord_map_contains(live_cell_activities, row_column) && state)
+    const float x_pos = board_config::column_width * static_cast<float>(row_column.second);
+    const float y_pos = board_config::row_height * static_cast<float>(row_column.first);
+    vertex_array.append(sf::Vertex({x_pos, y_pos}));
+    vertex_array.append(sf::Vertex({x_pos + board_config::column_width, y_pos}));
+    vertex_array.append(sf::Vertex({x_pos + board_config::column_width, y_pos + board_config::row_height}));
+    vertex_array.append(sf::Vertex({x_pos, y_pos + board_config::row_height}));
+}
+
+void Board::set_cell(const coord &row_column)
+{
+    sf::Vertex vertex({static_cast<float>(row_column.first), static_cast<float>(row_column.second)});
+    if (!coord_map_contains(live_cell_activities, row_column))
     {
         live_cell_activities.insert({row_column, 0});
-    }
-    else if (coord_map_contains(live_cell_activities, row_column) && !state)
-    {
-        live_cell_activities.erase(row_column);
+        Board::add_vertex_to(vertices, row_column);
     }
 }
 
 void Board::update_generation()
 {
-    std::map<std::pair<int, int>, int> next_live_cell_activities;
+    coord_val next_live_cell_activities;
+    sf::VertexArray next_vertices{sf::PrimitiveType::Quads};
     for (const auto &live_cell : live_cell_activities)
     {
         if (cell_stays_live(live_cell.first))
         {
             next_live_cell_activities.insert(live_cell);
+            Board::add_vertex_to(next_vertices, live_cell.first);
         }
     }
 
@@ -55,27 +65,18 @@ void Board::update_generation()
         if (dead_cell.second == 3)
         {
             next_live_cell_activities.insert(dead_cell);
+            Board::add_vertex_to(next_vertices, dead_cell.first);
         }
     }
 
     live_cell_activities = std::move(next_live_cell_activities);
+    vertices = std::move(next_vertices);
     dead_cell_neighbours.clear();
 }
 
 void Board::draw(sf::RenderWindow &window) const
 {
     window.clear();
-    const float column_width = static_cast<float>(window.getSize().x) / static_cast<float>(Board::COLUMNS);
-    const float row_height = static_cast<float>(window.getSize().y) / static_cast<float>(Board::ROWS);
-    for (const auto &live_cell : live_cell_activities)
-    {
-        const auto &row_column = live_cell.first;
-        const float x_pos = column_width * (static_cast<float>(row_column.second) + 0.5f);
-        const float y_pos = row_height * (static_cast<float>(row_column.first) + 0.5f);
-        sf::CircleShape shape{column_width / 2.0f};
-        shape.setPosition(x_pos, y_pos);
-        window.draw(shape);
-    }
-
+    window.draw(vertices);
     window.display();
 }

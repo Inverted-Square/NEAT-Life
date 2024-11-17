@@ -1,27 +1,26 @@
-#include <SFML/Graphics.hpp>
+#include "neat-life_header.hpp"
 
 #include "events.hpp"
 #include "board.hpp"
 
 int main()
 {
-    auto window = sf::RenderWindow{{700, 700}, "NEAT-Life"};
-    auto view = sf::View(sf::FloatRect(0, 0, 700, 700));
-//    window.setFramerateLimit(60);
+    auto window = sf::RenderWindow{{win_config::width, win_config::height}, "NEAT-Life", win_config::style};
+    auto view = sf::View(sf::FloatRect(0, 0, win_config::width, win_config::height));
+    window.setFramerateLimit(win_config::frame_rate);
 
     // TODO:
-    //  - Implement the vertex array way of drawing
     //  - Implement infinite boards
 
-    Board board(350, 350);
-    board.set_cell({25, 25}, true);
-    board.set_cell({26, 25}, true);
-    board.set_cell({27, 25}, true);
-    board.set_cell({26, 24}, true);
-    board.set_cell({25, 26}, true);
-    board.set_cell({25, 28}, true);
-    board.set_cell({25, 29}, true);
-    board.set_cell({24, 29}, true);
+    Board board;
+    board.set_cell({25, 25});
+    board.set_cell({26, 25});
+    board.set_cell({27, 25});
+    board.set_cell({26, 24});
+    board.set_cell({25, 26});
+    board.set_cell({25, 28});
+    board.set_cell({25, 29});
+    board.set_cell({24, 29});
 
     board.draw(window);
 

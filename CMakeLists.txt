@@ -10,6 +10,7 @@ add_executable(NEAT-Life source/main.cpp
         headers/events.hpp
         source/board.cpp
         headers/board.hpp
+        headers/neat-life_header.hpp
 )
 
 set(SFML_STATIC_LIBRARIES TRUE)

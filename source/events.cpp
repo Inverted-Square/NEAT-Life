@@ -41,7 +41,7 @@ void EventHandler::update_view(sf::RenderWindow &window, sf::View &view) const
     {
         if (*key_held)
         {
-            view.move(MOVEMENTS[index][0], MOVEMENTS[index][1]);
+            view.move(events_config::movements[index][0], events_config::movements[index][1]);
         }
 
         ++index;
