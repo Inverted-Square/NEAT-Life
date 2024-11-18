@@ -3,7 +3,7 @@ project(NEAT_Life)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_C_FLAGS "-Wall")
+set(CMAKE_CXX_FLAGS "-Wall -Ofast")
 
 add_executable(NEAT-Life source/main.cpp
         source/events.cpp

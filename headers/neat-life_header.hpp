@@ -23,8 +23,6 @@ namespace win_config
 
 namespace board_config
 {
-    static bool infinite = true;
-
     const int rows = win_config::height / 4;
     const int columns = win_config::width / 4;
     const float column_width = win_config::width_f / static_cast<float>(columns);

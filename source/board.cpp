@@ -7,20 +7,20 @@ bool Board::cell_stays_live(const coord &row_column)
     {
         int row_index = row_column.first + direction[0];
         int column_index = row_column.second + direction[1];
-        if (!board_config::infinite)
+        if (!infinite)
         {
-            row_index = neg_mod(row_index, board_config::rows);
-            column_index = neg_mod(column_index, board_config::columns);
+            row_index = Board::neg_mod(row_index, board_config::rows);
+            column_index = Board::neg_mod(column_index, board_config::columns);
         }
 
         const coord row_column_indices = {row_index, column_index};
-        if (coord_map_contains(live_cell_activities, {row_index, column_index}))
+        if (live_cell_activities.count({row_index, column_index}) != 0)
         {
             ++live_neighbour_count;
             continue;
         }
 
-        if (coord_map_contains(dead_cell_neighbours, row_column_indices))
+        if (dead_cell_neighbours.count(row_column_indices) != 0)
         {
             ++dead_cell_neighbours[row_column_indices];
         }
@@ -46,7 +46,7 @@ void Board::add_vertex_to(sf::VertexArray& vertex_array, const coord &row_column
 void Board::set_cell(const coord &row_column)
 {
     sf::Vertex vertex({static_cast<float>(row_column.first), static_cast<float>(row_column.second)});
-    if (!coord_map_contains(live_cell_activities, row_column))
+    if (live_cell_activities.count(row_column) == 0)
     {
         live_cell_activities.insert({row_column, 0});
         Board::add_vertex_to(vertices, row_column);
@@ -78,11 +78,4 @@ void Board::update_generation()
     live_cell_activities = std::move(next_live_cell_activities);
     vertices = std::move(next_vertices);
     dead_cell_neighbours.clear();
-}
-
-void Board::draw(sf::RenderWindow &window) const
-{
-    window.clear();
-    window.draw(vertices);
-    window.display();
 }
