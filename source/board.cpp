@@ -5,8 +5,14 @@ bool Board::cell_stays_live(const coord &row_column)
     int live_neighbour_count = 0;
     for (const auto &direction : board_config::directions)
     {
-        const int row_index = neg_mod(row_column.first + direction[0], board_config::rows);
-        const int column_index = neg_mod(row_column.second + direction[1], board_config::columns);
+        int row_index = row_column.first + direction[0];
+        int column_index = row_column.second + direction[1];
+        if (!board_config::infinite)
+        {
+            row_index = neg_mod(row_index, board_config::rows);
+            column_index = neg_mod(column_index, board_config::columns);
+        }
+
         const coord row_column_indices = {row_index, column_index};
         if (coord_map_contains(live_cell_activities, {row_index, column_index}))
         {

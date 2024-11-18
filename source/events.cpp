@@ -5,8 +5,8 @@ void EventHandler::process_events(sf::RenderWindow &window)
     scroll_direction = 0;
     for (auto event = sf::Event{}; window.pollEvent(event);)
     {
-        if (event.type == sf::Event::Closed ||
-            event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+        const bool pressed_esc = event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape;
+        if (event.type == sf::Event::Closed || pressed_esc)
         {
             window.close();
             return;
@@ -41,7 +41,8 @@ void EventHandler::update_view(sf::RenderWindow &window, sf::View &view) const
     {
         if (*key_held)
         {
-            view.move(events_config::movements[index][0], events_config::movements[index][1]);
+            auto movement = events_config::movements[index];
+            view.move(events_config::move_speed * movement[0], events_config::move_speed * movement[1]);
         }
 
         ++index;
