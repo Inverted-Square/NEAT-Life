@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
@@ -23,10 +25,9 @@ namespace win_config
 
 namespace board_config
 {
-    const int rows = win_config::height / 4;
-    const int columns = win_config::width / 4;
-    const float column_width = win_config::width_f / static_cast<float>(columns);
-    const float row_height = win_config::height_f / static_cast<float>(rows);
+    const int rows = 29;
+    const int columns = 32;
+    const float cell_length = 10.0f;
 
     const int directions[8][2] = {{-1, -1},
                                   {-1, 0},

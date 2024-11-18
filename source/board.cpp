@@ -1,5 +1,39 @@
 #include "board.hpp"
 
+Board::Board(const Board::pattern &starting_pattern, const bool infinite) : Board(infinite)
+{
+    if (starting_pattern.size() > board_config::rows)
+    {
+        std::cout << "Pattern too tall in finite area. Increase board_config::rows in 'neat-life_header.hpp'.\n";
+        return;
+    }
+
+    pattern_height = starting_pattern.size();
+    const int y_offset = board_config::rows / 2 - static_cast<int>(starting_pattern.size()) / 2;
+    int row = 0;
+    for (const auto &row_string : starting_pattern)
+    {
+        if (row_string.size() > board_config::columns && !infinite)
+        {
+            std::cout << "Pattern too wide in finite area. Increase board_config::columns in 'neat-life_header.hpp'.\n";
+            live_cell_activities.clear();
+            vertices.clear();
+            return;
+        }
+
+        pattern_width = row_string.size() > pattern_width ? row_string.size() : pattern_width;
+        const int x_offset = board_config::columns / 2 - static_cast<int>(row_string.size()) / 2;
+        int column = 0;
+        for (const char cell : row_string)
+        {
+            set_cell({row + y_offset * !infinite, column + x_offset * !infinite}, cell == 'O');
+            ++column;
+        }
+
+        ++row;
+    }
+}
+
 bool Board::cell_stays_live(const coord &row_column)
 {
     int live_neighbour_count = 0;
@@ -33,22 +67,22 @@ bool Board::cell_stays_live(const coord &row_column)
     return live_neighbour_count == 2 || live_neighbour_count == 3;
 }
 
-void Board::add_vertex_to(sf::VertexArray& vertex_array, const coord &row_column)
+void Board::add_vertex_to(sf::VertexArray &vertex_array, const coord &row_column)
 {
-    const float x_pos = board_config::column_width * static_cast<float>(row_column.second);
-    const float y_pos = board_config::row_height * static_cast<float>(row_column.first);
+    const float x_pos = board_config::cell_length * static_cast<float>(row_column.second);
+    const float y_pos = board_config::cell_length * static_cast<float>(row_column.first);
     vertex_array.append(sf::Vertex({x_pos, y_pos}));
-    vertex_array.append(sf::Vertex({x_pos + board_config::column_width, y_pos}));
-    vertex_array.append(sf::Vertex({x_pos + board_config::column_width, y_pos + board_config::row_height}));
-    vertex_array.append(sf::Vertex({x_pos, y_pos + board_config::row_height}));
+    vertex_array.append(sf::Vertex({x_pos + board_config::cell_length, y_pos}));
+    vertex_array.append(sf::Vertex({x_pos + board_config::cell_length, y_pos + board_config::cell_length}));
+    vertex_array.append(sf::Vertex({x_pos, y_pos + board_config::cell_length}));
 }
 
-void Board::set_cell(const coord &row_column)
+void Board::set_cell(const coord &row_column, const bool state)
 {
-    sf::Vertex vertex({static_cast<float>(row_column.first), static_cast<float>(row_column.second)});
-    if (live_cell_activities.count(row_column) == 0)
+    if (live_cell_activities.count(row_column) == 0 && state)
     {
         live_cell_activities.insert({row_column, 0});
+        sf::Vertex vertex({static_cast<float>(row_column.first), static_cast<float>(row_column.second)});
         Board::add_vertex_to(vertices, row_column);
     }
 }

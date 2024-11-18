@@ -11,6 +11,8 @@ add_executable(NEAT-Life source/main.cpp
         source/board.cpp
         headers/board.hpp
         headers/neat-life_header.hpp
+        source/util.cpp
+        headers/util.hpp
 )
 
 set(SFML_STATIC_LIBRARIES TRUE)

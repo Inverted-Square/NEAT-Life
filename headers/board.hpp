@@ -8,7 +8,7 @@
 
 class Board
 {
-    typedef std::pair<int, int> coord;
+    typedef std::pair<const int, const int> coord;
 
     struct hash_pair
     {
@@ -27,8 +27,21 @@ class Board
     coord_val dead_cell_neighbours;
     sf::VertexArray vertices{sf::PrimitiveType::Quads};
     const bool infinite;
+    unsigned int pattern_width;
+    unsigned int pattern_height;
 
+public:
+    typedef std::vector<std::string> pattern;
+
+    explicit Board(const bool infinite = false) : infinite(infinite), pattern_width(0u), pattern_height(0u)
+    {}
+
+    explicit Board(const pattern &starting_pattern, bool infinite = false);
+
+private:
     bool cell_stays_live(const coord &row_column);
+
+    static void add_vertex_to(sf::VertexArray &vertex_array, const coord &row_column);
 
     /**
      * Handles negative values of n in n % m in the same way Python does.
@@ -41,15 +54,25 @@ class Board
         return (n % m + m) % m;
     }
 
-    static void add_vertex_to(sf::VertexArray &vertex_array, const coord &row_column);
-
 public:
-    explicit Board(const bool infinite = false) : infinite(infinite)
-    {}
-
-    void set_cell(const coord &row_column);
+    void set_cell(const coord &row_column, bool state = true);
 
     void update_generation();
+
+    inline bool is_infinite() const
+    {
+        return infinite;
+    }
+
+    inline unsigned int get_pattern_width() const
+    {
+        return pattern_width;
+    }
+
+    inline unsigned int get_pattern_height() const
+    {
+        return pattern_height;
+    }
 
     inline void draw(sf::RenderWindow &window) const
     {
