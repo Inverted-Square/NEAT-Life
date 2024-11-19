@@ -20,14 +20,13 @@ namespace win_config
     const float width_f = static_cast<float>(width);
     const float height_f = static_cast<float>(height);
 
-    static int frame_rate = 0;
+    const int frame_rate = 0;
 }
 
 namespace board_config
 {
-    const int rows = 29;
-    const int columns = 32;
-    const float cell_length = 10.0f;
+    const int rows = 400;
+    const int columns = 400;
 
     const int directions[8][2] = {{-1, -1},
                                   {-1, 0},
@@ -41,7 +40,7 @@ namespace board_config
 
 namespace events_config
 {
-    const float move_speed = win_config::frame_rate == 0 ? 1 : 10;
+    const float move_speed = 5;
     const float movements[4][2] = {{0,  -1},  // up
                                    {0,  1},   // down
                                    {-1, 0},   // left

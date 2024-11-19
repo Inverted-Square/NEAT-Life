@@ -26,7 +26,7 @@ int main()
         }
 
         board.update_generation();
-        if (++steps == 736692)  // number of steps for big boi to finish
+        if (++steps == 17431)  // number of steps for big boi to finish
         {
             std::cout << "Finished\n";
             window.close();

@@ -5,6 +5,7 @@
 #include <vector>
 #include <utility>
 #include <unordered_map>
+#include <unordered_set>
 
 class Board
 {
@@ -22,10 +23,18 @@ class Board
     };
 
     typedef std::unordered_map<coord, int, hash_pair> coord_val;
+    typedef std::unordered_set<coord, hash_pair> coords;
 
-    coord_val live_cell_activities;
-    coord_val dead_cell_neighbours;
-    sf::VertexArray vertices{sf::PrimitiveType::Quads};
+    coord_val live_cells;
+    coord_val dead_cells;
+    coord_val next_live_cells;
+    coord_val next_dead_cells;
+
+    coords removed_live;
+    coords removed_dead;
+    coord_val updated_live;
+    coord_val updated_dead;
+
     const bool infinite;
     unsigned int pattern_width;
     unsigned int pattern_height;
@@ -39,9 +48,13 @@ public:
     explicit Board(const pattern &starting_pattern, bool infinite = false);
 
 private:
-    bool cell_stays_live(const coord &row_column);
+    void update_cell(const coord &row_column, bool is_birth);
 
-    static void add_vertex_to(sf::VertexArray &vertex_array, const coord &row_column);
+    void update_on_birth(const coord &row_column, const coord &neighbour_pos);
+
+    void update_on_death(const coord &neighbour_pos);
+
+    void update_on_differences();
 
     /**
      * Handles negative values of n in n % m in the same way Python does.
@@ -55,9 +68,9 @@ private:
     }
 
 public:
-    void set_cell(const coord &row_column, bool state = true);
-
     void update_generation();
+
+    void draw(sf::RenderWindow &window) const;
 
     inline bool is_infinite() const
     {
@@ -72,12 +85,5 @@ public:
     inline unsigned int get_pattern_height() const
     {
         return pattern_height;
-    }
-
-    inline void draw(sf::RenderWindow &window) const
-    {
-        window.clear();
-        window.draw(vertices);
-        window.display();
     }
 };

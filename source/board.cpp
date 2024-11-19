@@ -2,7 +2,7 @@
 
 Board::Board(const Board::pattern &starting_pattern, const bool infinite) : Board(infinite)
 {
-    if (starting_pattern.size() > board_config::rows)
+    if (starting_pattern.size() > board_config::rows && !infinite)
     {
         std::cout << "Pattern too tall in finite area. Increase board_config::rows in 'neat-life_header.hpp'.\n";
         return;
@@ -16,8 +16,8 @@ Board::Board(const Board::pattern &starting_pattern, const bool infinite) : Boar
         if (row_string.size() > board_config::columns && !infinite)
         {
             std::cout << "Pattern too wide in finite area. Increase board_config::columns in 'neat-life_header.hpp'.\n";
-            live_cell_activities.clear();
-            vertices.clear();
+            next_live_cells.clear();
+            next_dead_cells.clear();
             return;
         }
 
@@ -26,17 +26,42 @@ Board::Board(const Board::pattern &starting_pattern, const bool infinite) : Boar
         int column = 0;
         for (const char cell : row_string)
         {
-            set_cell({row + y_offset * !infinite, column + x_offset * !infinite}, cell == 'O');
+            if (cell == 'O')
+            {
+                update_cell({row + y_offset * !infinite, column + x_offset * !infinite}, true);
+            }
             ++column;
         }
 
         ++row;
     }
+
+    update_on_differences();
 }
 
-bool Board::cell_stays_live(const coord &row_column)
+void Board::update_cell(const Board::coord &row_column, const bool is_birth)
 {
-    int live_neighbour_count = 0;
+    if (is_birth)
+    {
+        next_dead_cells.erase(row_column);
+        updated_dead.erase(row_column);
+        removed_dead.insert(row_column);
+        next_live_cells[row_column] = 0;
+        updated_live[row_column] = 0;
+    }
+    else
+    {
+        if (next_live_cells[row_column] != 0)
+        {
+            next_dead_cells[row_column] = next_live_cells[row_column];
+            updated_dead[row_column] = next_live_cells[row_column];
+        }
+
+        next_live_cells.erase(row_column);
+        updated_live.erase(row_column);
+        removed_live.insert(row_column);
+    }
+
     for (const auto &direction : board_config::directions)
     {
         int row_index = row_column.first + direction[0];
@@ -47,69 +72,119 @@ bool Board::cell_stays_live(const coord &row_column)
             column_index = Board::neg_mod(column_index, board_config::columns);
         }
 
-        const coord row_column_indices = {row_index, column_index};
-        if (live_cell_activities.count({row_index, column_index}) != 0)
+        const coord neighbour_pos = {row_index, column_index};
+        if (is_birth)
         {
-            ++live_neighbour_count;
-            continue;
-        }
-
-        if (dead_cell_neighbours.count(row_column_indices) != 0)
-        {
-            ++dead_cell_neighbours[row_column_indices];
+            update_on_birth(row_column, neighbour_pos);
         }
         else
         {
-            dead_cell_neighbours.insert({row_column_indices, 1});
+            update_on_death(neighbour_pos);
         }
     }
-
-    return live_neighbour_count == 2 || live_neighbour_count == 3;
 }
 
-void Board::add_vertex_to(sf::VertexArray &vertex_array, const coord &row_column)
+void Board::update_on_birth(const Board::coord &row_column, const Board::coord &neighbour_pos)
 {
-    const float x_pos = board_config::cell_length * static_cast<float>(row_column.second);
-    const float y_pos = board_config::cell_length * static_cast<float>(row_column.first);
-    vertex_array.append(sf::Vertex({x_pos, y_pos}));
-    vertex_array.append(sf::Vertex({x_pos + board_config::cell_length, y_pos}));
-    vertex_array.append(sf::Vertex({x_pos + board_config::cell_length, y_pos + board_config::cell_length}));
-    vertex_array.append(sf::Vertex({x_pos, y_pos + board_config::cell_length}));
-}
-
-void Board::set_cell(const coord &row_column, const bool state)
-{
-    if (live_cell_activities.count(row_column) == 0 && state)
+    if (next_live_cells.count(neighbour_pos) != 0)
     {
-        live_cell_activities.insert({row_column, 0});
-        sf::Vertex vertex({static_cast<float>(row_column.first), static_cast<float>(row_column.second)});
-        Board::add_vertex_to(vertices, row_column);
+        updated_live[row_column] = ++next_live_cells[row_column];
+        updated_live[neighbour_pos] = ++next_live_cells[neighbour_pos];
+        return;
     }
+
+    if (next_dead_cells.count(neighbour_pos) != 0)
+    {
+        updated_dead[neighbour_pos] = ++next_dead_cells[neighbour_pos];
+    }
+    else
+    {
+        next_dead_cells[neighbour_pos] = 1;
+        updated_dead[neighbour_pos] = 1;
+    }
+}
+
+void Board::update_on_death(const Board::coord &neighbour_pos)
+{
+    if (next_live_cells.count(neighbour_pos) != 0)
+    {
+        updated_live[neighbour_pos] = --next_live_cells[neighbour_pos];
+        return;
+    }
+
+    updated_dead[neighbour_pos] = --next_dead_cells[neighbour_pos];
+    if (next_dead_cells[neighbour_pos] == 0)
+    {
+        next_dead_cells.erase(neighbour_pos);
+        updated_dead.erase(neighbour_pos);
+        removed_dead.insert(neighbour_pos);
+    }
+}
+
+void Board::update_on_differences()
+{
+    for (const auto &rm_live : removed_live)
+    {
+        live_cells.erase(rm_live);
+    }
+
+    for (const auto &rm_dead : removed_dead)
+    {
+        dead_cells.erase(rm_dead);
+    }
+
+    for (const auto &up_live : updated_live)
+    {
+        live_cells[up_live.first] = up_live.second;
+    }
+
+    for (const auto &up_dead : updated_dead)
+    {
+        dead_cells[up_dead.first] = up_dead.second;
+    }
+
+    removed_live.clear();
+    removed_dead.clear();
+    updated_live.clear();
+    updated_dead.clear();
 }
 
 void Board::update_generation()
 {
-    coord_val next_live_cell_activities;
-    sf::VertexArray next_vertices{sf::PrimitiveType::Quads};
-    for (const auto &live_cell : live_cell_activities)
+    for (const auto &live_cell : live_cells)
     {
-        if (cell_stays_live(live_cell.first))
+        if (live_cell.second != 2 && live_cell.second != 3)
         {
-            next_live_cell_activities.insert(live_cell);
-            Board::add_vertex_to(next_vertices, live_cell.first);
+            update_cell(live_cell.first, false);
         }
     }
 
-    for (const auto &dead_cell : dead_cell_neighbours)
+    for (const auto &dead_cell : dead_cells)
     {
         if (dead_cell.second == 3)
         {
-            next_live_cell_activities.insert(dead_cell);
-            Board::add_vertex_to(next_vertices, dead_cell.first);
+            update_cell(dead_cell.first, true);
         }
     }
 
-    live_cell_activities = std::move(next_live_cell_activities);
-    vertices = std::move(next_vertices);
-    dead_cell_neighbours.clear();
+    update_on_differences();
+}
+
+void Board::draw(sf::RenderWindow &window) const
+{
+    window.clear();
+    sf::VertexArray vertex_array{sf::PrimitiveType::Quads, 4 * live_cells.size()};
+    for (const auto &cell : live_cells)
+    {
+        coord cell_pos = cell.first;
+        const auto x_pos = static_cast<float>(cell_pos.second);
+        const auto y_pos = static_cast<float>(cell_pos.first);
+        vertex_array.append(sf::Vertex({x_pos, y_pos}));
+        vertex_array.append(sf::Vertex({x_pos + 1.0f, y_pos}));
+        vertex_array.append(sf::Vertex({x_pos + 1.0f, y_pos + 1.0f}));
+        vertex_array.append(sf::Vertex({x_pos, y_pos + 1.0f}));
+    }
+
+    window.draw(vertex_array);
+    window.display();
 }
