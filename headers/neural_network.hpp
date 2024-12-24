@@ -1,15 +1,20 @@
 #pragma once
 
 #include <vector>
+#include <string>
 
 class NeuralNetwork
 {
-    static const float bias_min;
-    static const float bias_max;
-    static const float weight_min;
-    static const float weight_max;
+    struct Node
+    {
+        int id;
+        char type;
+        float bias;
 
-    typedef std::pair<const char, float> Node;  // a node is a pair of a type and a bias
+        Node(int id, char type, float bias) : id(id), type(type), bias(bias)
+        {}
+    };
+
     std::vector<Node> nodes;
 
     struct Connection
@@ -17,33 +22,29 @@ class NeuralNetwork
         const int in;
         const int out;
         float weight;
-        const int innovation_id;
+        const int innovation;
         bool enabled;
 
-        Connection(int in, int out, float weight, int innovation_id, bool enabled) :
-                in(in), out(out), weight(weight), innovation_id(innovation_id), enabled(enabled)
+        Connection(int in, int out, float weight, int innovation, bool enabled) :
+                in(in), out(out), weight(weight), innovation(innovation), enabled(enabled)
         {}
     };
 
     std::vector<Connection> connections;
 
 public:
-    NeuralNetwork(const int num_input, const int num_output)
-    {
+    NeuralNetwork(int num_input, int num_output);
 
-    }
+    [[nodiscard]] std::string to_string() const;
 
 private:
-    void add_node(char type);
+    void add_node(int id, char type);
 
-    void add_node(char type, float bias);
+    void add_node(int id, char type, float bias);
 
-    void add_connection(int in, int out, int innovation_id, bool enabled = true);
+    void add_connection(int in, int out, int innovation, bool enabled = true);
 
-    void add_connection(int in, int out, float weight, int innovation_id, bool enabled = true);
+    void add_connection(int in, int out, float weight, int innovation, bool enabled = true);
 };
 
-const float NeuralNetwork::bias_min = -20.0f;
-const float NeuralNetwork::bias_max = 20.0f;
-const float NeuralNetwork::weight_min = -20.0f;
-const float NeuralNetwork::weight_max = 20.0f;
+std::ostream &operator<<(std::ostream &os, NeuralNetwork &nn);

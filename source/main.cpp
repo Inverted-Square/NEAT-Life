@@ -3,8 +3,20 @@
 #include "util.hpp"
 #include "events.hpp"
 #include "board.hpp"
+#include "neural_network.hpp"
+
+void test_cgol();
+
+void test_neural_networks();
 
 int main()
+{
+    test_neural_networks();
+
+    return 0;
+}
+
+void test_cgol()
 {
     auto window = sf::RenderWindow{{win_config::width_u, win_config::height_u}, "NEAT-Life", win_config::style};
     window.setFramerateLimit(win_config::frame_rate);
@@ -39,6 +51,10 @@ int main()
 
         board.draw(window);
     }
+}
 
-    return 0;
+void test_neural_networks()
+{
+    NeuralNetwork neural_network(4, 2);
+    std::cout << neural_network << std::endl;
 }
