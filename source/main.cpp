@@ -55,6 +55,12 @@ void test_cgol()
 
 void test_neural_networks()
 {
-    NeuralNetwork neural_network(4, 2);
+    NeuralNetwork neural_network(std::vector{2, 1, 3, 2});
     std::cout << neural_network << std::endl;
+
+    doubles inputs{0.5f, -1.5f};
+    for (const double &output : neural_network.activate(inputs))
+    {
+        std::cout << output << std::endl;
+    }
 }
