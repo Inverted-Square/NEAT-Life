@@ -1,17 +1,10 @@
 #include "neural_network.hpp"
 
 #include <iostream>
-#include <random>
-
-const double bias_min = -1;
-const double bias_max = 1;
-const double weight_min = -5;
-const double weight_max = 5;
+#include <algorithm>
 
 std::random_device random_device;
 std::mt19937 gen(random_device());
-std::uniform_real_distribution<double> biases_dis(bias_min, bias_max);
-std::uniform_real_distribution<double> weights_dis(weight_min, weight_max);
 
 NeuralNetwork::NeuralNetwork(const ints &layers_counts)
 {
@@ -22,37 +15,33 @@ NeuralNetwork::NeuralNetwork(const ints &layers_counts)
     }
 
     nodes.resize(layers_counts.size());
+    std::normal_distribution<double> weight_distribution(0, sqrt(2.0 / 4));
+
     int curr_node_id = 0;
     for (int layer = 0; layer < static_cast<int>(layers_counts.size()); ++layer)
     {
         for (int count = 0; count < layers_counts[layer]; ++count)
         {
-            add_node(curr_node_id++, layer);
+            add_node(curr_node_id++, layer, weight_distribution(gen));
         }
     }
 
     int curr_innovation_id = 0;
     for (int layer = 0; layer < static_cast<int>(layers_counts.size()) - 1; ++layer)
     {
-        connect_to_next_layer(layer, curr_innovation_id);
+        connect_to_next_layer(layer, curr_innovation_id, weight_distribution);
     }
 }
 
-void NeuralNetwork::connect_to_next_layer(int layer, int &innovation_id)
+void NeuralNetwork::connect_to_next_layer(int layer, int &innovation_id, std::normal_distribution<double> &dis)
 {
     for (const auto &from_node : nodes[layer])
     {
         for (const auto &to_node : nodes[layer + 1])
         {
-            add_connection(from_node.id, to_node.id, innovation_id++);
+            add_connection(from_node.id, to_node.id, dis(gen), innovation_id++);
         }
     }
-}
-
-void NeuralNetwork::add_node(const int id, const int layer)
-{
-    const double bias = biases_dis(gen);
-    nodes[layer].emplace_back(id, bias);
 }
 
 void NeuralNetwork::add_node(const int id, const int layer, const double bias)
@@ -60,15 +49,9 @@ void NeuralNetwork::add_node(const int id, const int layer, const double bias)
     nodes[layer].emplace_back(id, bias);
 }
 
-void NeuralNetwork::add_connection(const int in, const int out, int innovation)
+void NeuralNetwork::add_connection(const int in, const int out, const double weight, int innovation)
 {
-    const double weight = weights_dis(gen);
     connections[out].emplace_back(in, weight, innovation, true);
-}
-
-void NeuralNetwork::add_connection(const int in, const int out, const double weight, int innovation, const bool enabled)
-{
-    connections[out].emplace_back(in, weight, innovation, enabled);
 }
 
 void NeuralNetwork::add_new_layer(int before_layer)
@@ -81,7 +64,7 @@ doubles NeuralNetwork::activate(doubles &activation_values) const
     if (activation_values.size() != nodes[0].size())
     {
         std::cout << "You have activated with the wrong number of activation_values.\nExpected: " << nodes[0].size()
-                  << ", got: " << activation_values.size() << std::endl;
+                  << ", got: " << activation_values.size() << "\n";
         exit(EXIT_FAILURE);
     }
 
@@ -95,18 +78,23 @@ doubles NeuralNetwork::activate(doubles &activation_values) const
     return feed_layer(activation_values, nodes[nodes.size() - 1], softmax);
 }
 
-doubles NeuralNetwork::feed_layer(const doubles &inputs, const node_layer &layer, void (*activation_func)(doubles &)) const
+doubles NeuralNetwork::feed_layer(doubles &inputs, const node_layer &layer, void (*activation_func)(doubles &)) const
 {
-    // TODO: scale inputs here
+    scale_values(inputs);
 
     doubles new_activations(layer.size());
     int curr_node = 0;
     for (const auto &node : layer)
     {
-        double weighted_sum = 0.0f;
+        double weighted_sum = 0;
         int curr_conn = 0;
         for (const auto &connection : connections.at(node.id))
         {
+            if (!connection.enabled)
+            {
+                continue;
+            }
+
             weighted_sum += inputs[curr_conn++] * connection.weight;
         }
 
@@ -119,6 +107,22 @@ doubles NeuralNetwork::feed_layer(const doubles &inputs, const node_layer &layer
     return new_activations;
 }
 
+void NeuralNetwork::scale_values(doubles &values)
+{
+    double min_value = *std::min_element(values.begin(), values.end());
+    double max_value = *std::max_element(values.begin(), values.end());
+    if (max_value - min_value == 0)  // usually happens because all values were negative so relu made them all 0
+    {
+        std::cout << "Note: NeuralNetwork::scale_values couldn't scale the values as they're all the same.\n";
+        return;
+    }
+
+    for (double &value : values)
+    {
+        value = (value - min_value) / (max_value - min_value);
+    }
+}
+
 void NeuralNetwork::relu(doubles &values)
 {
     for (double &value : values)
@@ -129,7 +133,7 @@ void NeuralNetwork::relu(doubles &values)
 
 void NeuralNetwork::softmax(doubles &values)
 {
-    double sum = 0.0f;
+    double sum = 0;
     for (const double &value : values)
     {
         sum += exp(value);
@@ -166,7 +170,8 @@ std::string NeuralNetwork::node_connections_to_string(const Node &node) const
     std::string connections_str = "  Connections:\n";
     for (const auto &connection : connections.at(node.id))
     {
-        connections_str += "    " + std::to_string(connection.in) + "->" + std::to_string(node.id) + " (Weight " +
+        std::string arrow = connection.enabled ? "->" : "-/>";
+        connections_str += "    " + std::to_string(connection.in) + arrow + std::to_string(node.id) + " (Weight " +
                            std::to_string(connection.weight) + ")\n";
     }
 

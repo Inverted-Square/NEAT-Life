@@ -5,6 +5,8 @@
 #include "board.hpp"
 #include "neural_network.hpp"
 
+#include <random>
+
 void test_cgol();
 
 void test_neural_networks();
@@ -46,7 +48,7 @@ void test_cgol()
 
         if (steps % 1000 == 0)
         {
-            std::cout << "Ran for " << steps << " steps." << std::endl;
+            std::cout << "Ran for " << steps << " steps." << "\n";
         }
 
         board.draw(window);
@@ -55,12 +57,26 @@ void test_cgol()
 
 void test_neural_networks()
 {
-    NeuralNetwork neural_network(std::vector{2, 1, 3, 2});
-    std::cout << neural_network << std::endl;
+    int num_inputs = 4;
+    NeuralNetwork neural_network(std::vector{num_inputs, 5, 5, 2});
+//    std::cout << neural_network << "\n";
 
-    doubles inputs{0.5f, -1.5f};
-    for (const double &output : neural_network.activate(inputs))
+    std::random_device random_device;
+    std::mt19937 gen(random_device());
+    std::uniform_real_distribution<double> possible_inputs(0, 9);
+
+    for (int repeats = 0; repeats < 250; ++repeats)
     {
-        std::cout << output << std::endl;
+        doubles inputs(num_inputs);
+        for (int input_idx = 0; input_idx < num_inputs; ++input_idx)
+        {
+            inputs[input_idx] = possible_inputs(gen);
+        }
+
+        for (const double &output : neural_network.activate(inputs))
+        {
+            std::cout << output << "\n";
+        }
+        std::cout << "\n";
     }
 }

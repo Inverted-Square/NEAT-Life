@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <random>
 
 typedef std::vector<double> doubles;
 typedef std::vector<int> ints;
@@ -41,15 +42,11 @@ public:
     explicit NeuralNetwork(const ints &layers_counts);
 
 private:
-    void connect_to_next_layer(int layer, int &innovation_id);
-
-    void add_node(int id, int layer);
+    void connect_to_next_layer(int layer, int &innovation_id, std::normal_distribution<double> &dis);
 
     void add_node(int id, int layer, double bias);
 
-    void add_connection(int in, int out, int innovation);
-
-    void add_connection(int in, int out, double weight, int innovation, bool enabled = true);
+    void add_connection(int in, int out, double weight, int innovation);
 
 public:
     void add_new_layer(int before_layer);
@@ -57,7 +54,9 @@ public:
     doubles activate(doubles &activation_values) const;
 
 private:
-    doubles feed_layer(const doubles &inputs, const node_layer &layer, void (*activation_func)(doubles &)) const;
+    doubles feed_layer(doubles &inputs, const node_layer &layer, void (*activation_func)(doubles &)) const;
+
+    static void scale_values(doubles &values);
 
     static void relu(doubles &values);
 
