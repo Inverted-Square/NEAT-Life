@@ -15,6 +15,8 @@ add_executable(NEAT-Life source/main.cpp
         headers/util.hpp
         source/neural_network.cpp
         headers/neural_network.hpp
+        source/neat.cpp
+        headers/neat.hpp
 )
 
 set(SFML_STATIC_LIBRARIES TRUE)

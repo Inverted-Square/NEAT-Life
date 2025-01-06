@@ -53,6 +53,14 @@ public:
 
     doubles activate(doubles &activation_values) const;
 
+    void mutate_weight();
+
+    // Used for the crossover of two neural networks
+    NeuralNetwork operator*(const NeuralNetwork &other_net) const;
+
+    // Used to see if two networks are close enough to belong to the same species
+    NeuralNetwork operator==(const NeuralNetwork &other_net) const;
+
 private:
     doubles feed_layer(doubles &inputs, const node_layer &layer, void (*activation_func)(doubles &)) const;
 
