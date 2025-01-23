@@ -56,6 +56,10 @@ public:
 
     explicit NeuralNetwork(const ints &layers_counts);
 
+    const node_layers &get_nodes() const;
+
+    const to_node_connections &get_connections() const;
+
 private:
     void connect_to_next_layer(int layer, int &innovation_id);
 
@@ -80,7 +84,7 @@ public:
     // Used to see if two networks are close enough to belong to the same species
     bool operator==(const NeuralNetwork &other_net) const;
 
-    doubles activate(doubles &activation_values);
+    doubles activate(const doubles &activation_values);
 
 private:
     void feed_layer(int layer, char activation_func);

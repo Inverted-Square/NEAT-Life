@@ -29,4 +29,10 @@ class NEAT
 
     int next_innovation_id = 0;
     int next_node_id = 0;
+
+    void mutate_networks();
+
+    void mutate_add_connection(NeuralNetwork &network);
+
+    void mutate_add_node(NeuralNetwork &network);
 };

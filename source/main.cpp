@@ -58,8 +58,8 @@ void test_cgol()
 void test_neural_networks()
 {
     int num_inputs = 4;
-    NeuralNetwork neural_network(std::vector{num_inputs, 5, 5, 2});
-//    std::cout << neural_network << "\n";
+    NeuralNetwork neural_network(std::vector{num_inputs, 2});
+    std::cout << neural_network << "\n";
 
     std::random_device random_device;
     std::mt19937 gen(random_device());
@@ -71,7 +71,9 @@ void test_neural_networks()
         for (int input_idx = 0; input_idx < num_inputs; ++input_idx)
         {
             inputs[input_idx] = possible_inputs(gen);
+            std::cout << inputs[input_idx] << ' ';
         }
+        std::cout << '\n';
 
         for (const double &output : neural_network.activate(inputs))
         {

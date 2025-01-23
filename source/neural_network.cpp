@@ -34,11 +34,22 @@ NeuralNetwork::NeuralNetwork(const ints &layers_counts)
     }
 }
 
+const NeuralNetwork::node_layers &NeuralNetwork::get_nodes() const
+{
+    return nodes;
+}
+
+const NeuralNetwork::to_node_connections &NeuralNetwork::get_connections() const
+{
+    return connections;
+}
+
 void NeuralNetwork::connect_to_next_layer(int layer, int &innovation_id)
 {
-    for (const auto &from_node : nodes[layer])
+    int mapped_to_layer = layer + 1 == static_cast<int>(nodes.size()) - 1 ? -1 : layer + 1;
+    for (const auto &from_node : nodes.at(layer))
     {
-        for (const auto &to_node : nodes[layer + 1])
+        for (const auto &to_node : nodes.at(mapped_to_layer))
         {
             add_connection(from_node, to_node, weight_distribution(gen), innovation_id++);
         }
@@ -176,7 +187,7 @@ bool NeuralNetwork::operator==(const NeuralNetwork &other_net) const
     return excess_count / max_genes_count + disjoint_count / max_genes_count + 3 * average_weight_diff < 4;
 }
 
-doubles NeuralNetwork::activate(doubles &activation_values)
+doubles NeuralNetwork::activate(const doubles &activation_values)
 {
     if (activation_values.size() != nodes.at(0).size())
     {
@@ -202,9 +213,9 @@ doubles NeuralNetwork::activate(doubles &activation_values)
     // feed-forward through output layer
     feed_layer(-1, 's');
 
-    doubles outputs(nodes.at(0).size());
+    doubles outputs(nodes.at(-1).size());
     curr_idx = 0;
-    for (const auto &node : nodes.at(0))
+    for (const auto &node : nodes.at(-1))
     {
         outputs[curr_idx++] = node.value;
     }
@@ -225,9 +236,9 @@ void NeuralNetwork::feed_layer(const int layer, const char activation_func)
         node.value += node.bias;
     }
 
-    scale_values(layer);  // TODO: possibly just have this before the relu line instead of both relu and softmax
     if (activation_func == 'r')
     {
+        scale_values(layer);
         relu(layer);
     }
     else
