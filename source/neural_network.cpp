@@ -3,10 +3,10 @@
 #include <iostream>
 #include <algorithm>
 
-std::random_device random_device;
-std::mt19937 gen(random_device());
-std::normal_distribution<double> weight_distribution(0, sqrt(2.0 / NUM_IN));
-std::uniform_real_distribution<double> rand_prob(0, 1);
+static std::random_device random_device;
+static std::mt19937 gen(random_device());
+static std::normal_distribution<double> weight_distribution(0, sqrt(2.0 / NUM_IN));
+static std::uniform_real_distribution<double> rand_prob(0, 1);
 
 NeuralNetwork::NeuralNetwork(const ints &layers_counts)
 {
@@ -19,11 +19,9 @@ NeuralNetwork::NeuralNetwork(const ints &layers_counts)
     int curr_node_id = 0;
     for (int layer = 0; layer < static_cast<int>(layers_counts.size()); ++layer)
     {
-        // output layer maps to value -1 (makes it easier to handle networks with connections that skip hidden layers)
-        int mapped_layer = layer == static_cast<int>(layers_counts.size()) - 1 ? -1 : layer;
         for (int count = 0; count < layers_counts[layer]; ++count)
         {
-            add_node(curr_node_id++, weight_distribution(gen), mapped_layer);
+            add_node(curr_node_id++, layer);
         }
     }
 
@@ -44,21 +42,61 @@ const NeuralNetwork::to_node_connections &NeuralNetwork::get_connections() const
     return connections;
 }
 
+const NeuralNetwork::innovation_to_conn &NeuralNetwork::get_conn_refs() const
+{
+    return conn_refs;
+}
+
 void NeuralNetwork::connect_to_next_layer(int layer, int &innovation_id)
 {
-    int mapped_to_layer = layer + 1 == static_cast<int>(nodes.size()) - 1 ? -1 : layer + 1;
     for (const auto &from_node : nodes.at(layer))
     {
-        for (const auto &to_node : nodes.at(mapped_to_layer))
+        for (const auto &to_node : nodes.at(layer + 1))
         {
-            add_connection(from_node, to_node, weight_distribution(gen), innovation_id++);
+            add_connection(from_node, to_node, innovation_id++);
         }
     }
+}
+
+void NeuralNetwork::add_node(int id, int layer)
+{
+    add_node(id, weight_distribution(gen), layer);
 }
 
 void NeuralNetwork::add_node(const int id, const double bias, const int layer)
 {
     nodes[layer].emplace_back(id, bias, layer);
+}
+
+// TODO: consider making this 2 methods, one to test if there's a layer between and one to make space between 2 layers
+//  tbh I don't think it's needed as the code to make space between will be the same bc the same checks need to be made
+int NeuralNetwork::make_space_between(const int layer1, const int layer2)
+{
+    if (layer1 >= layer2 || layer1 < 0 || nodes.count(layer1) == 0 || nodes.count(layer2) == 0)
+    {
+        throw std::invalid_argument("NeuralNetwork::add_node_between - Ensure that the given layers exist, are "
+                                    "positive and that layer1 < layer2.");
+    }
+
+    int new_layer = (layer1 + layer2) / 2;
+    if (new_layer == layer1)
+    {
+        for (int layer = static_cast<int>(nodes.size()) - 1; layer >= layer2; --layer)
+        {
+            auto node_handler = nodes.extract(layer);
+            node_handler.key() = layer + 1;
+            nodes.insert(std::move(node_handler));
+        }
+
+        ++new_layer;
+    }
+
+    return new_layer;
+}
+
+void NeuralNetwork::add_connection(const NeuralNetwork::Node &from, const NeuralNetwork::Node &to, int innovation)
+{
+    add_connection(from, to, weight_distribution(gen), innovation);
 }
 
 void NeuralNetwork::add_connection(const Node &from, const Node &to, const double weight, const int innovation)
@@ -205,17 +243,18 @@ doubles NeuralNetwork::activate(const doubles &activation_values)
     scale_values(0);
 
     // feed-forward through hidden layers
-    for (int i = 1; i < static_cast<int>(nodes.size()) - 1; ++i)
+    const int nodes_size = static_cast<int>(nodes.size());
+    for (int i = 1; i < nodes_size - 1; ++i)
     {
         feed_layer(i, 'r');
     }
 
     // feed-forward through output layer
-    feed_layer(-1, 's');
+    feed_layer(nodes_size - 1, 's');
 
-    doubles outputs(nodes.at(-1).size());
+    doubles outputs(nodes.at(nodes_size - 1).size());
     curr_idx = 0;
-    for (const auto &node : nodes.at(-1))
+    for (const auto &node : nodes.at(nodes_size - 1))
     {
         outputs[curr_idx++] = node.value;
     }
@@ -285,13 +324,14 @@ void NeuralNetwork::relu(const int layer)
 
 void NeuralNetwork::softmax()
 {
+    const int nodes_size = static_cast<int>(nodes.size());
     double sum = 0;
-    for (const auto &node : nodes.at(-1))
+    for (const auto &node : nodes.at(nodes_size - 1))
     {
         sum += exp(node.value);
     }
 
-    for (auto &node : nodes.at(-1))
+    for (auto &node : nodes.at(nodes_size - 1))
     {
         node.value = exp(node.value) / sum;
     }

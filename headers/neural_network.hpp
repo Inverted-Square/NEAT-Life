@@ -15,6 +15,7 @@ typedef std::vector<int> ints;
 
 class NeuralNetwork
 {
+public:
     struct Node
     {
         const int id;
@@ -28,8 +29,11 @@ class NeuralNetwork
 
     typedef std::vector<Node> node_layer;
     typedef std::unordered_map<int, node_layer> node_layers;
+
+private:
     node_layers nodes;
 
+public:
     struct Connection
     {
         const Node &from;
@@ -44,9 +48,14 @@ class NeuralNetwork
     };
 
     typedef std::unordered_map<int, std::vector<Connection>> to_node_connections;
+
+private:
     to_node_connections connections;
 
+public:
     typedef std::unordered_map<int, Connection *> innovation_to_conn;
+
+private:
     innovation_to_conn conn_refs;
 
     int max_innovation = 0;
@@ -60,14 +69,22 @@ public:
 
     const to_node_connections &get_connections() const;
 
+    const innovation_to_conn &get_conn_refs() const;
+
 private:
     void connect_to_next_layer(int layer, int &innovation_id);
 
+public:
+    void add_node(int id, int layer);
+
     void add_node(int id, double bias, int layer);
+
+    int make_space_between(int layer1, int layer2);
+
+    void add_connection(const Node &from, const Node &to, int innovation);
 
     void add_connection(const Node &from, const Node &to, double weight, int innovation);
 
-public:
     void mutate_weight();
 
     void disable_connection(int inno);
