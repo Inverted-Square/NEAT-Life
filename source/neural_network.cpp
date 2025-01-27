@@ -119,9 +119,9 @@ void NeuralNetwork::mutate_weight()
 
     for (auto &node_connections : connections)
     {
-        for (auto &connection : node_connections.second)
+        for (auto &conn : node_connections.second)
         {
-            connection.weight = rand_prob(gen) < 0.1 ? weight_distribution(gen) : connection.weight;
+            conn.weight = rand_prob(gen) < 0.1 && conn.enabled ? weight_distribution(gen) : conn.weight;
         }
     }
 }
