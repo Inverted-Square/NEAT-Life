@@ -23,15 +23,29 @@ class NEAT
         }
     };
 
-    typedef std::unordered_map<conn, int, hash_pair> conn_id;  // tracks pre-existing connections
-    conn_id innovation_ids;  // used to track what innovation ids have been given for new connections
+    std::unordered_map<conn, int, hash_pair> innovation_ids;  // tracks what innovation ids were given to connections
     std::unordered_map<int, int> node_ids;  // used to track what ids have been given for new nodes (inno, node_id)
 
-    typedef std::vector<NeuralNetwork> networks;
-    networks population;
+    std::vector<NeuralNetwork> curr_population;
+    std::vector<NeuralNetwork> next_population;
+
+    typedef std::vector<const NeuralNetwork *> species;
+    typedef std::vector<species> species_groups;
 
     int next_innovation_id = 0;
     int next_node_id = 0;
+
+    void generate_next_population();
+
+    species_groups network_speciation(double &population_mean_fitness) const;
+
+    static int find_species(const species_groups &groups, const NeuralNetwork &network);
+
+    void repopulate_species(const species &group, double population_mean_fitness);
+
+    static int get_new_size(double total_adj_fitness, double population_mean_fitness, int prev_size) ;
+
+    static const NeuralNetwork *run_tournament(const species &group, int tournament_size) ;
 
     void mutate_networks();
 

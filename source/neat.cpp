@@ -4,9 +4,119 @@ static std::random_device random_device;
 static std::mt19937 gen(random_device());
 static std::uniform_real_distribution<double> rand_prob(0, 1);
 
+void NEAT::generate_next_population()
+{
+    double mean_fitness = 0;
+    const species_groups groups = network_speciation(mean_fitness);
+    for (const auto &group : groups)
+    {
+        repopulate_species(group, mean_fitness);
+    }
+
+    curr_population = next_population;
+    next_population.clear();
+    mutate_networks();
+}
+
+NEAT::species_groups NEAT::network_speciation(double &population_mean_fitness) const
+{
+    species_groups groups(1);
+    groups[0].push_back(&curr_population[0]);
+    for (int pop_idx = 1; pop_idx < static_cast<int>(curr_population.size()); ++pop_idx)
+    {
+        const int groups_idx = find_species(groups, curr_population[pop_idx]);
+        if (groups_idx != -1)
+        {
+            groups[groups_idx].push_back(&curr_population[pop_idx]);
+        }
+        else
+        {
+            groups.push_back({&curr_population[pop_idx]});
+        }
+    }
+
+    for (const auto &group : groups)
+    {
+        for (const NeuralNetwork *net : group)
+        {
+            population_mean_fitness += net->fitness / static_cast<double>(group.size());
+        }
+    }
+
+    population_mean_fitness /= static_cast<double>(curr_population.size());
+    return groups;
+}
+
+int NEAT::find_species(const NEAT::species_groups &groups, const NeuralNetwork &network)
+{
+    for (int groups_idx = 0; groups_idx < static_cast<int>(groups.size()); ++groups_idx)
+    {
+        const int rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(groups[groups_idx].size())));
+        const NeuralNetwork *rand_net = groups[groups_idx][rand_idx];
+        if (network == *rand_net)
+        {
+            return groups_idx;
+        }
+    }
+
+    return -1;
+}
+
+void NEAT::repopulate_species(const NEAT::species &group, const double population_mean_fitness)
+{
+    double total_adj_fitness = 0;
+    for (auto network : group)
+    {
+        total_adj_fitness += network->fitness;
+    }
+    total_adj_fitness /= static_cast<double>(group.size());
+
+    const int rounded_size = get_new_size(total_adj_fitness, population_mean_fitness, static_cast<int>(group.size()));
+    for (int i = 0; i < rounded_size; ++i)
+    {
+        const NeuralNetwork *parent1 = run_tournament(group, 3);
+        const NeuralNetwork *parent2 = run_tournament(group, 3);
+
+        NeuralNetwork child = *parent1 * *parent2;
+        next_population.push_back(child);
+    }
+}
+
+int NEAT::get_new_size(const double total_adj_fitness, const double population_mean_fitness, const int prev_size)
+{
+    const double size = round(total_adj_fitness / population_mean_fitness);
+    if (size < prev_size && trunc(size - 0.5) == size - 0.5)
+    {
+        return floor(size);
+    }
+
+    return static_cast<int>(round(size));
+}
+
+const NeuralNetwork *NEAT::run_tournament(const NEAT::species &group, const int tournament_size)
+{
+    int rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(group.size())));
+    const NeuralNetwork *best_rand_net = group[rand_idx];
+    for (int i = 1; i < tournament_size; ++i)
+    {
+        rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(group.size())));
+        if (group[rand_idx]->fitness > best_rand_net->fitness)
+        {
+            best_rand_net = group[rand_idx];
+        }
+    }
+
+    return best_rand_net;
+}
+
 void NEAT::mutate_networks()
 {
-
+    for (auto &network : curr_population)
+    {
+        mutate_add_node(network);
+        mutate_add_connection(network);
+        network.mutate_weights();
+    }
 }
 
 void NEAT::mutate_add_connection(NeuralNetwork &network)

@@ -67,8 +67,6 @@ public:
 
     const node_layers &get_nodes() const;
 
-    const to_node_connections &get_connections() const;
-
     const innovation_to_conn &get_conn_refs() const;
 
 private:
@@ -85,7 +83,7 @@ public:
 
     void add_connection(const Node &from, const Node &to, double weight, int innovation);
 
-    void mutate_weight();
+    void mutate_weights();
 
     void disable_connection(int inno);
 
@@ -98,7 +96,7 @@ private:
     void inherit_gene(const Connection *conn);
 
 public:
-    // Used to see if two networks are close enough to belong to the same species
+    // Used to see if two networks are close enough to belong to the same species_groups
     bool operator==(const NeuralNetwork &other_net) const;
 
     doubles activate(const doubles &activation_values);

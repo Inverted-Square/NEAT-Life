@@ -37,11 +37,6 @@ const NeuralNetwork::node_layers &NeuralNetwork::get_nodes() const
     return nodes;
 }
 
-const NeuralNetwork::to_node_connections &NeuralNetwork::get_connections() const
-{
-    return connections;
-}
-
 const NeuralNetwork::innovation_to_conn &NeuralNetwork::get_conn_refs() const
 {
     return conn_refs;
@@ -107,7 +102,7 @@ void NeuralNetwork::add_connection(const Node &from, const Node &to, const doubl
     conn_refs[conn.innovation] = &conn;
 }
 
-void NeuralNetwork::mutate_weight()
+void NeuralNetwork::mutate_weights()
 {
     for (auto &layer_nodes : nodes)
     {
@@ -132,6 +127,7 @@ void NeuralNetwork::disable_connection(int inno)
 }
 
 // TODO: maybe return a smart pointer to child (i.e. store child on the heap so we don't have to copy when returning)
+//      - acc because of move semantics, this may be ok
 NeuralNetwork NeuralNetwork::operator*(const NeuralNetwork &other_net) const
 {
     NeuralNetwork child({NUM_IN, NUM_OUT});
