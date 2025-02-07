@@ -2,10 +2,11 @@
 
 #include <iostream>
 #include <algorithm>
+#include <unordered_set>
 
 static std::random_device random_device;
 static std::mt19937 gen(random_device());
-static std::normal_distribution<double> weight_distribution(0, sqrt(2.0 / NUM_IN));
+static std::normal_distribution<double> weight_distribution(0, sqrt(2.0 / neat_config::num_input));
 static std::uniform_real_distribution<double> rand_prob(0, 1);
 
 NeuralNetwork::NeuralNetwork(const ints &layers_counts)
@@ -126,22 +127,21 @@ void NeuralNetwork::disable_connection(int inno)
     conn_refs[inno]->enabled = false;
 }
 
-// TODO: maybe return a smart pointer to child (i.e. store child on the heap so we don't have to copy when returning)
-//      - acc because of move semantics, this may be ok
 NeuralNetwork NeuralNetwork::operator*(const NeuralNetwork &other_net) const
 {
-    NeuralNetwork child({NUM_IN, NUM_OUT});
+    NeuralNetwork child;
+    std::unordered_set<int> added_nodes;
     const bool chosen_parent = rand_prob(gen) < 0.5;
     for (const auto &inno_conn : conn_refs)
     {
         const int inno = inno_conn.first;
         if (other_net.conn_refs.count(inno) != 0)
         {
-            child.inherit_either_parent(inno_conn.second, other_net.conn_refs.at(inno));
+            child.inherit_either_parent(inno_conn.second, other_net.conn_refs.at(inno), added_nodes);
         }
         else if ((fitness == other_net.fitness && chosen_parent) || fitness > other_net.fitness)
         {
-            child.inherit_gene(inno_conn.second);
+            child.inherit_gene(inno_conn.second, added_nodes);
         }
     }
 
@@ -151,34 +151,59 @@ NeuralNetwork NeuralNetwork::operator*(const NeuralNetwork &other_net) const
         if (conn_refs.count(other_inno) == 0 &&
             ((fitness == other_net.fitness && !chosen_parent) || other_net.fitness > fitness))
         {
-            child.inherit_gene(other_inno_conn.second);
+            child.inherit_gene(other_inno_conn.second, added_nodes);
         }
     }
 
     return child;
 }
 
-void NeuralNetwork::inherit_either_parent(const Connection *const conn1, const Connection *const conn2)
+void NeuralNetwork::inherit_either_parent(const Connection *const conn1, const Connection *const conn2,
+                                          std::unordered_set<int> &added_nodes)
 {
     if (rand_prob(gen) < 0.5)
     {
-        inherit_gene(conn1);
+        inherit_gene(conn1, added_nodes);
     }
     else
     {
-        inherit_gene(conn2);
+        inherit_gene(conn2, added_nodes);
     }
 }
 
-void NeuralNetwork::inherit_gene(const Connection *const conn)
+void NeuralNetwork::inherit_gene(const Connection *const conn, std::unordered_set<int> &added_nodes)
 {
     const Node &from_node = conn->from;
+    if (added_nodes.count(from_node.id) == 0)
+    {
+        add_node(from_node.id, from_node.bias, from_node.layer);
+        added_nodes.insert(from_node.id);
+    }
+
     const Node &to_node = conn->to;
-    add_node(from_node.id, from_node.bias, from_node.layer);
-    add_node(to_node.id, to_node.bias, to_node.layer);
-    const Node &child_from_node = nodes.at(from_node.layer).back();
-    const Node &child_to_node = nodes.at(to_node.layer).back();
+    if (added_nodes.count(to_node.id) == 0)
+    {
+        add_node(to_node.id, to_node.bias, to_node.layer);
+        added_nodes.insert(to_node.id);
+    }
+
+    const Node &child_from_node = find_node_at(from_node, from_node.layer);
+    const Node &child_to_node = find_node_at(to_node, to_node.layer);
     add_connection(child_from_node, child_to_node, conn->weight, conn->innovation);
+}
+
+const NeuralNetwork::Node &NeuralNetwork::find_node_at(const Node &given_node, const int layer) const
+{
+    for (const auto &node : nodes.at(layer))
+    {
+        if (node.id == given_node.id)
+        {
+            return node;
+        }
+    }
+
+    // TODO: don't think this is best practice but reaching here shouldn't be possible
+    throw std::runtime_error("NeuralNetwork::find_node_at - couldn't find the given node at that layer");
 }
 
 bool NeuralNetwork::operator==(const NeuralNetwork &other_net) const

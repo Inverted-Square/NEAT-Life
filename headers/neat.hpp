@@ -1,12 +1,10 @@
 #pragma once
 
+#include "neat-life_header.hpp"
 #include "neural_network.hpp"
 
 #include <unordered_map>
 #include <vector>
-
-// TODO: there are major assumptions being made on innovation_ids and node_ids so make sure to set them up correctly
-//       when you go on to make the constructor
 
 class NEAT
 {
@@ -32,20 +30,28 @@ class NEAT
     typedef std::vector<const NeuralNetwork *> species;
     typedef std::vector<species> species_groups;
 
-    int next_innovation_id = 0;
-    int next_node_id = 0;
+    int next_innovation_id;
+    int next_node_id;
+
+public:
+    NEAT();
+
+    const std::vector<NeuralNetwork> &get_curr_population() const;
+
+    void set_individual_fitness(int index, double fitness);
 
     void generate_next_population();
 
+private:
     species_groups network_speciation(double &population_mean_fitness) const;
 
     static int find_species(const species_groups &groups, const NeuralNetwork &network);
 
     void repopulate_species(const species &group, double population_mean_fitness);
 
-    static int get_new_size(double total_adj_fitness, double population_mean_fitness, int prev_size) ;
+    static int get_new_size(double total_adj_fitness, double population_mean_fitness, int prev_size);
 
-    static const NeuralNetwork *run_tournament(const species &group, int tournament_size) ;
+    static const NeuralNetwork *run_tournament(const species &group, int tournament_size);
 
     void mutate_networks();
 

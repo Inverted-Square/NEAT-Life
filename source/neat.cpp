@@ -4,6 +4,36 @@ static std::random_device random_device;
 static std::mt19937 gen(random_device());
 static std::uniform_real_distribution<double> rand_prob(0, 1);
 
+NEAT::NEAT() : next_innovation_id(0), next_node_id(0)
+{
+    for (int net = 0; net < neat_config::population_size; ++net)
+    {
+        curr_population.emplace_back(neat_config::layer_counts);
+    }
+
+    next_innovation_id = static_cast<int>(curr_population[0].get_conn_refs().size());
+    for (const int count : neat_config::layer_counts)
+    {
+        next_node_id += count;
+    }
+
+    for (const auto &conn_ref : curr_population[0].get_conn_refs())
+    {
+        const NeuralNetwork::Connection *conn = conn_ref.second;
+        innovation_ids[{conn->from.id, conn->to.id}] = conn->innovation;
+    }
+}
+
+const std::vector<NeuralNetwork> &NEAT::get_curr_population() const
+{
+    return curr_population;
+}
+
+void NEAT::set_individual_fitness(const int index, const double fitness)
+{
+    curr_population[index].fitness = fitness;
+}
+
 void NEAT::generate_next_population()
 {
     double mean_fitness = 0;

@@ -1,14 +1,12 @@
 #pragma once
 
+#include "neat-life_header.hpp"
+
 #include <vector>
 #include <string>
 #include <unordered_map>
 #include <random>
-
-// TODO: move these to neat-life_header.hpp and have this file include that file, this is because I want main.cpp to
-//       see these too
-#define NUM_IN 4
-#define NUM_OUT 2
+#include <unordered_set>
 
 typedef std::vector<double> doubles;
 typedef std::vector<int> ints;
@@ -37,7 +35,7 @@ public:
     struct Connection
     {
         const Node &from;
-        const Node &to;  // TODO: may not be needed (apparently crossover needs it so we'll leave it for now)
+        const Node &to;
         double weight;
         const int innovation;
         bool enabled;
@@ -62,6 +60,8 @@ private:
 
 public:
     double fitness = 0;
+
+    NeuralNetwork() = default;
 
     explicit NeuralNetwork(const ints &layers_counts);
 
@@ -91,9 +91,11 @@ public:
     NeuralNetwork operator*(const NeuralNetwork &other_net) const;
 
 private:
-    void inherit_either_parent(const Connection *conn1, const Connection *conn2);
+    void inherit_either_parent(const Connection *conn1, const Connection *conn2, std::unordered_set<int> &added_nodes);
 
-    void inherit_gene(const Connection *conn);
+    void inherit_gene(const Connection *conn, std::unordered_set<int> &added_nodes);
+
+    const NeuralNetwork::Node &find_node_at(const Node &given_node, const int layer) const;
 
 public:
     // Used to see if two networks are close enough to belong to the same species_groups

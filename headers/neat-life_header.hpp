@@ -47,3 +47,13 @@ namespace events_config
                                    {-1, 0},   // left
                                    {1,  0}};  // right
 }
+
+namespace neat_config
+{
+     const int num_input = 4;
+     const int num_output = 2;
+     const std::vector<int> layer_counts = {num_input, num_output};
+     const int population_size = 50;
+     const int num_gen = 100;
+     const bool debug_mode = false;
+}
