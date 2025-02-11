@@ -1,9 +1,5 @@
 #include "neat.hpp"
 
-static std::random_device random_device;
-static std::mt19937 gen(random_device());
-static std::uniform_real_distribution<double> rand_prob(0, 1);
-
 NEAT::NEAT() : next_innovation_id(0), next_node_id(0)
 {
     for (int net = 0; net < neat_config::population_size; ++net)
@@ -104,8 +100,8 @@ void NEAT::repopulate_species(const NEAT::species &group, const double populatio
     const int rounded_size = get_new_size(total_adj_fitness, population_mean_fitness, static_cast<int>(group.size()));
     for (int i = 0; i < rounded_size; ++i)
     {
-        const NeuralNetwork *parent1 = run_tournament(group, 3);
-        const NeuralNetwork *parent2 = run_tournament(group, 3);
+        const NeuralNetwork *parent1 = run_tournament(group);
+        const NeuralNetwork *parent2 = run_tournament(group);
 
         NeuralNetwork child = *parent1 * *parent2;
         next_population.push_back(child);
@@ -123,11 +119,11 @@ int NEAT::get_new_size(const double total_adj_fitness, const double population_m
     return static_cast<int>(round(size));
 }
 
-const NeuralNetwork *NEAT::run_tournament(const NEAT::species &group, const int tournament_size)
+const NeuralNetwork *NEAT::run_tournament(const NEAT::species &group)
 {
     int rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(group.size())));
     const NeuralNetwork *best_rand_net = group[rand_idx];
-    for (int i = 1; i < tournament_size; ++i)
+    for (int i = 1; i < neat_config::tournament_size; ++i)
     {
         rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(group.size())));
         if (group[rand_idx]->fitness > best_rand_net->fitness)

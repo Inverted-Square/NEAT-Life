@@ -51,7 +51,7 @@ private:
 
     static int get_new_size(double total_adj_fitness, double population_mean_fitness, int prev_size);
 
-    static const NeuralNetwork *run_tournament(const species &group, int tournament_size);
+    static const NeuralNetwork *run_tournament(const species &group);
 
     void mutate_networks();
 

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <algorithm>
+#include <random>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -56,4 +58,10 @@ namespace neat_config
      const int population_size = 50;
      const int num_gen = 100;
      const bool debug_mode = false;
+     const int tournament_size = 3;
 }
+
+static std::random_device random_device;
+static std::mt19937 gen(0);  // use random_device instead of 0 for when you're not testing
+static std::normal_distribution<double> weight_distribution(0, sqrt(2.0 / neat_config::num_input));
+static std::uniform_real_distribution<double> rand_prob(0, 1);

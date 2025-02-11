@@ -5,7 +5,6 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include <random>
 #include <unordered_set>
 
 typedef std::vector<double> doubles;
@@ -56,7 +55,7 @@ public:
 private:
     innovation_to_conn conn_refs;
 
-    int max_innovation = 0;
+    int max_innovation = -1;
 
 public:
     double fitness = 0;
@@ -95,7 +94,7 @@ private:
 
     void inherit_gene(const Connection *conn, std::unordered_set<int> &added_nodes);
 
-    const NeuralNetwork::Node &find_node_at(const Node &given_node, const int layer) const;
+    const NeuralNetwork::Node &find_node_at(const Node &given_node, int layer) const;
 
 public:
     // Used to see if two networks are close enough to belong to the same species_groups

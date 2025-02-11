@@ -1,20 +1,14 @@
 #include "neural_network.hpp"
 
 #include <iostream>
-#include <algorithm>
 #include <unordered_set>
-
-static std::random_device random_device;
-static std::mt19937 gen(random_device());
-static std::normal_distribution<double> weight_distribution(0, sqrt(2.0 / neat_config::num_input));
-static std::uniform_real_distribution<double> rand_prob(0, 1);
 
 NeuralNetwork::NeuralNetwork(const ints &layers_counts)
 {
     if (layers_counts.size() < 2)
     {
-        std::cout << "You must give enough values for layer_counts so that there's at least an input & output layer.\n";
-        exit(EXIT_FAILURE);
+        throw std::invalid_argument("NeuralNetwork::NeuralNetwork - You must give enough values for layer_counts so "
+                                    "that there's at least an input & output layer.\n");
     }
 
     int curr_node_id = 0;
@@ -61,6 +55,11 @@ void NeuralNetwork::add_node(int id, int layer)
 
 void NeuralNetwork::add_node(const int id, const double bias, const int layer)
 {
+    if (layer < 0)
+    {
+        throw std::invalid_argument("NeuralNetwork::add_node - Ensure that the given layer is positive.");
+    }
+
     nodes[layer].emplace_back(id, bias, layer);
 }
 
@@ -97,6 +96,12 @@ void NeuralNetwork::add_connection(const NeuralNetwork::Node &from, const Neural
 
 void NeuralNetwork::add_connection(const Node &from, const Node &to, const double weight, const int innovation)
 {
+    if (innovation <= max_innovation)
+    {
+        throw std::invalid_argument("NeuralNetwork::add_connection - bad innovation given. Innovation should always be "
+                                    "increasing as connections are never removed.");
+    }
+
     max_innovation = innovation;
     connections[to.id].emplace_back(from, to, weight, innovation, true);
     Connection conn = connections.at(to.id).back();
@@ -124,7 +129,7 @@ void NeuralNetwork::mutate_weights()
 
 void NeuralNetwork::disable_connection(int inno)
 {
-    conn_refs[inno]->enabled = false;
+    conn_refs.at(inno)->enabled = false;
 }
 
 NeuralNetwork NeuralNetwork::operator*(const NeuralNetwork &other_net) const

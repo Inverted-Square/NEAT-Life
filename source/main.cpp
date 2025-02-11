@@ -61,10 +61,7 @@ void test_neural_networks()
     NeuralNetwork neural_network(std::vector{num_inputs, 2});
     std::cout << neural_network << "\n";
 
-    std::random_device random_device;
-    std::mt19937 gen(random_device());
     std::uniform_real_distribution<double> possible_inputs(0, 9);
-
     for (int repeats = 0; repeats < 250; ++repeats)
     {
         doubles inputs(num_inputs);
