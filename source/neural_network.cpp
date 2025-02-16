@@ -37,13 +37,18 @@ const NeuralNetwork::innovation_to_conn &NeuralNetwork::get_conn_refs() const
     return conn_refs;
 }
 
+int NeuralNetwork::get_max_innovation() const
+{
+    return max_inno;
+}
+
 void NeuralNetwork::connect_to_next_layer(int layer, int &innovation_id)
 {
     for (const auto &from_node : nodes.at(layer))
     {
         for (const auto &to_node : nodes.at(layer + 1))
         {
-            add_connection(from_node, to_node, innovation_id++);
+            add_connection(*from_node, *to_node, innovation_id++);
         }
     }
 }
@@ -60,7 +65,8 @@ void NeuralNetwork::add_node(const int id, const double bias, const int layer)
         throw std::invalid_argument("NeuralNetwork::add_node - Ensure that the given layer is positive.");
     }
 
-    nodes[layer].emplace_back(id, bias, layer);
+    node_refs.try_emplace(id, id, bias, layer);
+    nodes[layer].push_back(&node_refs.at(id));
 }
 
 // TODO: consider making this 2 methods, one to test if there's a layer between and one to make space between 2 layers
@@ -78,6 +84,7 @@ int NeuralNetwork::make_space_between(const int layer1, const int layer2)
     {
         for (int layer = static_cast<int>(nodes.size()) - 1; layer >= layer2; --layer)
         {
+            increment_nodes_layer_at(layer);
             auto node_handler = nodes.extract(layer);
             node_handler.key() = layer + 1;
             nodes.insert(std::move(node_handler));
@@ -89,6 +96,14 @@ int NeuralNetwork::make_space_between(const int layer1, const int layer2)
     return new_layer;
 }
 
+void NeuralNetwork::increment_nodes_layer_at(const int layer)
+{
+    for (auto &node : nodes.at(layer))
+    {
+        ++node->layer;
+    }
+}
+
 void NeuralNetwork::add_connection(const NeuralNetwork::Node &from, const NeuralNetwork::Node &to, int innovation)
 {
     add_connection(from, to, weight_distribution(gen), innovation);
@@ -96,16 +111,9 @@ void NeuralNetwork::add_connection(const NeuralNetwork::Node &from, const Neural
 
 void NeuralNetwork::add_connection(const Node &from, const Node &to, const double weight, const int innovation)
 {
-    if (innovation <= max_innovation)
-    {
-        throw std::invalid_argument("NeuralNetwork::add_connection - bad innovation given. Innovation should always be "
-                                    "increasing as connections are never removed.");
-    }
-
-    max_innovation = innovation;
-    connections[to.id].emplace_back(from, to, weight, innovation, true);
-    Connection conn = connections.at(to.id).back();
-    conn_refs[conn.innovation] = &conn;
+    max_inno = innovation > max_inno ? innovation : max_inno;
+    conn_refs.try_emplace(innovation, from, to, weight, innovation, true);
+    connections[to.id].push_back(&conn_refs.at(innovation));
 }
 
 void NeuralNetwork::mutate_weights()
@@ -114,7 +122,7 @@ void NeuralNetwork::mutate_weights()
     {
         for (auto &node : layer_nodes.second)
         {
-            node.bias = rand_prob(gen) < 0.1 ? weight_distribution(gen) : node.bias;
+            node->bias = rand_prob(gen) < 0.1 ? weight_distribution(gen) : node->bias;
         }
     }
 
@@ -122,14 +130,19 @@ void NeuralNetwork::mutate_weights()
     {
         for (auto &conn : node_connections.second)
         {
-            conn.weight = rand_prob(gen) < 0.1 && conn.enabled ? weight_distribution(gen) : conn.weight;
+            conn->weight = rand_prob(gen) < 0.1 && conn->enabled ? weight_distribution(gen) : conn->weight;
         }
     }
 }
 
 void NeuralNetwork::disable_connection(int inno)
 {
-    conn_refs.at(inno)->enabled = false;
+    if (inno == max_inno)
+    {
+        for (; max_inno >= 0 && (conn_refs.count(--max_inno) == 0 || !conn_refs.at(max_inno).enabled););  // horrific for fun lol
+    }
+
+    conn_refs.at(inno).enabled = false;
 }
 
 NeuralNetwork NeuralNetwork::operator*(const NeuralNetwork &other_net) const
@@ -139,24 +152,34 @@ NeuralNetwork NeuralNetwork::operator*(const NeuralNetwork &other_net) const
     const bool chosen_parent = rand_prob(gen) < 0.5;
     for (const auto &inno_conn : conn_refs)
     {
-        const int inno = inno_conn.first;
-        if (other_net.conn_refs.count(inno) != 0)
+        if (!inno_conn.second.enabled)
         {
-            child.inherit_either_parent(inno_conn.second, other_net.conn_refs.at(inno), added_nodes);
+            continue;
+        }
+
+        const int inno = inno_conn.first;
+        if (other_net.conn_refs.count(inno) != 0 && other_net.conn_refs.at(inno).enabled)
+        {
+            child.inherit_either_parent(&inno_conn.second, &other_net.conn_refs.at(inno), added_nodes);
         }
         else if ((fitness == other_net.fitness && chosen_parent) || fitness > other_net.fitness)
         {
-            child.inherit_gene(inno_conn.second, added_nodes);
+            child.inherit_gene(&inno_conn.second, added_nodes);
         }
     }
 
     for (const auto &other_inno_conn : other_net.conn_refs)
     {
+        if (!other_inno_conn.second.enabled)
+        {
+            continue;
+        }
+
         const int other_inno = other_inno_conn.first;
-        if (conn_refs.count(other_inno) == 0 &&
+        if ((conn_refs.count(other_inno) == 0 || !conn_refs.at(other_inno).enabled) &&
             ((fitness == other_net.fitness && !chosen_parent) || other_net.fitness > fitness))
         {
-            child.inherit_gene(other_inno_conn.second, added_nodes);
+            child.inherit_gene(&other_inno_conn.second, added_nodes);
         }
     }
 
@@ -201,9 +224,9 @@ const NeuralNetwork::Node &NeuralNetwork::find_node_at(const Node &given_node, c
 {
     for (const auto &node : nodes.at(layer))
     {
-        if (node.id == given_node.id)
+        if (node->id == given_node.id)
         {
-            return node;
+            return *node;
         }
     }
 
@@ -219,36 +242,46 @@ bool NeuralNetwork::operator==(const NeuralNetwork &other_net) const
     double weight_diff_sum = 0;
     for (const auto &inno_conn : conn_refs)
     {
-        const int inno = inno_conn.first;
-        const Connection *const conn = inno_conn.second;
-        if (other_net.conn_refs.count(inno) != 0)
+        if (!inno_conn.second.enabled)
         {
-            ++matching_count;
-            weight_diff_sum += fabs(conn->weight - other_net.conn_refs.at(inno)->weight);
             continue;
         }
 
-        disjoint_count += inno < other_net.max_innovation;
-        excess_count += inno > other_net.max_innovation;
+        const int inno = inno_conn.first;
+        const Connection *const conn = &inno_conn.second;
+        if (other_net.conn_refs.count(inno) != 0 && other_net.conn_refs.at(inno).enabled)
+        {
+            ++matching_count;
+            weight_diff_sum += fabs(conn->weight - other_net.conn_refs.at(inno).weight);
+            continue;
+        }
+
+        disjoint_count += inno < other_net.max_inno;
+        excess_count += inno > other_net.max_inno;
     }
 
     for (const auto &other_inno_conn : other_net.conn_refs)
     {
-        const int other_inno = other_inno_conn.first;
-        if (conn_refs.count(other_inno) == 0)
+        if (!other_inno_conn.second.enabled)
         {
-            disjoint_count += other_inno < max_innovation;
-            excess_count += other_inno > max_innovation;
+            continue;
+        }
+
+        const int other_inno = other_inno_conn.first;
+        if (conn_refs.count(other_inno) == 0 || !conn_refs.at(other_inno).enabled)
+        {
+            disjoint_count += other_inno < max_inno;
+            excess_count += other_inno > max_inno;
         }
     }
 
     const int net1_count = static_cast<int>(conn_refs.size());
     const int net2_count = static_cast<int>(other_net.conn_refs.size());
     const double max_genes_count = net1_count < net2_count ? net1_count : net2_count;
-    const double average_weight_diff = weight_diff_sum / matching_count;
+    const double average_weight_diff = matching_count == 0 ? 0 : weight_diff_sum / matching_count;
 
     // c1 = 1, c2 = 1, c3 = 3, ct = 4
-    return excess_count / max_genes_count + disjoint_count / max_genes_count + 3 * average_weight_diff < 4;
+    return 4 * excess_count / max_genes_count + 4 * disjoint_count / max_genes_count + 3 * average_weight_diff < 3;
 }
 
 doubles NeuralNetwork::activate(const doubles &activation_values)
@@ -264,7 +297,7 @@ doubles NeuralNetwork::activate(const doubles &activation_values)
     int curr_idx = 0;
     for (auto &node : nodes.at(0))
     {
-        node.value = activation_values[curr_idx++];
+        node->value = activation_values[curr_idx++];
     }
     scale_values(0);
 
@@ -282,7 +315,7 @@ doubles NeuralNetwork::activate(const doubles &activation_values)
     curr_idx = 0;
     for (const auto &node : nodes.at(nodes_size - 1))
     {
-        outputs[curr_idx++] = node.value;
+        outputs[curr_idx++] = node->value;
     }
 
     return outputs;
@@ -292,13 +325,13 @@ void NeuralNetwork::feed_layer(const int layer, const char activation_func)
 {
     for (auto &node : nodes.at(layer))
     {
-        for (const auto &connection : connections.at(node.id))
+        for (const auto &connection : connections.at(node->id))
         {
-            if (!connection.enabled) continue;  // TODO: decide if you are ok with this coding style to avoid nesting
-            node.value += connection.from.value * connection.weight;
+            if (!connection->enabled) continue;  // TODO: decide if you are ok with this coding style to avoid nesting
+            node->value += connection->from.value * connection->weight;
         }
 
-        node.value += node.bias;
+        node->value += node->bias;
     }
 
     if (activation_func == 'r')
@@ -314,17 +347,17 @@ void NeuralNetwork::feed_layer(const int layer, const char activation_func)
 
 void NeuralNetwork::scale_values(const int layer)  // doubles &values
 {
-    double min_value = nodes.at(layer)[0].value;
-    double max_value = nodes.at(layer)[0].value;
+    double min_value = nodes.at(layer)[0]->value;
+    double max_value = nodes.at(layer)[0]->value;
     for (const auto &node : nodes.at(layer))
     {
-        if (node.value < min_value)
+        if (node->value < min_value)
         {
-            min_value = node.value;
+            min_value = node->value;
         }
-        else if (node.value > max_value)
+        else if (node->value > max_value)
         {
-            max_value = node.value;
+            max_value = node->value;
         }
     }
 
@@ -336,7 +369,7 @@ void NeuralNetwork::scale_values(const int layer)  // doubles &values
 
     for (auto &node : nodes.at(layer))
     {
-        node.value = (node.value - min_value) / (max_value - min_value);
+        node->value = (node->value - min_value) / (max_value - min_value);
     }
 }
 
@@ -344,7 +377,7 @@ void NeuralNetwork::relu(const int layer)
 {
     for (auto &node : nodes.at(layer))
     {
-        node.value *= 1 - static_cast<double>(node.value < 0);
+        node->value *= 1 - static_cast<double>(node->value < 0);
     }
 }
 
@@ -354,12 +387,12 @@ void NeuralNetwork::softmax()
     double sum = 0;
     for (const auto &node : nodes.at(nodes_size - 1))
     {
-        sum += exp(node.value);
+        sum += exp(node->value);
     }
 
     for (auto &node : nodes.at(nodes_size - 1))
     {
-        node.value = exp(node.value) / sum;
+        node->value = exp(node->value) / sum;
     }
 }
 
@@ -370,8 +403,8 @@ std::string NeuralNetwork::to_string() const
     {
         for (const auto &node : layer.second)
         {
-            network_str += "Node " + std::to_string(node.id) + " (Bias " + std::to_string(node.bias) + ")\n";
-            network_str += node_connections_to_string(node);
+            network_str += "Node " + std::to_string(node->id) + " (Bias " + std::to_string(node->bias) + ")\n";
+            network_str += node_connections_to_string(*node);
         }
     }
 
@@ -388,9 +421,10 @@ std::string NeuralNetwork::node_connections_to_string(const Node &node) const
     std::string connections_str = "  Connections:\n";
     for (const auto &connection : connections.at(node.id))
     {
-        std::string arrow = connection.enabled ? "->" : "-/>";
-        connections_str += "    " + std::to_string(connection.from.id) + arrow + std::to_string(node.id) + " (Weight " +
-                           std::to_string(connection.weight) + ")\n";
+        std::string arrow = connection->enabled ? "->" : "-/>";
+        connections_str +=
+                "    " + std::to_string(connection->from.id) + arrow + std::to_string(node.id) + " (Weight " +
+                std::to_string(connection->weight) + ")\n";
     }
 
     return connections_str;

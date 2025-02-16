@@ -62,6 +62,6 @@ namespace neat_config
 }
 
 static std::random_device random_device;
-static std::mt19937 gen(0);  // use random_device instead of 0 for when you're not testing
+static std::mt19937 gen;  // use random_device to seed when you're not testing
 static std::normal_distribution<double> weight_distribution(0, sqrt(2.0 / neat_config::num_input));
 static std::uniform_real_distribution<double> rand_prob(0, 1);

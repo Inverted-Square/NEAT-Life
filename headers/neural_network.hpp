@@ -17,18 +17,26 @@ public:
     {
         const int id;
         double bias;
-        const int layer;
+        int layer;
         double value = 0;
 
         Node(const int id, const double bias, const int layer) : id(id), bias(bias), layer(layer)
         {}
     };
 
-    typedef std::vector<Node> node_layer;
+    typedef std::vector<Node *> node_layer;
     typedef std::unordered_map<int, node_layer> node_layers;
 
 private:
     node_layers nodes;
+
+    std::unordered_map<int, Node> node_refs;
+
+    /** TODO:
+     *    after you have done the rest of your tests, remember to improve the structure and naming of the code
+     *    also consider places where you should use node_refs
+     *    acc maybe do this before you add more tests
+     */
 
 public:
     struct Connection
@@ -44,18 +52,18 @@ public:
         {}
     };
 
-    typedef std::unordered_map<int, std::vector<Connection>> to_node_connections;
+    typedef std::unordered_map<int, std::vector<Connection *>> to_node_connections;
 
 private:
     to_node_connections connections;
 
 public:
-    typedef std::unordered_map<int, Connection *> innovation_to_conn;
+    typedef std::unordered_map<int, Connection> innovation_to_conn;
 
 private:
     innovation_to_conn conn_refs;
 
-    int max_innovation = -1;
+    int max_inno = -1;
 
 public:
     double fitness = 0;
@@ -68,6 +76,8 @@ public:
 
     const innovation_to_conn &get_conn_refs() const;
 
+    int get_max_innovation() const;
+
 private:
     void connect_to_next_layer(int layer, int &innovation_id);
 
@@ -78,6 +88,10 @@ public:
 
     int make_space_between(int layer1, int layer2);
 
+private:
+    void increment_nodes_layer_at(int layer);
+
+public:
     void add_connection(const Node &from, const Node &to, int innovation);
 
     void add_connection(const Node &from, const Node &to, double weight, int innovation);

@@ -15,7 +15,7 @@ NEAT::NEAT() : next_innovation_id(0), next_node_id(0)
 
     for (const auto &conn_ref : curr_population[0].get_conn_refs())
     {
-        const NeuralNetwork::Connection *conn = conn_ref.second;
+        const NeuralNetwork::Connection *conn = &conn_ref.second;
         innovation_ids[{conn->from.id, conn->to.id}] = conn->innovation;
     }
 }
@@ -152,7 +152,7 @@ void NEAT::mutate_add_connection(NeuralNetwork &network)
     {
         for (const auto &node : nodes.at(layer))
         {
-            check_previous_nodes(nodes, node, network);
+            check_previous_nodes(nodes, *node, network);
         }
     }
 }
@@ -164,7 +164,7 @@ void NEAT::check_previous_nodes(const NeuralNetwork::node_layers &layer_nodes, c
     {
         for (const auto &from_node : layer_nodes.at(layer))
         {
-            check_previous_node(from_node, to_node, network);
+            check_previous_node(*from_node, to_node, network);
         }
     }
 }
@@ -206,14 +206,14 @@ void NEAT::mutate_add_node(NeuralNetwork &network)
         {
             network.disable_connection(inno_conn.first);
             const auto conn = inno_conn.second;
-            const int new_node_id = node_id(conn->innovation);
-            const int layer = network.make_space_between(conn->from.layer, conn->to.layer);
+            const int new_node_id = node_id(conn.innovation);
+            const int layer = network.make_space_between(conn.from.layer, conn.to.layer);
             network.add_node(new_node_id, layer);
-            const NeuralNetwork::Node &new_node = network.get_nodes().at(layer).back();
-            const int conn1_inno = connection_innovation({conn->from.id, new_node.id});
-            const int conn2_inno = connection_innovation({new_node.id, conn->to.id});
-            network.add_connection(conn->from, new_node, conn1_inno);
-            network.add_connection(new_node, conn->to, conn2_inno);
+            const NeuralNetwork::Node &new_node = *network.get_nodes().at(layer).back();
+            const int conn1_inno = connection_innovation({conn.from.id, new_node.id});
+            const int conn2_inno = connection_innovation({new_node.id, conn.to.id});
+            network.add_connection(conn.from, new_node, conn1_inno);
+            network.add_connection(new_node, conn.to, conn2_inno);
         }
     }
 }
