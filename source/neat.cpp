@@ -1,14 +1,20 @@
 #include "neat.hpp"
 
-NEAT::NEAT() : next_innovation_id(0), next_node_id(0)
+NEAT::NEAT(const int population_size, const std::vector<int> &layer_counts)
 {
-    for (int net = 0; net < neat_config::population_size; ++net)
+    if (population_size < 1 || layer_counts.size() < 2)
     {
-        curr_population.emplace_back(neat_config::layer_counts);
+        throw std::invalid_argument("NEAT::NEAT - You must have population_size >= 1 and layer_counts must have at "
+                                    "least 2 elements.\n");
+    }
+
+    for (int net = 0; net < population_size; ++net)
+    {
+        curr_population.emplace_back(layer_counts);
     }
 
     next_innovation_id = static_cast<int>(curr_population[0].get_conn_refs().size());
-    for (const int count : neat_config::layer_counts)
+    for (const int count : layer_counts)
     {
         next_node_id += count;
     }
@@ -23,6 +29,26 @@ NEAT::NEAT() : next_innovation_id(0), next_node_id(0)
 const std::vector<NeuralNetwork> &NEAT::get_curr_population() const
 {
     return curr_population;
+}
+
+int NEAT::get_next_innovation_id() const
+{
+    return next_innovation_id;
+}
+
+int NEAT::get_next_node_id() const
+{
+    return next_node_id;
+}
+
+const std::unordered_map<NEAT::conn, int, NEAT::hash_pair> &NEAT::get_innovation_ids() const
+{
+    return innovation_ids;
+}
+
+const std::unordered_map<int, int> &NEAT::get_node_ids() const
+{
+    return node_ids;
 }
 
 void NEAT::set_individual_fitness(const int index, const double fitness)

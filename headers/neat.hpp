@@ -30,13 +30,22 @@ class NEAT
     typedef std::vector<const NeuralNetwork *> species;
     typedef std::vector<species> species_groups;
 
-    int next_innovation_id;
-    int next_node_id;
+    int next_innovation_id = 0;
+    int next_node_id = 0;
 
 public:
-    NEAT();
+    explicit NEAT(int population_size = neat_config::population_size,
+                  const std::vector<int> &layer_counts = neat_config::layer_counts);
 
     const std::vector<NeuralNetwork> &get_curr_population() const;
+
+    int get_next_innovation_id() const;
+
+    int get_next_node_id() const;
+
+    const std::unordered_map<conn, int, hash_pair> &get_innovation_ids() const;
+
+    const std::unordered_map<int, int> &get_node_ids() const;
 
     void set_individual_fitness(int index, double fitness);
 

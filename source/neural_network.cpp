@@ -139,7 +139,7 @@ void NeuralNetwork::disable_connection(int inno)
 {
     if (inno == max_inno)
     {
-        for (; max_inno >= 0 && (conn_refs.count(--max_inno) == 0 || !conn_refs.at(max_inno).enabled););  // horrific for fun lol
+        for (; max_inno >= 0 && (conn_refs.count(--max_inno) == 0 || !conn_refs.at(max_inno).enabled););  // horrific for fun lol - acc I should probably change this to while
     }
 
     conn_refs.at(inno).enabled = false;
