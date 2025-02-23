@@ -57,15 +57,14 @@ void test_cgol()
 
 void test_neural_networks()
 {
-    int num_inputs = 4;
-    NeuralNetwork neural_network(std::vector{num_inputs, 2});
+    NeuralNetwork neural_network(std::vector{neat_config::num_input, neat_config::num_output});
     std::cout << neural_network << "\n";
 
     std::uniform_real_distribution<double> possible_inputs(0, 9);
     for (int repeats = 0; repeats < 250; ++repeats)
     {
-        doubles inputs(num_inputs);
-        for (int input_idx = 0; input_idx < num_inputs; ++input_idx)
+        doubles inputs(neat_config::num_input);
+        for (int input_idx = 0; input_idx < neat_config::num_input; ++input_idx)
         {
             inputs[input_idx] = possible_inputs(gen);
             std::cout << inputs[input_idx] << ' ';

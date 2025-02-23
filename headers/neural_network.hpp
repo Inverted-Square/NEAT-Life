@@ -17,12 +17,10 @@ public:
     {
         const int id;
         double bias;
-        int layer;
-        const bool hidden;
+        bool activated = false;
         double value = 0;
 
-        Node(const int id, const double bias, const int layer, const bool hidden) :
-            id(id), bias(bias), layer(layer), hidden(hidden)
+        Node(const int id, const double bias) : id(id), bias(bias)
         {}
     };
 
@@ -30,7 +28,9 @@ public:
     typedef std::unordered_map<int, node_layer> node_layers;
 
 private:
-    node_layers nodes;
+    std::vector<int> in_ids;
+
+    std::vector<int> out_ids;
 
     std::unordered_map<int, Node> node_refs;
 
@@ -68,28 +68,23 @@ public:
 
     explicit NeuralNetwork(const ints &layers_counts);
 
-    const node_layers &get_nodes() const;
+private:
+    void add_id_if(int node_id, bool is_in, bool is_out);
 
+    void connect_next_layer(int node_sum, int layer_count, int next_layer_count, int &curr_inno_id);
+
+public:
     const Node &get_node(int id) const;
 
     const innovation_to_conn &get_conn_refs() const;
 
     int get_max_innovation() const;
 
-private:
-    void connect_to_next_layer(int layer, int &innovation_id);
-
 public:
-    void add_node(int id, int layer, bool hidden);
+    void add_node(int id);
 
-    void add_node(int id, double bias, int layer, bool hidden);
+    void add_node(int id, double bias);
 
-    int make_space_between(int layer1, int layer2);
-
-private:
-    void increment_nodes_layer_at(int layer);
-
-public:
     void add_connection(const Node &from, const Node &to, int innovation);
 
     void add_connection(const Node &from, const Node &to, double weight, int innovation, bool enabled = true);
@@ -106,22 +101,22 @@ private:
 
     void inherit_gene(const Connection *conn);
 
-    void move_node_to(int id, int new_layer);
-
 public:
     // Used to see if two networks are close enough to belong to the same species_groups
     bool operator==(const NeuralNetwork &other_net) const;
 
-    doubles activate(const doubles &activation_values);
+    doubles activate(doubles &activation_values);
 
 private:
-    void feed_layer(int layer, char activation_func);
+    void reset_nodes();
 
-    void scale_values(int layer);
+    static void scale_values(doubles &inputs);
 
-    void relu(int layer);
+    void activate_node(int id);
 
-    void softmax();
+    static void relu(Node &node);
+
+    static void softmax(doubles &outputs);
 
 public:
     std::string to_string() const;
