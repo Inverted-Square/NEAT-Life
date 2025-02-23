@@ -59,9 +59,12 @@ namespace neat_config
      const int num_gen = 100;
      const bool debug_mode = false;
      const int tournament_size = 3;
+     const double weight_prob = 0.1;
+     const double node_prob = 0.05;
+     const double conn_prob = 0.01;
 }
 
 static std::random_device random_device;
 static std::mt19937 gen;  // use random_device to seed when you're not testing
-static std::normal_distribution<double> weight_distribution(0, sqrt(2.0 / neat_config::num_input));
+static std::normal_distribution<double> weight_distribution(0, sqrt(2.0 / neat_config::num_input));  // TODO: remember to talk about this in the final report
 static std::uniform_real_distribution<double> rand_prob(0, 1);

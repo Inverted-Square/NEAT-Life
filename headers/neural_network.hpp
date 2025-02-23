@@ -18,9 +18,11 @@ public:
         const int id;
         double bias;
         int layer;
+        const bool hidden;
         double value = 0;
 
-        Node(const int id, const double bias, const int layer) : id(id), bias(bias), layer(layer)
+        Node(const int id, const double bias, const int layer, const bool hidden) :
+            id(id), bias(bias), layer(layer), hidden(hidden)
         {}
     };
 
@@ -31,12 +33,6 @@ private:
     node_layers nodes;
 
     std::unordered_map<int, Node> node_refs;
-
-    /** TODO:
-     *    after you have done the rest of your tests, remember to improve the structure and naming of the code
-     *    also consider places where you should use node_refs
-     *    acc maybe do this before you add more tests
-     */
 
 public:
     struct Connection
@@ -74,6 +70,8 @@ public:
 
     const node_layers &get_nodes() const;
 
+    const Node &get_node(int id) const;
+
     const innovation_to_conn &get_conn_refs() const;
 
     int get_max_innovation() const;
@@ -82,9 +80,9 @@ private:
     void connect_to_next_layer(int layer, int &innovation_id);
 
 public:
-    void add_node(int id, int layer);
+    void add_node(int id, int layer, bool hidden);
 
-    void add_node(int id, double bias, int layer);
+    void add_node(int id, double bias, int layer, bool hidden);
 
     int make_space_between(int layer1, int layer2);
 
@@ -94,7 +92,7 @@ private:
 public:
     void add_connection(const Node &from, const Node &to, int innovation);
 
-    void add_connection(const Node &from, const Node &to, double weight, int innovation);
+    void add_connection(const Node &from, const Node &to, double weight, int innovation, bool enabled = true);
 
     void mutate_weights();
 
@@ -104,11 +102,11 @@ public:
     NeuralNetwork operator*(const NeuralNetwork &other_net) const;
 
 private:
-    void inherit_either_parent(const Connection *conn1, const Connection *conn2, std::unordered_set<int> &added_nodes);
+    void inherit_either_parent(const Connection *conn1, const Connection *conn2);
 
-    void inherit_gene(const Connection *conn, std::unordered_set<int> &added_nodes);
+    void inherit_gene(const Connection *conn);
 
-    const NeuralNetwork::Node &find_node_at(const Node &given_node, int layer) const;
+    void move_node_to(int id, int new_layer);
 
 public:
     // Used to see if two networks are close enough to belong to the same species_groups

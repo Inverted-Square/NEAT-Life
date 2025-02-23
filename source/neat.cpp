@@ -65,7 +65,7 @@ void NEAT::generate_next_population()
         repopulate_species(group, mean_fitness);
     }
 
-    curr_population = next_population;
+    curr_population = std::move(next_population);
     next_population.clear();
     mutate_networks();
 }
@@ -103,7 +103,7 @@ int NEAT::find_species(const NEAT::species_groups &groups, const NeuralNetwork &
 {
     for (int groups_idx = 0; groups_idx < static_cast<int>(groups.size()); ++groups_idx)
     {
-        const int rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(groups[groups_idx].size())));
+        const int rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(groups[groups_idx].size() - 1)));
         const NeuralNetwork *rand_net = groups[groups_idx][rand_idx];
         if (network == *rand_net)
         {
@@ -128,15 +128,13 @@ void NEAT::repopulate_species(const NEAT::species &group, const double populatio
     {
         const NeuralNetwork *parent1 = run_tournament(group);
         const NeuralNetwork *parent2 = run_tournament(group);
-
-        NeuralNetwork child = *parent1 * *parent2;
-        next_population.push_back(child);
+        next_population.push_back(*parent1 * *parent2);
     }
 }
 
 int NEAT::get_new_size(const double total_adj_fitness, const double population_mean_fitness, const int prev_size)
 {
-    const double size = round(total_adj_fitness / population_mean_fitness);
+    const double size = total_adj_fitness / population_mean_fitness;  // TODO: this used to have round wrapped around it but I removed it as that seemed dumb (maybe my past self had their reasons though)
     if (size < prev_size && trunc(size - 0.5) == size - 0.5)
     {
         return floor(size);
@@ -147,11 +145,11 @@ int NEAT::get_new_size(const double total_adj_fitness, const double population_m
 
 const NeuralNetwork *NEAT::run_tournament(const NEAT::species &group)
 {
-    int rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(group.size())));
+    int rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(group.size() - 1)));
     const NeuralNetwork *best_rand_net = group[rand_idx];
     for (int i = 1; i < neat_config::tournament_size; ++i)
     {
-        rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(group.size())));
+        rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(group.size() - 1)));
         if (group[rand_idx]->fitness > best_rand_net->fitness)
         {
             best_rand_net = group[rand_idx];
@@ -176,6 +174,15 @@ void NEAT::mutate_add_connection(NeuralNetwork &network)
     const auto &nodes = network.get_nodes();
     for (int layer = static_cast<int>(nodes.size()) - 1; layer >= 1; --layer)  // layer >= as we skip the input layer
     {
+        try
+        {
+            nodes.at(layer);
+        }
+        catch (const std::out_of_range &err)
+        {
+            std::cout << "here1\n";
+        }
+
         for (const auto &node : nodes.at(layer))
         {
             check_previous_nodes(nodes, *node, network);
@@ -188,6 +195,15 @@ void NEAT::check_previous_nodes(const NeuralNetwork::node_layers &layer_nodes, c
 {
     for (int layer = to_node.layer - 1; layer >= 0; --layer)
     {
+        try
+        {
+            layer_nodes.at(layer);
+        }
+        catch (const std::out_of_range &err)
+        {
+            std::cout << "here2\n";
+        }
+
         for (const auto &from_node : layer_nodes.at(layer))
         {
             check_previous_node(*from_node, to_node, network);
@@ -198,6 +214,11 @@ void NEAT::check_previous_nodes(const NeuralNetwork::node_layers &layer_nodes, c
 void NEAT::check_previous_node(const NeuralNetwork::Node &from_node, const NeuralNetwork::Node &to_node,
                                NeuralNetwork &network)
 {
+    if (from_node.layer == to_node.layer)
+    {
+        throw std::invalid_argument("NEAT::check_previous_node - you tried to connect nodes on the same layer.\n");
+    }
+
     const std::pair<int, int> &from_to_ids = {from_node.id, to_node.id};
     if (innovation_ids.count(from_to_ids) != 0)
     {
@@ -207,7 +228,7 @@ void NEAT::check_previous_node(const NeuralNetwork::Node &from_node, const Neura
             return;
         }
 
-        if (rand_prob(gen) < 0.2)
+        if (rand_prob(gen) < neat_config::conn_prob)
         {
             network.add_connection(from_node, to_node, conn_inno);
         }
@@ -215,7 +236,7 @@ void NEAT::check_previous_node(const NeuralNetwork::Node &from_node, const Neura
         return;
     }
 
-    if (rand_prob(gen) < 0.2)
+    if (rand_prob(gen) < neat_config::conn_prob)
     {
         // TODO: maybe just copy the useful part of connection_innovation as some of the assumptions in it are already known to be true here
         const int conn_inno = connection_innovation(from_to_ids);
@@ -225,17 +246,23 @@ void NEAT::check_previous_node(const NeuralNetwork::Node &from_node, const Neura
 
 void NEAT::mutate_add_node(NeuralNetwork &network)
 {
-    const NeuralNetwork::innovation_to_conn &conn_refs = network.get_conn_refs();
-    for (const auto &inno_conn : conn_refs)
+    std::vector<int> innos(network.get_conn_refs().size());
+    int curr_i = 0;
+    for (const auto &[inno, conn] : network.get_conn_refs())
     {
-        if (rand_prob(gen) < 0.2)
+        innos[curr_i++] = inno;
+    }
+
+    for (const int inno : innos)
+    {
+        const auto &conn = network.get_conn_refs().at(inno);
+        if (rand_prob(gen) < neat_config::node_prob && conn.enabled)
         {
-            network.disable_connection(inno_conn.first);
-            const auto conn = inno_conn.second;
+            network.disable_connection(inno);
             const int new_node_id = node_id(conn.innovation);
             const int layer = network.make_space_between(conn.from.layer, conn.to.layer);
-            network.add_node(new_node_id, layer);
-            const NeuralNetwork::Node &new_node = *network.get_nodes().at(layer).back();
+            network.add_node(new_node_id, layer, true);
+            const NeuralNetwork::Node &new_node = network.get_node(new_node_id);
             const int conn1_inno = connection_innovation({conn.from.id, new_node.id});
             const int conn2_inno = connection_innovation({new_node.id, conn.to.id});
             network.add_connection(conn.from, new_node, conn1_inno);

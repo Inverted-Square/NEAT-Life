@@ -16,7 +16,7 @@ NeuralNetwork::NeuralNetwork(const ints &layers_counts)
     {
         for (int count = 0; count < layers_counts[layer]; ++count)
         {
-            add_node(curr_node_id++, layer);
+            add_node(curr_node_id++, layer, layer != 0 && layer != static_cast<int>(layers_counts.size() - 1));
         }
     }
 
@@ -30,6 +30,11 @@ NeuralNetwork::NeuralNetwork(const ints &layers_counts)
 const NeuralNetwork::node_layers &NeuralNetwork::get_nodes() const
 {
     return nodes;
+}
+
+const NeuralNetwork::Node &NeuralNetwork::get_node(const int id) const
+{
+    return node_refs.at(id);
 }
 
 const NeuralNetwork::innovation_to_conn &NeuralNetwork::get_conn_refs() const
@@ -53,19 +58,19 @@ void NeuralNetwork::connect_to_next_layer(int layer, int &innovation_id)
     }
 }
 
-void NeuralNetwork::add_node(int id, int layer)
+void NeuralNetwork::add_node(int id, int layer, const bool hidden)
 {
-    add_node(id, weight_distribution(gen), layer);
+    add_node(id, weight_distribution(gen), layer, hidden);
 }
 
-void NeuralNetwork::add_node(const int id, const double bias, const int layer)
+void NeuralNetwork::add_node(const int id, const double bias, const int layer, const bool hidden)
 {
     if (layer < 0)
     {
         throw std::invalid_argument("NeuralNetwork::add_node - Ensure that the given layer is positive.");
     }
 
-    node_refs.try_emplace(id, id, bias, layer);
+    node_refs.try_emplace(id, id, bias, layer, hidden);
     nodes[layer].push_back(&node_refs.at(id));
 }
 
@@ -75,7 +80,7 @@ int NeuralNetwork::make_space_between(const int layer1, const int layer2)
 {
     if (layer1 >= layer2 || layer1 < 0 || nodes.count(layer1) == 0 || nodes.count(layer2) == 0)
     {
-        throw std::invalid_argument("NeuralNetwork::add_node_between - Ensure that the given layers exist, are "
+        throw std::invalid_argument("NeuralNetwork::make_space_between - Ensure that the given layers exist, are "
                                     "positive and that layer1 < layer2.");
     }
 
@@ -100,7 +105,7 @@ void NeuralNetwork::increment_nodes_layer_at(const int layer)
 {
     for (auto &node : nodes.at(layer))
     {
-        ++node->layer;
+        ++(node->layer);
     }
 }
 
@@ -109,10 +114,16 @@ void NeuralNetwork::add_connection(const NeuralNetwork::Node &from, const Neural
     add_connection(from, to, weight_distribution(gen), innovation);
 }
 
-void NeuralNetwork::add_connection(const Node &from, const Node &to, const double weight, const int innovation)
+void NeuralNetwork::add_connection(const Node &from, const Node &to, const double weight, const int innovation,
+                                   const bool enabled)
 {
+    if (from.layer >= to.layer)
+    {
+        std::cout << "uh oh\n";
+    }
+
     max_inno = innovation > max_inno ? innovation : max_inno;
-    conn_refs.try_emplace(innovation, from, to, weight, innovation, true);
+    conn_refs.try_emplace(innovation, from, to, weight, innovation, enabled);
     connections[to.id].push_back(&conn_refs.at(innovation));
 }
 
@@ -122,7 +133,7 @@ void NeuralNetwork::mutate_weights()
     {
         for (auto &node : layer_nodes.second)
         {
-            node->bias = rand_prob(gen) < 0.1 ? weight_distribution(gen) : node->bias;
+            node->bias = rand_prob(gen) < neat_config::weight_prob ? weight_distribution(gen) : node->bias;
         }
     }
 
@@ -130,108 +141,142 @@ void NeuralNetwork::mutate_weights()
     {
         for (auto &conn : node_connections.second)
         {
-            conn->weight = rand_prob(gen) < 0.1 && conn->enabled ? weight_distribution(gen) : conn->weight;
+            conn->weight = rand_prob(gen) < neat_config::weight_prob && conn->enabled ? weight_distribution(gen)
+                                                                                      : conn->weight;
         }
     }
 }
 
 void NeuralNetwork::disable_connection(int inno)
 {
-    if (inno == max_inno)
-    {
-        for (; max_inno >= 0 && (conn_refs.count(--max_inno) == 0 || !conn_refs.at(max_inno).enabled););  // horrific for fun lol - acc I should probably change this to while
-    }
-
     conn_refs.at(inno).enabled = false;
 }
 
 NeuralNetwork NeuralNetwork::operator*(const NeuralNetwork &other_net) const
 {
     NeuralNetwork child;
-    std::unordered_set<int> added_nodes;
     const bool chosen_parent = rand_prob(gen) < 0.5;
     for (const auto &inno_conn : conn_refs)
     {
-        if (!inno_conn.second.enabled)
-        {
-            continue;
-        }
-
         const int inno = inno_conn.first;
-        if (other_net.conn_refs.count(inno) != 0 && other_net.conn_refs.at(inno).enabled)
+        if (other_net.conn_refs.count(inno) != 0)
         {
-            child.inherit_either_parent(&inno_conn.second, &other_net.conn_refs.at(inno), added_nodes);
+            child.inherit_either_parent(&inno_conn.second, &other_net.conn_refs.at(inno));
         }
         else if ((fitness == other_net.fitness && chosen_parent) || fitness > other_net.fitness)
         {
-            child.inherit_gene(&inno_conn.second, added_nodes);
+            child.inherit_gene(&inno_conn.second);
         }
     }
 
     for (const auto &other_inno_conn : other_net.conn_refs)
     {
-        if (!other_inno_conn.second.enabled)
-        {
-            continue;
-        }
-
         const int other_inno = other_inno_conn.first;
-        if ((conn_refs.count(other_inno) == 0 || !conn_refs.at(other_inno).enabled) &&
+        if (conn_refs.count(other_inno) == 0 &&
             ((fitness == other_net.fitness && !chosen_parent) || other_net.fitness > fitness))
         {
-            child.inherit_gene(&other_inno_conn.second, added_nodes);
+            child.inherit_gene(&other_inno_conn.second);
         }
     }
 
     return child;
 }
 
-void NeuralNetwork::inherit_either_parent(const Connection *const conn1, const Connection *const conn2,
-                                          std::unordered_set<int> &added_nodes)
+void NeuralNetwork::inherit_either_parent(const Connection *const conn1, const Connection *const conn2)
 {
     if (rand_prob(gen) < 0.5)
     {
-        inherit_gene(conn1, added_nodes);
+        inherit_gene(conn1);
     }
     else
     {
-        inherit_gene(conn2, added_nodes);
+        inherit_gene(conn2);
     }
 }
 
-void NeuralNetwork::inherit_gene(const Connection *const conn, std::unordered_set<int> &added_nodes)
+void NeuralNetwork::inherit_gene(const Connection *const conn)
 {
+    // TODO: go to debug - you'll find that in this function conn is correct but the changes we make here make it wrong
+
     const Node &from_node = conn->from;
-    if (added_nodes.count(from_node.id) == 0)
+    if (node_refs.count(from_node.id) == 0)
     {
-        add_node(from_node.id, from_node.bias, from_node.layer);
-        added_nodes.insert(from_node.id);
+        add_node(from_node.id, from_node.bias, from_node.hidden ? from_node.layer : 0, from_node.hidden);
     }
 
     const Node &to_node = conn->to;
-    if (added_nodes.count(to_node.id) == 0)
+    if (node_refs.count(to_node.id) == 0)
     {
-        add_node(to_node.id, to_node.bias, to_node.layer);
-        added_nodes.insert(to_node.id);
+        int layer = to_node.layer;
+        if (!to_node.hidden && nodes.size() > 1)
+        {
+            layer = static_cast<int>(nodes.size() - 1);
+        }
+
+        add_node(to_node.id, to_node.bias, layer, to_node.hidden);
     }
 
-    const Node &child_from_node = find_node_at(from_node, from_node.layer);
-    const Node &child_to_node = find_node_at(to_node, to_node.layer);
-    add_connection(child_from_node, child_to_node, conn->weight, conn->innovation);
-}
-
-const NeuralNetwork::Node &NeuralNetwork::find_node_at(const Node &given_node, const int layer) const
-{
-    for (const auto &node : nodes.at(layer))
+    Node &cf_node = node_refs.at(from_node.id);
+    Node &ct_node = node_refs.at(to_node.id);
+    if (cf_node.layer >= ct_node.layer)
     {
-        if (node->id == given_node.id)
+        if (!cf_node.hidden && ct_node.hidden)
         {
-            return *node;
+            const int out_layer = static_cast<int>(nodes.size() - 1);
+            const int new_layer = out_layer == 1 ? make_space_between(0, 1) : 1;
+            move_node_to(ct_node.id, new_layer);
+            ct_node.layer = new_layer;
+        }
+        else if (cf_node.hidden && !ct_node.hidden)
+        {
+            const int out_layer = static_cast<int>(nodes.size() - 1);
+            const int new_layer = out_layer - 1 == 0 ? make_space_between(0, 1) : out_layer - 1;
+            move_node_to(cf_node.id, new_layer);
+            cf_node.layer = new_layer;
+        }
+        else if (cf_node.hidden && ct_node.hidden)
+        {
+            const int new_layer = ct_node.layer - 1 == 0 ? make_space_between(0, 1) : ct_node.layer - 1;
+            move_node_to(cf_node.id, new_layer);
+            cf_node.layer = new_layer;
+        }
+        else
+        {
+            // TODO:
+            //  - after making the changes on lines 202 and 208 you somehow reach this line
+            //  - your current error has output nodes not being in the last layer for some reason
+            //  - tbh you could consider removing this else block, idk if it's needed
+            //  - before that though, you have to consider what it means to reach here and if that's a problem
+            //  - wait it happens when the input node on one network is ahead or at the same place as a output node from a different network
+            //  - ok that's odd, defo go into the debugger to see what it's saying
+
+            // TODO: also remember to check notepad if needed for a different and more messy version of this
+            throw std::runtime_error("This should be impossible to reach.\n");
         }
     }
 
-    // TODO: don't think this is best practice but reaching here shouldn't be possible
-    throw std::runtime_error("NeuralNetwork::find_node_at - couldn't find the given node at that layer");
+    add_connection(cf_node, ct_node, conn->weight, conn->innovation, conn->enabled);
+}
+
+void NeuralNetwork::move_node_to(int id, int new_layer)
+{
+    nodes[new_layer].push_back(&node_refs.at(id));
+    const int old_layer = node_refs.at(id).layer;
+    std::vector<Node *> &node_layer = nodes.at(old_layer);
+    if (node_layer.size() == 1)
+    {
+        nodes.erase(old_layer);
+        return;
+    }
+
+    for (unsigned int i = 0; i < node_layer.size(); ++i)
+    {
+        if (node_layer[i]->id == id)
+        {
+            node_layer.erase(node_layer.begin() + i);
+            return;
+        }
+    }
 }
 
 bool NeuralNetwork::operator==(const NeuralNetwork &other_net) const
@@ -242,14 +287,9 @@ bool NeuralNetwork::operator==(const NeuralNetwork &other_net) const
     double weight_diff_sum = 0;
     for (const auto &inno_conn : conn_refs)
     {
-        if (!inno_conn.second.enabled)
-        {
-            continue;
-        }
-
         const int inno = inno_conn.first;
         const Connection *const conn = &inno_conn.second;
-        if (other_net.conn_refs.count(inno) != 0 && other_net.conn_refs.at(inno).enabled)
+        if (other_net.conn_refs.count(inno) != 0)
         {
             ++matching_count;
             weight_diff_sum += fabs(conn->weight - other_net.conn_refs.at(inno).weight);
@@ -262,13 +302,8 @@ bool NeuralNetwork::operator==(const NeuralNetwork &other_net) const
 
     for (const auto &other_inno_conn : other_net.conn_refs)
     {
-        if (!other_inno_conn.second.enabled)
-        {
-            continue;
-        }
-
         const int other_inno = other_inno_conn.first;
-        if (conn_refs.count(other_inno) == 0 || !conn_refs.at(other_inno).enabled)
+        if (conn_refs.count(other_inno) == 0)
         {
             disjoint_count += other_inno < max_inno;
             excess_count += other_inno > max_inno;

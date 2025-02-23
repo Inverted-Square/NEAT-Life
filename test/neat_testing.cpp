@@ -89,18 +89,20 @@ bool run_next_generation_on_simple_nets_once_with_one_individual()
     NEAT neat(1, {4, 2});
     set_random_fitnesses(neat);
     neat.generate_next_population();
+    std::cout << ": 'PASSED'";
     return true;
 }
 
 bool run_next_generation_on_simple_nets_many_times_with_one_individual()
 {
     NEAT neat(1, {4, 2});
-    set_random_fitnesses(neat);
     for (int generation = 0; generation < 10; ++generation)
     {
+        set_random_fitnesses(neat);
         neat.generate_next_population();
     }
 
+    std::cout << ": 'PASSED'";
     return true;
 }
 
@@ -109,19 +111,21 @@ bool run_next_generation_on_complex_nets_once_with_one_individual()
     NEAT neat(1, {4, 10, 2});
     set_random_fitnesses(neat);
     neat.generate_next_population();
+    std::cout << ": 'PASSED'";
     return true;
 }
 
 bool run_next_generation_on_complex_nets_many_times_with_one_individual()
 {
     NEAT neat(1, {4, 10, 2});
-    set_random_fitnesses(neat);
     for (int generation = 0; generation < 10; ++generation)
     {
+        set_random_fitnesses(neat);
         neat.generate_next_population();
     }
 
     neat.generate_next_population();
+    std::cout << ": 'PASSED'";
     return true;
 }
 
@@ -130,19 +134,21 @@ bool run_next_generation_on_simple_nets_once_with_many_individuals()
     NEAT neat(20, {4, 2});
     set_random_fitnesses(neat);
     neat.generate_next_population();
+    std::cout << ": 'PASSED'";
     return true;
 }
 
 bool run_next_generation_on_simple_nets_many_times_with_many_individuals()
 {
     NEAT neat(20, {4, 2});
-    set_random_fitnesses(neat);
     for (int generation = 0; generation < 10; ++generation)
     {
+        set_random_fitnesses(neat);
         neat.generate_next_population();
     }
 
     neat.generate_next_population();
+    std::cout << ": 'PASSED'";
     return true;
 }
 
@@ -150,27 +156,28 @@ bool run_next_generation_on_complex_nets_once_with_many_individuals()
 {
     NEAT neat(20, {4, 10, 2});
     set_random_fitnesses(neat);
-
     neat.generate_next_population();
+    std::cout << ": 'PASSED'";
     return true;
 }
 
 bool run_next_generation_on_complex_nets_many_times_with_many_individuals()
 {
     NEAT neat(20, {4, 10, 2});
-    set_random_fitnesses(neat);
     for (int generation = 0; generation < 10; ++generation)
     {
+        set_random_fitnesses(neat);
         neat.generate_next_population();
     }
 
     neat.generate_next_population();
+    std::cout << ": 'PASSED'";
     return true;
 }
 
 /** TODO: WHERE YOU LEFT OFF
- *    - ok, so far it crashes on test 4 (the first generate_next_population test), so you'll ofc have to head into the
- *      debugger
+ *    - ok so we've now gone through and fixed up issues for test4 so now the breakpoint has been moved for test5
+ *    - just ran test5 and it breaks lol (probably due to the std::move() stuff...)
  *    - also note that all of those tests are intended to be gone through in the debugger anyways
  */
 
