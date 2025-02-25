@@ -124,7 +124,6 @@ bool run_next_generation_on_complex_nets_many_times_with_one_individual()
         neat.generate_next_population();
     }
 
-    neat.generate_next_population();
     std::cout << ": 'PASSED'";
     return true;
 }
@@ -147,7 +146,6 @@ bool run_next_generation_on_simple_nets_many_times_with_many_individuals()
         neat.generate_next_population();
     }
 
-    neat.generate_next_population();
     std::cout << ": 'PASSED'";
     return true;
 }
@@ -163,23 +161,19 @@ bool run_next_generation_on_complex_nets_once_with_many_individuals()
 
 bool run_next_generation_on_complex_nets_many_times_with_many_individuals()
 {
-    NEAT neat(20, {4, 10, 2});
-    for (int generation = 0; generation < 10; ++generation)
+    NEAT neat(100, {4, 10, 2});
+    for (int generation = 0; generation < 50; ++generation)
     {
         set_random_fitnesses(neat);
         neat.generate_next_population();
     }
 
-    neat.generate_next_population();
-    std::cout << ": 'PASSED'";
+    std::vector<double> ins{5.4, 2.567, 8.66, 1.01};
+    const std::vector<double> &outs = neat.get_curr_population()[0].activate(ins);
+    std::cout << ": " << outs[0] << ' ' << outs[1];
+    std::cout << " 'PASSED'\n";
     return true;
 }
-
-/** TODO: WHERE YOU LEFT OFF
- *    - ok so we've now gone through and fixed up issues for test4 so now the breakpoint has been moved for test5
- *    - just ran test5 and it breaks lol (probably due to the std::move() stuff...)
- *    - also note that all of those tests are intended to be gone through in the debugger anyways
- */
 
 int main()
 {

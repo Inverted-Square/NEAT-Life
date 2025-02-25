@@ -76,54 +76,29 @@ int NeuralNetwork::get_max_innovation() const
     return max_inno;
 }
 
-const std::vector<int> &NeuralNetwork::get_out_ids() const
+bool NeuralNetwork::is_in_id(const int id) const
 {
-    return out_ids;
-}
-
-const std::vector<NeuralNetwork::Connection *> &NeuralNetwork::to_node_connections_at(int id) const
-{
-    return connections.at(id);
-}
-
-bool NeuralNetwork::is_in_id(int id) const
-{
-    // TODO: look into using std::any_of() for this method and the one below
-    for (const int in_id : in_ids)
+    return std::any_of(in_ids.begin(), in_ids.end(), [&id](const int in_id)
     {
-        if (in_id == id)
-        {
-            return true;
-        }
-    }
-
-    return false;
+        return in_id == id;
+    });
 }
 
 bool NeuralNetwork::is_out_id(int id) const
 {
-    for (const int out_id : out_ids)
+    return std::any_of(out_ids.begin(), out_ids.end(), [&id](const int out_id)
     {
-        if (out_id == id)
-        {
-            return true;
-        }
-    }
-
-    return false;
+        return out_id == id;
+    });
 }
 
 bool NeuralNetwork::has_conn(int from_id, int to_id) const
 {
-    for (const Connection *const conn : connections.at(to_id))
+    const auto &to_conns = connections.at(to_id);
+    return std::any_of(to_conns.begin(), to_conns.end(), [&from_id](const Connection *const conn)
     {
-        if (conn->from.id == from_id)
-        {
-            return true;
-        }
-    }
-
-    return false;
+        return conn->from.id == from_id;
+    });
 }
 
 void NeuralNetwork::add_node(int id)
@@ -162,7 +137,8 @@ void NeuralNetwork::mutate_weights()
         {
             conn->weight = rand_prob(gen) < neat_config::weight_prob && conn->enabled ? weight_distribution(gen)
                                                                                       : conn->weight;
-            conn->enabled = conn->enabled || rand_prob(gen) < neat_config::weight_prob;  // TODO: maybe use a different probability for this
+            conn->enabled = conn->enabled || rand_prob(gen) <
+                                             neat_config::weight_prob;  // TODO: maybe use a different probability for this
         }
     }
 }
@@ -356,7 +332,7 @@ void NeuralNetwork::activate_node(const int id)
 
         if (!conn->from.activated)
         {
-            activate_node(id);
+            activate_node(conn->from.id);
         }
 
         node.value += conn->weight * conn->from.value;

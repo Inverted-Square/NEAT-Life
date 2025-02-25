@@ -60,8 +60,8 @@ namespace neat_config
      const bool debug_mode = false;
      const int tournament_size = 3;
      const double weight_prob = 0.1;
-     const double node_prob = 0.05;
-     const double conn_prob = 0.01;
+     const double node_prob = 0.005;
+     const double conn_prob = 0.001;
 }
 
 static std::random_device random_device;

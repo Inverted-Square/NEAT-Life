@@ -37,7 +37,7 @@ public:
     explicit NEAT(int population_size = neat_config::population_size,
                   const std::vector<int> &layer_counts = neat_config::layer_counts);
 
-    const std::vector<NeuralNetwork> &get_curr_population() const;
+    std::vector<NeuralNetwork> &get_curr_population();
 
     int get_next_innovation_id() const;
 
@@ -56,19 +56,13 @@ private:
 
     static int find_species(const species_groups &groups, const NeuralNetwork &network);
 
-    void repopulate_species(const species &group, double population_mean_fitness);
-
-    static int get_new_size(double total_adj_fitness, double population_mean_fitness, int prev_size);
+    void repopulate_species(const species &group, int size);
 
     static const NeuralNetwork *run_tournament(const species &group);
 
     void mutate_networks();
 
     void mutate_add_connection(NeuralNetwork &network);
-
-    static void find_reachable(std::unordered_map<int, std::unordered_set<int>> &reachable_nodes,
-                        std::unordered_set<int> &searched_nodes, std::vector<int> &node_stack, int end_node,
-                        const NeuralNetwork &network);
 
     void mutate_add_node(NeuralNetwork &network);
 

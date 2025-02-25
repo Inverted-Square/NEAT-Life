@@ -79,10 +79,6 @@ public:
 
     int get_max_innovation() const;
 
-    const std::vector<int> &get_out_ids() const;
-
-    const std::vector<Connection *> &to_node_connections_at(int id) const;
-
     bool is_in_id(int id) const;
 
     bool is_out_id(int id) const;

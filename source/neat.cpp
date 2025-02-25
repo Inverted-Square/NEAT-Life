@@ -26,7 +26,7 @@ NEAT::NEAT(const int population_size, const std::vector<int> &layer_counts)
     }
 }
 
-const std::vector<NeuralNetwork> &NEAT::get_curr_population() const
+std::vector<NeuralNetwork> &NEAT::get_curr_population()
 {
     return curr_population;
 }
@@ -60,9 +60,38 @@ void NEAT::generate_next_population()
 {
     double mean_fitness = 0;
     const species_groups groups = network_speciation(mean_fitness);
+    std::vector<int> new_sizes;
+    int size_sum = 0;
     for (const auto &group : groups)
     {
-        repopulate_species(group, mean_fitness);
+        double total_adj_fitness = 0;
+        for (auto network : group)
+        {
+            total_adj_fitness += network->fitness;
+        }
+        total_adj_fitness /= static_cast<double>(group.size());
+
+        const int new_size = static_cast<int>(round(total_adj_fitness / mean_fitness));
+        size_sum += new_size;
+        new_sizes.push_back(new_size);
+    }
+
+    const int size_diff = static_cast<int>(curr_population.size()) - size_sum;
+    for (int i = 0; i < abs(size_diff); ++i)
+    {
+        int &rand_size = new_sizes[static_cast<int>(rand_prob(gen) * static_cast<int>(new_sizes.size() - 1))];
+        if (rand_size == 0 && size_diff < 0)
+        {
+            --i;
+            continue;
+        }
+
+        rand_size += size_diff < 0 ? -1 : 1;
+    }
+
+    for (unsigned int i = 0; i < groups.size(); ++i)
+    {
+        repopulate_species(groups[i], new_sizes[i]);
     }
 
     curr_population = std::move(next_population);
@@ -115,34 +144,14 @@ int NEAT::find_species(const NEAT::species_groups &groups, const NeuralNetwork &
     return -1;
 }
 
-void NEAT::repopulate_species(const NEAT::species &group, const double population_mean_fitness)
+void NEAT::repopulate_species(const NEAT::species &group, const int size)
 {
-    double total_adj_fitness = 0;
-    for (auto network : group)
-    {
-        total_adj_fitness += network->fitness;
-    }
-    total_adj_fitness /= static_cast<double>(group.size());
-
-    const int rounded_size = get_new_size(total_adj_fitness, population_mean_fitness, static_cast<int>(group.size()));
-    for (int i = 0; i < rounded_size; ++i)
+    for (int i = 0; i < size; ++i)
     {
         const NeuralNetwork *parent1 = run_tournament(group);
         const NeuralNetwork *parent2 = run_tournament(group);
         next_population.push_back(*parent1 * *parent2);
     }
-}
-
-int NEAT::get_new_size(const double total_adj_fitness, const double population_mean_fitness, const int prev_size)
-{
-    const double size = total_adj_fitness /
-                        population_mean_fitness;  // TODO: this used to have round wrapped around it but I removed it as that seemed dumb (maybe my past self had their reasons though)
-    if (size < prev_size && trunc(size - 0.5) == size - 0.5)
-    {
-        return floor(size);
-    }
-
-    return static_cast<int>(round(size));
 }
 
 const NeuralNetwork *NEAT::run_tournament(const NEAT::species &group)
@@ -173,14 +182,6 @@ void NEAT::mutate_networks()
 
 void NEAT::mutate_add_connection(NeuralNetwork &network)
 {
-    std::unordered_map<int, std::unordered_set<int>> reachable_nodes;
-    std::unordered_set<int> searched_nodes;
-    std::vector<int> node_stack;
-    for (const int out_id : network.get_out_ids())
-    {
-        find_reachable(reachable_nodes, searched_nodes, node_stack, out_id, network);
-    }
-
     for (const auto &[from_id, from_node] : network.get_nodes())
     {
         if (network.is_out_id(from_id))
@@ -190,46 +191,13 @@ void NEAT::mutate_add_connection(NeuralNetwork &network)
 
         for (const auto &[to_id, to_node] : network.get_nodes())
         {
-            if (from_id == to_id || network.is_in_id(to_id) || network.has_conn(from_id, to_id))
-            {
-                continue;
-            }
-
-            if (rand_prob(gen) < neat_config::conn_prob &&
-                (network.is_out_id(to_id) || reachable_nodes.at(to_id).count(from_id) == 0))
+            if (rand_prob(gen) < neat_config::conn_prob && !network.is_in_id(to_id) && !network.has_conn(from_id, to_id))
             {
                 const int inno = connection_innovation({from_id, to_id});
                 network.add_connection(network.get_node(from_id), network.get_node(to_id), inno);
             }
         }
     }
-}
-
-void NEAT::find_reachable(std::unordered_map<int, std::unordered_set<int>> &reachable_nodes,
-                          std::unordered_set<int> &searched_nodes, std::vector<int> &node_stack,
-                          const int end_node, const NeuralNetwork &network)
-{
-    for (const int id : node_stack)
-    {
-        reachable_nodes[end_node].insert(id);
-    }
-
-    if (searched_nodes.count(end_node) != 0)
-    {
-        return;
-    }
-    node_stack.push_back(end_node);
-
-    if (!network.is_in_id(end_node))
-    {
-        for (const auto &conn : network.to_node_connections_at(end_node))
-        {
-            find_reachable(reachable_nodes, searched_nodes, node_stack, conn->from.id, network);
-        }
-    }
-
-    searched_nodes.insert(end_node);
-    node_stack.pop_back();
 }
 
 void NEAT::mutate_add_node(NeuralNetwork &network)
