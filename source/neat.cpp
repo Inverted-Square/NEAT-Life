@@ -103,7 +103,8 @@ int NEAT::find_species(const NEAT::species_groups &groups, const NeuralNetwork &
 {
     for (int groups_idx = 0; groups_idx < static_cast<int>(groups.size()); ++groups_idx)
     {
-        const int rand_idx = static_cast<int>(round(rand_prob(gen) * static_cast<double>(groups[groups_idx].size() - 1)));
+        const int rand_idx = static_cast<int>(round(
+                rand_prob(gen) * static_cast<double>(groups[groups_idx].size() - 1)));
         const NeuralNetwork *rand_net = groups[groups_idx][rand_idx];
         if (network == *rand_net)
         {
@@ -134,7 +135,8 @@ void NEAT::repopulate_species(const NEAT::species &group, const double populatio
 
 int NEAT::get_new_size(const double total_adj_fitness, const double population_mean_fitness, const int prev_size)
 {
-    const double size = total_adj_fitness / population_mean_fitness;  // TODO: this used to have round wrapped around it but I removed it as that seemed dumb (maybe my past self had their reasons though)
+    const double size = total_adj_fitness /
+                        population_mean_fitness;  // TODO: this used to have round wrapped around it but I removed it as that seemed dumb (maybe my past self had their reasons though)
     if (size < prev_size && trunc(size - 0.5) == size - 0.5)
     {
         return floor(size);
@@ -171,79 +173,63 @@ void NEAT::mutate_networks()
 
 void NEAT::mutate_add_connection(NeuralNetwork &network)
 {
-    // TODO: continue here - use your notes and good luck lol
+    std::unordered_map<int, std::unordered_set<int>> reachable_nodes;
+    std::unordered_set<int> searched_nodes;
+    std::vector<int> node_stack;
+    for (const int out_id : network.get_out_ids())
+    {
+        find_reachable(reachable_nodes, searched_nodes, node_stack, out_id, network);
+    }
 
-//    const auto &nodes = network.get_nodes();
-//    for (int layer = static_cast<int>(nodes.size()) - 1; layer >= 1; --layer)  // layer >= as we skip the input layer
-//    {
-//        try
-//        {
-//            nodes.at(layer);
-//        }
-//        catch (const std::out_of_range &err)
-//        {
-//            std::cout << "here1\n";
-//        }
-//
-//        for (const auto &node : nodes.at(layer))
-//        {
-//            check_previous_nodes(nodes, *node, network);
-//        }
-//    }
+    for (const auto &[from_id, from_node] : network.get_nodes())
+    {
+        if (network.is_out_id(from_id))
+        {
+            continue;
+        }
+
+        for (const auto &[to_id, to_node] : network.get_nodes())
+        {
+            if (from_id == to_id || network.is_in_id(to_id) || network.has_conn(from_id, to_id))
+            {
+                continue;
+            }
+
+            if (rand_prob(gen) < neat_config::conn_prob &&
+                (network.is_out_id(to_id) || reachable_nodes.at(to_id).count(from_id) == 0))
+            {
+                const int inno = connection_innovation({from_id, to_id});
+                network.add_connection(network.get_node(from_id), network.get_node(to_id), inno);
+            }
+        }
+    }
 }
 
-void NEAT::check_previous_nodes(const NeuralNetwork::node_layers &layer_nodes, const NeuralNetwork::Node &to_node,
-                                NeuralNetwork &network)
+void NEAT::find_reachable(std::unordered_map<int, std::unordered_set<int>> &reachable_nodes,
+                          std::unordered_set<int> &searched_nodes, std::vector<int> &node_stack,
+                          const int end_node, const NeuralNetwork &network)
 {
-//    for (int layer = to_node.layer - 1; layer >= 0; --layer)
-//    {
-//        try
-//        {
-//            layer_nodes.at(layer);
-//        }
-//        catch (const std::out_of_range &err)
-//        {
-//            std::cout << "here2\n";
-//        }
-//
-//        for (const auto &from_node : layer_nodes.at(layer))
-//        {
-//            check_previous_node(*from_node, to_node, network);
-//        }
-//    }
-}
+    for (const int id : node_stack)
+    {
+        reachable_nodes[end_node].insert(id);
+    }
 
-void NEAT::check_previous_node(const NeuralNetwork::Node &from_node, const NeuralNetwork::Node &to_node,
-                               NeuralNetwork &network)
-{
-//    if (from_node.layer == to_node.layer)
-//    {
-//        throw std::invalid_argument("NEAT::check_previous_node - you tried to connect nodes on the same layer.\n");
-//    }
-//
-//    const std::pair<int, int> &from_to_ids = {from_node.id, to_node.id};
-//    if (innovation_ids.count(from_to_ids) != 0)
-//    {
-//        const int conn_inno = innovation_ids.at(from_to_ids);
-//        if (network.get_conn_refs().count(conn_inno) != 0)
-//        {
-//            return;
-//        }
-//
-//        if (rand_prob(gen) < neat_config::conn_prob)
-//        {
-//            network.add_connection(from_node, to_node, conn_inno);
-//        }
-//
-//        return;
-//    }
-//
-//    if (rand_prob(gen) < neat_config::conn_prob)
-//    {
-//        // TODO: maybe just copy the useful part of connection_innovation as some of the assumptions in it are already known to be true here
-//        const int conn_inno = connection_innovation(from_to_ids);
-//        network.add_connection(from_node, to_node, conn_inno);
-//    }
+    if (searched_nodes.count(end_node) != 0)
+    {
+        return;
+    }
+    node_stack.push_back(end_node);
+
+    if (!network.is_in_id(end_node))
+    {
+        for (const auto &conn : network.to_node_connections_at(end_node))
+        {
+            find_reachable(reachable_nodes, searched_nodes, node_stack, conn->from.id, network);
+        }
+    }
+
+    searched_nodes.insert(end_node);
+    node_stack.pop_back();
 }
 
 void NEAT::mutate_add_node(NeuralNetwork &network)

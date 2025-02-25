@@ -66,11 +66,9 @@ private:
 
     void mutate_add_connection(NeuralNetwork &network);
 
-    void check_previous_nodes(const NeuralNetwork::node_layers &layer_nodes, const NeuralNetwork::Node &to_node,
-                              NeuralNetwork &network);
-
-    void check_previous_node(const NeuralNetwork::Node &from_node, const NeuralNetwork::Node &to_node,
-                             NeuralNetwork &network);
+    static void find_reachable(std::unordered_map<int, std::unordered_set<int>> &reachable_nodes,
+                        std::unordered_set<int> &searched_nodes, std::vector<int> &node_stack, int end_node,
+                        const NeuralNetwork &network);
 
     void mutate_add_node(NeuralNetwork &network);
 

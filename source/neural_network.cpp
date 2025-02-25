@@ -61,6 +61,11 @@ const NeuralNetwork::Node &NeuralNetwork::get_node(const int id) const
     return node_refs.at(id);
 }
 
+const std::unordered_map<int, NeuralNetwork::Node> &NeuralNetwork::get_nodes() const
+{
+    return node_refs;
+}
+
 const NeuralNetwork::innovation_to_conn &NeuralNetwork::get_conn_refs() const
 {
     return conn_refs;
@@ -69,6 +74,56 @@ const NeuralNetwork::innovation_to_conn &NeuralNetwork::get_conn_refs() const
 int NeuralNetwork::get_max_innovation() const
 {
     return max_inno;
+}
+
+const std::vector<int> &NeuralNetwork::get_out_ids() const
+{
+    return out_ids;
+}
+
+const std::vector<NeuralNetwork::Connection *> &NeuralNetwork::to_node_connections_at(int id) const
+{
+    return connections.at(id);
+}
+
+bool NeuralNetwork::is_in_id(int id) const
+{
+    // TODO: look into using std::any_of() for this method and the one below
+    for (const int in_id : in_ids)
+    {
+        if (in_id == id)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool NeuralNetwork::is_out_id(int id) const
+{
+    for (const int out_id : out_ids)
+    {
+        if (out_id == id)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool NeuralNetwork::has_conn(int from_id, int to_id) const
+{
+    for (const Connection *const conn : connections.at(to_id))
+    {
+        if (conn->from.id == from_id)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void NeuralNetwork::add_node(int id)
@@ -120,6 +175,8 @@ void NeuralNetwork::disable_connection(int inno)
 NeuralNetwork NeuralNetwork::operator*(const NeuralNetwork &other_net) const
 {
     NeuralNetwork child;
+    child.in_ids = in_ids;
+    child.out_ids = out_ids;
     const bool chosen_parent = rand_prob(gen) < 0.5;
     for (const auto &inno_conn : conn_refs)
     {
@@ -286,7 +343,7 @@ void NeuralNetwork::scale_values(doubles &inputs)
     }
 }
 
-void NeuralNetwork::activate_node(const int id)  // NOLINT(*-no-recursion)
+void NeuralNetwork::activate_node(const int id)
 {
     Node &node = node_refs.at(id);
     node.activated = true;

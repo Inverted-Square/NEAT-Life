@@ -24,9 +24,6 @@ public:
         {}
     };
 
-    typedef std::vector<Node *> node_layer;
-    typedef std::unordered_map<int, node_layer> node_layers;
-
 private:
     std::vector<int> in_ids;
 
@@ -76,9 +73,21 @@ private:
 public:
     const Node &get_node(int id) const;
 
+    const std::unordered_map<int, Node> &get_nodes() const;
+
     const innovation_to_conn &get_conn_refs() const;
 
     int get_max_innovation() const;
+
+    const std::vector<int> &get_out_ids() const;
+
+    const std::vector<Connection *> &to_node_connections_at(int id) const;
+
+    bool is_in_id(int id) const;
+
+    bool is_out_id(int id) const;
+
+    bool has_conn(int from_id, int to_id) const;
 
 public:
     void add_node(int id);
