@@ -34,6 +34,17 @@ Board::Board(const Board::pattern &starting_pattern, const bool infinite) : Boar
     }
 }
 
+double Board::average_activity() const
+{
+    double activity_sum = 0;
+    for (const auto &[coord, activity] : live_cell_activities)
+    {
+        activity_sum += activity;
+    }
+
+    return live_cell_activities.empty() ? 0 : activity_sum / static_cast<double>(live_cell_activities.size());
+}
+
 bool Board::cell_stays_live(const coord &row_column)
 {
     int live_neighbour_count = 0;
@@ -96,7 +107,12 @@ void Board::update_generation()
         if (cell_stays_live(live_cell.first))
         {
             next_live_cell_activities.insert(live_cell);
+            update_activity(live_cell.first, -1);
             Board::add_vertex_to(next_vertices, live_cell.first);
+        }
+        else
+        {
+            update_activity(live_cell.first, 0, true);
         }
     }
 
@@ -105,11 +121,40 @@ void Board::update_generation()
         if (dead_cell.second == 3)
         {
             next_live_cell_activities.insert(dead_cell);
+            update_activity(dead_cell.first, 50);
             Board::add_vertex_to(next_vertices, dead_cell.first);
+        }
+        else
+        {
+            update_activity(dead_cell.first, 0, true);
         }
     }
 
     live_cell_activities = std::move(next_live_cell_activities);
     vertices = std::move(next_vertices);
     dead_cell_neighbours.clear();
+}
+
+void Board::update_activity(const coord &row_col, const int activity, const bool set_activity)
+{
+    if (live_cell_activities.count(row_col) != 0)
+    {
+        if (set_activity)
+        {
+            live_cell_activities[row_col] = activity;
+        }
+        else
+        {
+            live_cell_activities[row_col] += activity;
+        }
+    }
+    else
+    {
+        live_cell_activities[row_col] = activity;
+    }
+
+    if (live_cell_activities[row_col] <= 0)
+    {
+        live_cell_activities.erase(row_col);
+    }
 }

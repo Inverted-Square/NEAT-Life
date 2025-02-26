@@ -13,7 +13,8 @@ void test_neural_networks();
 
 int main()
 {
-    test_neural_networks();
+    test_cgol();
+//    test_neural_networks();
 
     return 0;
 }

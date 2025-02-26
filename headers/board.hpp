@@ -38,6 +38,8 @@ public:
 
     explicit Board(const pattern &starting_pattern, bool infinite = false);
 
+    double average_activity() const;
+
 private:
     bool cell_stays_live(const coord &row_column);
 
@@ -59,6 +61,10 @@ public:
 
     void update_generation();
 
+private:
+    void update_activity(const coord &row_col, int activity, bool set_activity = false);
+
+public:
     inline bool is_infinite() const
     {
         return infinite;

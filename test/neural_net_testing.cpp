@@ -33,10 +33,6 @@ bool check_creation(const std::vector<int> &layer_counts);
 
 bool has_correct_structure(const NeuralNetwork &network, const std::vector<int> &layer_counts);
 
-bool bad_make_space_call(NeuralNetwork &network, int layer1, int layer2);
-
-bool find_layer_make_space_call(NeuralNetwork &network, int layer1, int layer2, int expected_layer);
-
 bool create_neural_net_with_one_layer()
 {
     try
@@ -80,73 +76,6 @@ bool add_node_with_given_bias_and_bad_layer()
 bool add_node_with_given_bias_and_good_layer()
 { return true; }
 
-bool make_space_between_with_layers_being_equal()
-{
-    NeuralNetwork network({1, 1});
-    return bad_make_space_call(network, 0, 0);
-}
-
-bool make_space_between_with_layer1_being_greater_than_layer2()
-{
-    NeuralNetwork network({1, 1});
-    return bad_make_space_call(network, 1, 0);
-}
-
-bool make_space_between_with_layer1_being_negative()
-{
-    NeuralNetwork network({1, 1});
-    return bad_make_space_call(network, -1, 1);
-}
-
-bool make_space_between_with_layer1_not_existing()
-{
-    NeuralNetwork network({1, 1});
-    return bad_make_space_call(network, 2, 3);
-}
-
-bool make_space_between_with_layer2_not_existing()
-{
-    NeuralNetwork network({1, 1});
-    return bad_make_space_call(network, 0, 2);
-}
-
-bool make_space_between_an_odd_number_of_layers()
-{
-    NeuralNetwork network({1, 1, 1, 1, 1, 1});
-    return find_layer_make_space_call(network, 1, 5, 3);
-}
-
-bool make_space_between_an_even_number_of_layers()
-{
-    NeuralNetwork network({1, 1, 1, 1, 1, 1});
-    return find_layer_make_space_call(network, 0, 5, 2);
-}
-
-bool make_space_between_with_layer1_and_layer2_being_next_to_each_other()
-{
-    NeuralNetwork network({2, 3, 4, 5, 6});
-    const std::vector<int> expected_layers{0, 1, 3, 4, 5};
-    int found_layer = network.make_space_between(1, 2);
-    if (found_layer != 2)
-    {
-        std::cout << ": FAILED - provided wrong layer in-between";
-        return false;
-    }
-
-    const auto &nodes = network.get_nodes();
-    for (const int layer : expected_layers)
-    {
-        if (nodes.count(layer) == 0)
-        {
-            std::cout << ": FAILED - inserted new layer incorrectly";
-            return false;
-        }
-    }
-
-    std::cout << ": PASSED";
-    return true;
-}
-
 bool add_connection_with_random_weight_and_bad_innovation()
 { return true; }
 
@@ -180,14 +109,11 @@ bool check_mutate_weights_just_changes_the_weights()
         }
     }
 
-    for (const auto &[layer, nodes] : network1.get_nodes())
+    for (const auto &[id, node] : network1.get_nodes())
     {
-        for (unsigned int i = 0; i < network1.get_nodes().at(layer).size(); ++i)
+        if (ns.at(id).bias != node.bias)
         {
-            if (ns.at(layer)[i]->bias != nodes[i]->bias)
-            {
-                weights_changed = true;
-            }
+            weights_changed = true;
         }
     }
 
@@ -624,14 +550,6 @@ int main()
                                   create_neural_net_with_one_hidden_layer, create_neural_net_with_many_hidden_layers,
                                   add_node_with_random_bias_and_bad_layer, add_node_with_random_bias_and_good_layer,
                                   add_node_with_given_bias_and_bad_layer, add_node_with_given_bias_and_good_layer,
-                                  make_space_between_with_layers_being_equal,
-                                  make_space_between_with_layer1_being_greater_than_layer2,
-                                  make_space_between_with_layer1_being_negative,
-                                  make_space_between_with_layer1_not_existing,
-                                  make_space_between_with_layer2_not_existing,
-                                  make_space_between_an_odd_number_of_layers,
-                                  make_space_between_an_even_number_of_layers,
-                                  make_space_between_with_layer1_and_layer2_being_next_to_each_other,
                                   add_connection_with_random_weight_and_bad_innovation,
                                   add_connection_with_random_weight_and_good_innovation,
                                   add_connection_with_given_weight_and_bad_innovation,
@@ -687,51 +605,6 @@ bool has_correct_structure(const NeuralNetwork &network, const std::vector<int> 
     if (network.get_conn_refs().size() != expected_conn_count)
     {
         std::cout << ": FAILED - wrong number of connections";
-        return false;
-    }
-
-    for (const auto &[inno, conn] : network.get_conn_refs())
-    {
-        if (conn.from.layer != conn.to.layer - 1)
-        {
-            std::cout << ": FAILED - bad connection";
-            return false;
-        }
-    }
-
-    std::cout << ": PASSED";
-    return true;
-}
-
-bool bad_make_space_call(NeuralNetwork &network, const int layer1, const int layer2)
-{
-    try
-    {
-        network.make_space_between(layer1, layer2);
-    }
-    catch (const std::invalid_argument &error)
-    {
-        std::cout << ": PASSED";
-        return true;
-    }
-
-    std::cout << ": FAILED - accepted NeuralNetwork::make_space_between being called with bad arguments";
-    return false;
-}
-
-bool find_layer_make_space_call(NeuralNetwork &network, const int layer1, const int layer2, const int expected_layer)
-{
-    auto old_size = network.get_nodes().size();
-    int found_layer = network.make_space_between(layer1, layer2);
-    if (found_layer != expected_layer)
-    {
-        std::cout << ": FAILED - provided wrong layer in-between";
-        return false;
-    }
-
-    if (network.get_nodes().size() != old_size)
-    {
-        std::cout << ": FAILED - unnecessary layer added";
         return false;
     }
 
