@@ -2,7 +2,7 @@
 
 Board::Board(const Board::pattern &starting_pattern, const bool infinite) : Board(infinite)
 {
-    if (starting_pattern.size() > board_config::rows)
+    if (starting_pattern.size() > board_config::rows)  // TODO: shouldn't this also say '&& !infinite'
     {
         std::cout << "Pattern too tall in finite area. Increase board_config::rows in 'neat-life_header.hpp'.\n";
         return;
@@ -39,6 +39,11 @@ double Board::average_activity() const
     double activity_sum = 0;
     for (const auto &[coord, activity] : live_cell_activities)
     {
+        if (activity == -1)
+        {
+            continue;
+        }
+
         activity_sum += activity;
     }
 
@@ -92,7 +97,7 @@ void Board::set_cell(const coord &row_column, const bool state)
 {
     if (live_cell_activities.count(row_column) == 0 && state)
     {
-        live_cell_activities.insert({row_column, 0});
+        live_cell_activities.insert({row_column, -1});
         sf::Vertex vertex({static_cast<float>(row_column.first), static_cast<float>(row_column.second)});
         Board::add_vertex_to(vertices, row_column);
     }
@@ -155,6 +160,6 @@ void Board::update_activity(const coord &row_col, const int activity, const bool
 
     if (live_cell_activities[row_col] <= 0)
     {
-        live_cell_activities.erase(row_col);
+        live_cell_activities[row_col] = -1;
     }
 }

@@ -30,7 +30,6 @@ namespace board_config
     const int rows = 29;
     const int columns = 32;
     const float cell_length = 10.0f;
-
     const int directions[8][2] = {{-1, -1},
                                   {-1, 0},
                                   {-1, 1},
@@ -52,16 +51,20 @@ namespace events_config
 
 namespace neat_config
 {
-     const int num_input = 4;
-     const int num_output = 2;
-     const std::vector<int> layer_counts = {num_input, num_output};
-     const int population_size = 50;
-     const int num_gen = 100;
-     const bool debug_mode = false;
-     const int tournament_size = 3;
-     const double weight_prob = 0.1;
-     const double node_prob = 0.005;
-     const double conn_prob = 0.001;
+    const int num_input = 4;
+    const int num_output = 2;
+    const std::vector<int> layer_counts = {num_input, num_output};
+    const int population_size = 50;
+    const int num_gen = 100;
+    const bool debug_mode = false;
+    const int tournament_size = 3;
+    const double weight_prob = 0.1;
+    const double node_prob = 0.005;
+    const double conn_prob = 0.001;
+    const int pattern_width = 3;
+    const int pattern_height = 3;
+    const int max_steps = 10000;
+    const int max_same = 25;
 }
 
 static std::random_device random_device;

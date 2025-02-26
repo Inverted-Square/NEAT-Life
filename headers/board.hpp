@@ -8,6 +8,7 @@
 
 class Board
 {
+public:
     typedef std::pair<const int, const int> coord;
 
     struct hash_pair
@@ -21,6 +22,7 @@ class Board
         }
     };
 
+private:
     typedef std::unordered_map<coord, int, hash_pair> coord_val;
 
     coord_val live_cell_activities;
@@ -45,6 +47,7 @@ private:
 
     static void add_vertex_to(sf::VertexArray &vertex_array, const coord &row_column);
 
+public:
     /**
      * Handles negative values of n in n % m in the same way Python does.
      * @param n The number to get the modulus of.
@@ -56,7 +59,6 @@ private:
         return (n % m + m) % m;
     }
 
-public:
     void set_cell(const coord &row_column, bool state = true);
 
     void update_generation();

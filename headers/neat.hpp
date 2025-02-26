@@ -34,6 +34,8 @@ class NEAT
     int next_node_id = 0;
 
 public:
+    NeuralNetwork best_net;
+
     explicit NEAT(int population_size = neat_config::population_size,
                   const std::vector<int> &layer_counts = neat_config::layer_counts);
 
@@ -48,6 +50,8 @@ public:
     const std::unordered_map<int, int> &get_node_ids() const;
 
     void set_individual_fitness(int index, double fitness);
+
+    NeuralNetwork &get_best_net();
 
     void generate_next_population();
 

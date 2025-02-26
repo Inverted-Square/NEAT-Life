@@ -3,7 +3,7 @@
 #include "util.hpp"
 #include "events.hpp"
 #include "board.hpp"
-#include "neural_network.hpp"
+#include "neat.hpp"
 
 #include <random>
 
@@ -11,10 +11,22 @@ void test_cgol();
 
 void test_neural_networks();
 
+void test_neat_cgol();
+
+Board set_board_using_net(NeuralNetwork &network, bool is_infinite);
+
+int live_neighbours(const Board::coord &pos, const std::unordered_set<Board::coord, Board::hash_pair> &live_in_pattern,
+                    bool infinite);
+
+double methuselah_fitness(Board &board);
+
+bool is_stable(const std::vector<double> &activities, unsigned int &unique_count);
+
 int main()
 {
-    test_cgol();
+//    test_cgol();
 //    test_neural_networks();
+    test_neat_cgol();
 
     return 0;
 }
@@ -78,4 +90,117 @@ void test_neural_networks()
         }
         std::cout << "\n";
     }
+}
+
+void test_neat_cgol()
+{
+    NEAT neat(25, {4, 2});
+    for (int generation = 0; generation < 100; ++generation)
+    {
+        auto &networks = neat.get_curr_population();
+        for (int net = 0; net < static_cast<int>(networks.size()); ++net)
+        {
+            Board board = set_board_using_net(networks[net], true);
+            neat.set_individual_fitness(net, methuselah_fitness(board));
+        }
+
+        neat.generate_next_population();
+    }
+
+    Board board = set_board_using_net(neat.get_best_net(), true);
+}
+
+Board set_board_using_net(NeuralNetwork &network, const bool is_infinite)
+{
+    Board::pattern net_pattern(neat_config::pattern_height);
+    std::unordered_set<Board::coord, Board::hash_pair> live_in_pattern;
+    int total_live = 0;
+    const double area = neat_config::pattern_width * neat_config::pattern_height;
+    for (int row = 0; row < neat_config::pattern_height; ++row)
+    {
+        for (int column = 0; column < neat_config::pattern_width; ++column)
+        {
+            const int surrounding_live = live_neighbours({row, column}, live_in_pattern, is_infinite);
+            const double percent_filled = total_live / area;
+            std::vector<double> inputs{static_cast<double>(row), static_cast<double>(column),
+                                       static_cast<double>(surrounding_live), percent_filled};
+            const std::vector<double> &outputs = network.activate(inputs);
+            const bool light_cell = outputs[0] > rand_prob(gen);
+            net_pattern[row] += light_cell ? 'O' : '-';
+            if (light_cell)
+            {
+                live_in_pattern.insert({row, column});
+                ++total_live;
+            }
+        }
+    }
+
+    return Board(net_pattern, is_infinite);
+}
+
+int live_neighbours(const Board::coord &pos, const std::unordered_set<Board::coord, Board::hash_pair> &live_in_pattern,
+                    const bool infinite)
+{
+    int live_count = 0;
+    for (const auto &direction : board_config::directions)
+    {
+        int row_index = pos.first + direction[0];
+        int column_index = pos.second + direction[1];
+        if (!infinite)
+        {
+            row_index = Board::neg_mod(row_index, board_config::rows);
+            column_index = Board::neg_mod(column_index, board_config::columns);
+        }
+
+        if (live_in_pattern.count({row_index, column_index}) != 0)
+        {
+            ++live_count;
+            continue;
+        }
+    }
+
+    return live_count;
+}
+
+double methuselah_fitness(Board &board)
+{
+    std::vector<double> activities;
+    for (int step = 0; step < neat_config::max_steps; ++step)
+    {
+        board.update_generation();
+        activities.push_back(board.average_activity());
+        unsigned int unique_count = 0;
+        if (is_stable(activities, unique_count))
+        {
+            const int fitness = step + 1 - neat_config::max_same;
+            return fitness == 0 ? unique_count : fitness;
+        }
+    }
+
+    return neat_config::max_steps;
+}
+
+bool is_stable(const std::vector<double> &activities, unsigned int &unique_count)
+{
+    if (activities.size() < neat_config::max_same)
+    {
+        unique_count = 0;
+        return false;
+    }
+
+    std::unordered_set<double> unique_activities;
+    const int diff = static_cast<int>(activities.size()) - neat_config::max_same;
+    const int lower_bound = diff * (1 - (diff < 0));
+    for (int i = static_cast<int>(activities.size()) - 1; i >= lower_bound; --i)
+    {
+        unique_activities.insert(activities[i]);
+        if (unique_activities.size() > 4)
+        {
+            unique_count = unique_activities.size();
+            return false;
+        }
+    }
+
+    unique_count = unique_activities.size();
+    return true;
 }

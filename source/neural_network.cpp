@@ -309,7 +309,7 @@ void NeuralNetwork::scale_values(doubles &inputs)
 
     if (max_value - min_value == 0)  // usually happens because all values were negative so relu made them all 0
     {
-        std::cout << "Note: NeuralNetwork::scale_values couldn't scale the values as they're all the same.\n";
+//        std::cout << "Note: NeuralNetwork::scale_values couldn't scale the values as they're all the same.\n";
         return;
     }
 
