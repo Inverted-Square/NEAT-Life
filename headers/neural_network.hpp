@@ -34,13 +34,13 @@ private:
 public:
     struct Connection
     {
-        const Node &from;
-        const Node &to;
+        const int from;
+        const int to;
         double weight;
         const int innovation;
         bool enabled;
 
-        Connection(const Node &from, const Node &to, const double weight, const int innovation, const bool enabled) :
+        Connection(const int from, const int to, const double weight, const int innovation, const bool enabled) :
                 from(from), to(to), weight(weight), innovation(innovation), enabled(enabled)
         {}
     };
@@ -85,14 +85,16 @@ public:
 
     bool has_conn(int from_id, int to_id) const;
 
+    void recalibrate_to_connections();
+
 public:
     void add_node(int id);
 
     void add_node(int id, double bias);
 
-    void add_connection(const Node &from, const Node &to, int innovation);
+    void add_connection(int from, int to, int innovation);
 
-    void add_connection(const Node &from, const Node &to, double weight, int innovation, bool enabled = true);
+    void add_connection(int from, int to, double weight, int innovation, bool enabled = true);
 
     void mutate_weights();
 
@@ -102,9 +104,9 @@ public:
     NeuralNetwork operator*(const NeuralNetwork &other_net) const;
 
 private:
-    void inherit_either_parent(const Connection *conn1, const Connection *conn2);
+    void inherit_either_parent(const Connection *conn1, const Connection *conn2, const NeuralNetwork &p1, const NeuralNetwork &p2);
 
-    void inherit_gene(const Connection *conn);
+    void inherit_gene(const Connection *conn, const NeuralNetwork &p);
 
 public:
     // Used to see if two networks are close enough to belong to the same species_groups

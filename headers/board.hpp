@@ -5,6 +5,7 @@
 #include <vector>
 #include <utility>
 #include <unordered_map>
+#include <unordered_set>
 
 class Board
 {
@@ -25,6 +26,7 @@ public:
 private:
     typedef std::unordered_map<coord, int, hash_pair> coord_val;
 
+    std::unordered_set<coord, hash_pair> live_cells;
     coord_val live_cell_activities;
     coord_val dead_cell_neighbours;
     sf::VertexArray vertices{sf::PrimitiveType::Quads};

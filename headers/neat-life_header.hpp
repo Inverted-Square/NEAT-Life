@@ -54,15 +54,15 @@ namespace neat_config
     const int num_input = 4;
     const int num_output = 2;
     const std::vector<int> layer_counts = {num_input, num_output};
-    const int population_size = 50;
-    const int num_gen = 100;
+    const int population_size = 25;
+    const int num_gen = 50;
     const bool debug_mode = false;
     const int tournament_size = 3;
     const double weight_prob = 0.1;
-    const double node_prob = 0.005;
-    const double conn_prob = 0.001;
-    const int pattern_width = 3;
-    const int pattern_height = 3;
+    const double node_prob = 0.05;
+    const double conn_prob = 0.01;
+    const int pattern_width = 7;
+    const int pattern_height = 4;
     const int max_steps = 10000;
     const int max_same = 25;
 }
@@ -71,3 +71,4 @@ static std::random_device random_device;
 static std::mt19937 gen;  // use random_device to seed when you're not testing
 static std::normal_distribution<double> weight_distribution(0, sqrt(2.0 / neat_config::num_input));  // TODO: remember to talk about this in the final report
 static std::uniform_real_distribution<double> rand_prob(0, 1);
+static std::uniform_real_distribution<double> mutate_power(0.5, 1.5);

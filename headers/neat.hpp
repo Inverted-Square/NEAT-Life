@@ -35,6 +35,7 @@ class NEAT
 
 public:
     NeuralNetwork best_net;
+    NeuralNetwork *curr_gen_best;
 
     explicit NEAT(int population_size = neat_config::population_size,
                   const std::vector<int> &layer_counts = neat_config::layer_counts);

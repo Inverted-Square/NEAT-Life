@@ -4,6 +4,12 @@
 
 namespace patterns
 {
+    [[maybe_unused]] const Board::pattern u{
+            "OOO",
+            "O-O",
+            "O-O"
+    };
+
     [[maybe_unused]] const Board::pattern bunnies_10b{
             "O--------",
             "-O-------",
@@ -52,7 +58,7 @@ namespace patterns
             "----O---------------------------"};
 }
 
-void setup_view(sf::View &view, const Board& board);
+void setup_view(sf::View &view, bool is_infinite, int pattern_width, int pattern_height);
 
 inline float max(float n, float m)
 {

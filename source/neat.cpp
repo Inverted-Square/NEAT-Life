@@ -13,6 +13,7 @@ NEAT::NEAT(const int population_size, const std::vector<int> &layer_counts)
         curr_population.emplace_back(layer_counts);
     }
     best_net = curr_population[0];
+    curr_gen_best = &curr_population[0];
 
     next_innovation_id = static_cast<int>(curr_population[0].get_conn_refs().size());
     for (const int count : layer_counts)
@@ -23,7 +24,7 @@ NEAT::NEAT(const int population_size, const std::vector<int> &layer_counts)
     for (const auto &conn_ref : curr_population[0].get_conn_refs())
     {
         const NeuralNetwork::Connection *conn = &conn_ref.second;
-        innovation_ids[{conn->from.id, conn->to.id}] = conn->innovation;
+        innovation_ids[{conn->from, conn->to}] = conn->innovation;
     }
 }
 
@@ -58,6 +59,12 @@ void NEAT::set_individual_fitness(const int index, const double fitness)
     if (fitness > best_net.fitness)
     {
         best_net = curr_population[index];
+        best_net.recalibrate_to_connections();
+    }
+
+    if (fitness > curr_gen_best->fitness)
+    {
+        curr_gen_best = &curr_population[index];
     }
 }
 
@@ -107,6 +114,7 @@ void NEAT::generate_next_population()
     curr_population = std::move(next_population);
     next_population.clear();
     mutate_networks();
+    curr_gen_best = &curr_population[0];
 }
 
 NEAT::species_groups NEAT::network_speciation(double &population_mean_fitness) const
@@ -204,7 +212,7 @@ void NEAT::mutate_add_connection(NeuralNetwork &network)
             if (rand_prob(gen) < neat_config::conn_prob && !network.is_in_id(to_id) && !network.has_conn(from_id, to_id))
             {
                 const int inno = connection_innovation({from_id, to_id});
-                network.add_connection(network.get_node(from_id), network.get_node(to_id), inno);
+                network.add_connection(from_id, to_id, inno);
             }
         }
     }
@@ -226,13 +234,11 @@ void NEAT::mutate_add_node(NeuralNetwork &network)
         {
             network.disable_connection(inno);
             const int new_node_id = node_id(conn.innovation);
-//            const int layer = network.make_space_between(conn.from.layer, conn.to.layer);
             network.add_node(new_node_id);
-            const NeuralNetwork::Node &new_node = network.get_node(new_node_id);
-            const int conn1_inno = connection_innovation({conn.from.id, new_node.id});
-            const int conn2_inno = connection_innovation({new_node.id, conn.to.id});
-            network.add_connection(conn.from, new_node, conn1_inno);
-            network.add_connection(new_node, conn.to, conn2_inno);
+            const int conn1_inno = connection_innovation({conn.from, new_node_id});
+            const int conn2_inno = connection_innovation({new_node_id, conn.to});
+            network.add_connection(conn.from, new_node_id, conn1_inno);
+            network.add_connection(new_node_id, conn.to, conn2_inno);
         }
     }
 }

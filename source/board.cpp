@@ -16,7 +16,7 @@ Board::Board(const Board::pattern &starting_pattern, const bool infinite) : Boar
         if (row_string.size() > board_config::columns && !infinite)
         {
             std::cout << "Pattern too wide in finite area. Increase board_config::columns in 'neat-life_header.hpp'.\n";
-            live_cell_activities.clear();
+            live_cells.clear();
             vertices.clear();
             return;
         }
@@ -39,11 +39,6 @@ double Board::average_activity() const
     double activity_sum = 0;
     for (const auto &[coord, activity] : live_cell_activities)
     {
-        if (activity == -1)
-        {
-            continue;
-        }
-
         activity_sum += activity;
     }
 
@@ -64,7 +59,7 @@ bool Board::cell_stays_live(const coord &row_column)
         }
 
         const coord row_column_indices = {row_index, column_index};
-        if (live_cell_activities.count({row_index, column_index}) != 0)
+        if (live_cells.count({row_index, column_index}) != 0)
         {
             ++live_neighbour_count;
             continue;
@@ -95,9 +90,9 @@ void Board::add_vertex_to(sf::VertexArray &vertex_array, const coord &row_column
 
 void Board::set_cell(const coord &row_column, const bool state)
 {
-    if (live_cell_activities.count(row_column) == 0 && state)
+    if (live_cells.count(row_column) == 0 && state)
     {
-        live_cell_activities.insert({row_column, -1});
+        live_cells.insert(row_column);
         sf::Vertex vertex({static_cast<float>(row_column.first), static_cast<float>(row_column.second)});
         Board::add_vertex_to(vertices, row_column);
     }
@@ -105,19 +100,19 @@ void Board::set_cell(const coord &row_column, const bool state)
 
 void Board::update_generation()
 {
-    coord_val next_live_cell_activities;
+    std::unordered_set<coord, hash_pair> next_live_cells;
     sf::VertexArray next_vertices{sf::PrimitiveType::Quads};
-    for (const auto &live_cell : live_cell_activities)
+    for (const auto &live_cell : live_cells)
     {
-        if (cell_stays_live(live_cell.first))
+        if (cell_stays_live(live_cell))
         {
-            next_live_cell_activities.insert(live_cell);
-            update_activity(live_cell.first, -1);
-            Board::add_vertex_to(next_vertices, live_cell.first);
+            next_live_cells.insert(live_cell);
+            update_activity(live_cell, -1);
+            Board::add_vertex_to(next_vertices, live_cell);
         }
         else
         {
-            update_activity(live_cell.first, 0, true);
+            update_activity(live_cell, 0, true);
         }
     }
 
@@ -125,7 +120,7 @@ void Board::update_generation()
     {
         if (dead_cell.second == 3)
         {
-            next_live_cell_activities.insert(dead_cell);
+            next_live_cells.insert(dead_cell.first);
             update_activity(dead_cell.first, 50);
             Board::add_vertex_to(next_vertices, dead_cell.first);
         }
@@ -135,7 +130,7 @@ void Board::update_generation()
         }
     }
 
-    live_cell_activities = std::move(next_live_cell_activities);
+    live_cells = std::move(next_live_cells);
     vertices = std::move(next_vertices);
     dead_cell_neighbours.clear();
 }
@@ -160,6 +155,6 @@ void Board::update_activity(const coord &row_col, const int activity, const bool
 
     if (live_cell_activities[row_col] <= 0)
     {
-        live_cell_activities[row_col] = -1;
+        live_cell_activities.erase(row_col);
     }
 }
