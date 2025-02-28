@@ -42,6 +42,8 @@ public:
 
     explicit Board(const pattern &starting_pattern, bool infinite = false);
 
+    void set_pattern(const pattern &starting_pattern);
+
     double average_activity() const;
 
 private:

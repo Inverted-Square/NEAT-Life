@@ -13,7 +13,7 @@ namespace win_config
      * For a modified default style, use sf::Style::Titlebar | sf::Style::Close
      * For a fullscreen style, use sf::Style::Fullscreen
      */
-    static sf::Uint32 style = sf::Style::Fullscreen;
+    static sf::Uint32 style = sf::Style::Titlebar | sf::Style::Close;
     const int width = style == sf::Style::Fullscreen ? static_cast<int>(sf::VideoMode::getDesktopMode().width) : 1000;
     const int height = style == sf::Style::Fullscreen ? static_cast<int>(sf::VideoMode::getDesktopMode().height) : 700;
 
@@ -54,15 +54,15 @@ namespace neat_config
     const int num_input = 4;
     const int num_output = 2;
     const std::vector<int> layer_counts = {num_input, num_output};
-    const int population_size = 25;
-    const int num_gen = 50;
+    const int population_size = 100;
+    const int num_gen = 100;
     const bool debug_mode = false;
     const int tournament_size = 3;
-    const double weight_prob = 0.1;
-    const double node_prob = 0.05;
-    const double conn_prob = 0.01;
-    const int pattern_width = 7;
-    const int pattern_height = 4;
+    const double weight_prob = 0.35;
+    const double node_prob = 0.001;
+    const double conn_prob = 0.0005;
+    const int pattern_width = 10;
+    const int pattern_height = 10;
     const int max_steps = 10000;
     const int max_same = 25;
 }

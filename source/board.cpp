@@ -2,6 +2,15 @@
 
 Board::Board(const Board::pattern &starting_pattern, const bool infinite) : Board(infinite)
 {
+    set_pattern(starting_pattern);
+}
+
+void Board::set_pattern(const Board::pattern &starting_pattern)
+{
+    live_cells.clear();
+    live_cell_activities.clear();
+    dead_cell_neighbours.clear();
+    vertices.clear();
     if (starting_pattern.size() > board_config::rows)  // TODO: shouldn't this also say '&& !infinite'
     {
         std::cout << "Pattern too tall in finite area. Increase board_config::rows in 'neat-life_header.hpp'.\n";

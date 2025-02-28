@@ -12,8 +12,6 @@ NEAT::NEAT(const int population_size, const std::vector<int> &layer_counts)
     {
         curr_population.emplace_back(layer_counts);
     }
-    best_net = curr_population[0];
-    curr_gen_best = &curr_population[0];
 
     next_innovation_id = static_cast<int>(curr_population[0].get_conn_refs().size());
     for (const int count : layer_counts)
@@ -56,21 +54,6 @@ const std::unordered_map<int, int> &NEAT::get_node_ids() const
 void NEAT::set_individual_fitness(const int index, const double fitness)
 {
     curr_population[index].fitness = fitness;
-    if (fitness > best_net.fitness)
-    {
-        best_net = curr_population[index];
-        best_net.recalibrate_to_connections();
-    }
-
-    if (fitness > curr_gen_best->fitness)
-    {
-        curr_gen_best = &curr_population[index];
-    }
-}
-
-NeuralNetwork &NEAT::get_best_net()
-{
-    return best_net;
 }
 
 void NEAT::generate_next_population()
@@ -114,7 +97,6 @@ void NEAT::generate_next_population()
     curr_population = std::move(next_population);
     next_population.clear();
     mutate_networks();
-    curr_gen_best = &curr_population[0];
 }
 
 NEAT::species_groups NEAT::network_speciation(double &population_mean_fitness) const

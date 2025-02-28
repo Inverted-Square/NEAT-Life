@@ -21,13 +21,13 @@ Board::pattern set_board_using_net(NeuralNetwork &network, bool is_infinite);
 int live_neighbours(const Board::coord &pos, const std::unordered_set<Board::coord, Board::hash_pair> &live_in_pattern,
                     bool infinite);
 
-double methuselah_fitness(Board &board);
+int methuselah_fitness(Board &board);
 
 bool is_stable(const std::vector<double> &activities, unsigned int &unique_count);
 
 int main()
 {
-    // TODO: go into the debugger to see why it crashes and to also look at the networks structures
+    // TODO: continue to look at the networks' structures
 
     NEAT neat(neat_config::population_size, {4, 2});
 
@@ -41,31 +41,32 @@ int main()
     EventHandler event_handler;
     int curr_step = 0;
     int curr_gen = 0;
+    std::map<Board::pattern, int> pattern_fitnesses;
+    Board::pattern best_pattern;
+    int best_fitness = 0;
+    Board::pattern curr_gen_best_pattern;
+    int curr_gen_best_fitness = 0;
     bool displaying_board = false;
-    Board *board = nullptr;
-    double displaying_fitness = 0;
+    Board board(true);
     while (window.isOpen())
     {
-        event_handler.process_events(window);
-        if (displaying_board && board)
+        event_handler.process_events(window);  // note: you should only do this if the board is infinite
+        if (displaying_board)
         {
-            if (board->is_infinite())
-            {
-                event_handler.update_view(window, view);  // TODO: again, decide if you're ok with this
-            }
-
-            board->update_generation();
-            board->draw(window);
-            displaying_board = curr_step++ != static_cast<int>(displaying_fitness);
+            event_handler.update_view(window, view);
+            board.update_generation();
+            board.draw(window);
+            displaying_board = curr_step++ != curr_gen_best_fitness;
             continue;
         }
 
+        curr_gen_best_fitness = 0;
+        curr_gen_best_pattern.clear();
         if (curr_gen == neat_config::num_gen)
         {
-            displaying_fitness = neat.best_net.fitness;
-            delete board;
-            board = new Board(set_board_using_net(neat.best_net, true), true);
-            board->draw(window);
+            curr_gen_best_fitness = best_fitness;
+            board.set_pattern(best_pattern);
+            board.draw(window);
             displaying_board = true;
             curr_step = 0;
             sf::sleep(sf::milliseconds(1000));
@@ -75,22 +76,38 @@ int main()
         auto &networks = neat.get_curr_population();
         for (int net = 0; net < static_cast<int>(networks.size()); ++net)
         {
-            Board curr_board(set_board_using_net(networks[net], true), true);
-            neat.set_individual_fitness(net, methuselah_fitness(curr_board));
+            Board::pattern set_pattern(set_board_using_net(networks[net], true));
+            if (pattern_fitnesses.count(set_pattern) != 0)
+            {
+                neat.set_individual_fitness(net, pattern_fitnesses.at(set_pattern));
+                continue;
+            }
+
+            Board curr_board(set_pattern, true);
+            const int found_fitness = methuselah_fitness(curr_board);
+            if (found_fitness > best_fitness)
+            {
+                best_fitness = found_fitness;
+                best_pattern = set_pattern;
+            }
+
+            if (found_fitness > curr_gen_best_fitness)
+            {
+                curr_gen_best_fitness = found_fitness;
+                curr_gen_best_pattern = set_pattern;
+            }
+
+            pattern_fitnesses.insert({set_pattern, found_fitness});
+            neat.set_individual_fitness(net, found_fitness);
         }
 
-        delete board;
-        board = new Board(set_board_using_net(*neat.curr_gen_best, true), true);
-        displaying_fitness = neat.curr_gen_best->fitness;
         neat.generate_next_population();
-        std::cout << "Best fitness of gen " << curr_gen++ << ": " << displaying_fitness << '\n';
-
-        board->draw(window);
+        std::cout << "Best fitness of gen " << curr_gen++ << ": " << curr_gen_best_fitness << '\n';
         displaying_board = true;
         curr_step = 0;
+        board.set_pattern(curr_gen_best_pattern);
+        board.draw(window);
     }
-
-    delete board;
 
     return EXIT_SUCCESS;
 }
@@ -171,7 +188,7 @@ void test_neat_cgol()
         neat.generate_next_population();
     }
 
-    Board board(set_board_using_net(neat.get_best_net(), true), true);
+//    Board board(set_board_using_net(neat.get_best_net(), true), true);
 }
 
 void test_fitness_func()
@@ -192,10 +209,10 @@ Board::pattern set_board_using_net(NeuralNetwork &network, const bool is_infinit
         {
             const int surrounding_live = live_neighbours({row, column}, live_in_pattern, is_infinite);
             const double percent_filled = total_live / area;
-            std::vector<double> inputs{static_cast<double>(row) / 3, static_cast<double>(column) / 3,
-                                       static_cast<double>(surrounding_live) / 8, percent_filled};
+            std::vector<double> inputs{static_cast<double>(row), static_cast<double>(column),
+                                       static_cast<double>(surrounding_live), percent_filled};
             const std::vector<double> &outputs = network.activate(inputs);
-            const bool light_cell = outputs[0] > rand_prob(gen);;  // > rand_prob(gen);  // > outputs[1];
+            const bool light_cell = outputs[0] > rand_prob(gen);  // > rand_prob(gen);  // > outputs[1];
             net_pattern[row] += light_cell ? 'O' : '-';
             if (light_cell)
             {
@@ -232,7 +249,7 @@ int live_neighbours(const Board::coord &pos, const std::unordered_set<Board::coo
     return live_count;
 }
 
-double methuselah_fitness(Board &board)
+int methuselah_fitness(Board &board)
 {
     std::vector<double> activities;
     for (int step = 0; step < neat_config::max_steps; ++step)
@@ -243,7 +260,7 @@ double methuselah_fitness(Board &board)
         if (is_stable(activities, unique_count))
         {
             const int fitness = step + 1 - neat_config::max_same;
-            return fitness == 0 ? unique_count : fitness;
+            return static_cast<int>(fitness == 0 ? unique_count : fitness);
         }
     }
 
