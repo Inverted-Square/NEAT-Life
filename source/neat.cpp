@@ -56,6 +56,11 @@ void NEAT::set_individual_fitness(const int index, const double fitness)
     curr_population[index].fitness = fitness;
 }
 
+NeuralNetwork &NEAT::get_individual(const int idx)
+{
+    return curr_population[idx];
+}
+
 void NEAT::generate_next_population()
 {
     double mean_fitness = 0;

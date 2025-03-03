@@ -49,6 +49,8 @@ public:
 
     void set_individual_fitness(int index, double fitness);
 
+    NeuralNetwork &get_individual(int idx);
+
     void generate_next_population();
 
 private:

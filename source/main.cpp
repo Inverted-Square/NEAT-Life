@@ -5,8 +5,30 @@
 #include "board.hpp"
 #include "neat.hpp"
 
-#include <random>
-#include <memory>
+#include <mutex>
+#include <thread>
+//#include <utility>
+#include <future>
+
+std::mutex neat_lock;
+std::mutex pattern_fitnesses_lock;
+std::mutex curr_best_lock;
+std::mutex net_lock;
+
+void score_networks(NEAT &neat, std::map<Board::pattern, int> &pattern_fitnesses, Board::pattern &curr_best, int &net);
+
+int grab_net(int &net);
+
+NeuralNetwork &neat_get_individual(NEAT &neat, int idx);
+
+bool pattern_is_recorded(const std::map<Board::pattern, int> &pattern_fitnesses, const Board::pattern &pattern_set);
+
+int pattern_fitnesses_at(const std::map<Board::pattern, int> &pattern_fitnesses, const Board::pattern &pattern_set);
+
+void pattern_fitnesses_insert(std::map<Board::pattern, int> &pattern_fitnesses, const Board::pattern &pattern_set,
+                              int found_fitness);
+
+void neat_set_individual_fitness(NEAT &neat, int index, double fitness);
 
 void test_cgol();
 
@@ -28,6 +50,12 @@ bool is_stable(const std::vector<double> &activities, unsigned int &unique_count
 int main()
 {
     // TODO: continue to look at the networks' structures
+    // TODO: for the multi-threaded stuff, look into std::async
+    // TODO: OK, so new todo here... lets try to instead gather all the patterns in a vector (maybe vector of vectors) and don't bother with async as you can't seem
+    //       to use references. Then pop off this vector of patterns as you push them with their fitness to to pattern_fitnesses until empty.
+    //       Because it seems to be annoying with curr_best, just...tbh idk...ughhhhhhhhhhhhhh
+    //         Maybe a map that maps a fitness to a board pattern
+    //      OOOOOOOOOOOOOO interesting side idea, if we do get all the patterns before running in parallel we'll be able to preemptively filter them out
 
     NEAT neat(neat_config::population_size, {4, 2});
 
@@ -43,9 +71,7 @@ int main()
     int curr_gen = 0;
     std::map<Board::pattern, int> pattern_fitnesses;
     Board::pattern best_pattern;
-    int best_fitness = 0;
     Board::pattern curr_gen_best_pattern;
-    int curr_gen_best_fitness = 0;
     bool displaying_board = false;
     Board board(true);
     while (window.isOpen())
@@ -56,15 +82,14 @@ int main()
             event_handler.update_view(window, view);
             board.update_generation();
             board.draw(window);
-            displaying_board = curr_step++ != curr_gen_best_fitness;
+            displaying_board = curr_step++ != pattern_fitnesses.at(curr_gen_best_pattern);
             continue;
         }
 
-        curr_gen_best_fitness = 0;
         curr_gen_best_pattern.clear();
         if (curr_gen == neat_config::num_gen)
         {
-            curr_gen_best_fitness = best_fitness;
+            curr_gen_best_pattern = best_pattern;
             board.set_pattern(best_pattern);
             board.draw(window);
             displaying_board = true;
@@ -73,36 +98,52 @@ int main()
             continue;
         }
 
-        auto &networks = neat.get_curr_population();
-        for (int net = 0; net < static_cast<int>(networks.size()); ++net)
+        int net = 0;
+//        std::vector<std::future<Board::pattern>> futures;
+//        for (int i = 0; i < 8; ++i)
+//        {
+//            futures[i] = std::async(std::launch::async, score_networks, neat, pattern_fitnesses, std::ref(net));
+//        }
+//
+//        for (auto &future : futures)
+//        {
+//            Board::pattern best_from_thread = future.get();
+//            if (pattern_fitnesses.at(best_from_thread) > pattern_fitnesses.at(curr_gen_best_pattern))
+//            {
+//                curr_gen_best_pattern = best_from_thread;
+//            }
+//        }
+
+//        Board::pattern q = f.get();
+
+        std::vector<std::thread> threads;
+        threads.reserve(1);
+        for (int i = 0; i < 1; ++i)
         {
-            Board::pattern set_pattern(set_board_using_net(networks[net], true));
-            if (pattern_fitnesses.count(set_pattern) != 0)
-            {
-                neat.set_individual_fitness(net, pattern_fitnesses.at(set_pattern));
-                continue;
-            }
+            threads.emplace_back([&]() {score_networks(neat, pattern_fitnesses, curr_gen_best_pattern, net);});
+        }
 
-            Board curr_board(set_pattern, true);
-            const int found_fitness = methuselah_fitness(curr_board);
-            if (found_fitness > best_fitness)
-            {
-                best_fitness = found_fitness;
-                best_pattern = set_pattern;
-            }
+        for (auto &t : threads)
+        {
+            t.join();
+        }
 
-            if (found_fitness > curr_gen_best_fitness)
-            {
-                curr_gen_best_fitness = found_fitness;
-                curr_gen_best_pattern = set_pattern;
-            }
+        threads.clear();
 
-            pattern_fitnesses.insert({set_pattern, found_fitness});
-            neat.set_individual_fitness(net, found_fitness);
+        if (pattern_fitnesses.count(curr_gen_best_pattern) == 0)
+        {
+            std::cout << "err here\n";
+        }
+
+        if (pattern_fitnesses.count(best_pattern) == 0 ||
+            pattern_fitnesses.at(curr_gen_best_pattern) > pattern_fitnesses.at(best_pattern))
+        {
+            best_pattern = curr_gen_best_pattern;
         }
 
         neat.generate_next_population();
-        std::cout << "Best fitness of gen " << curr_gen++ << ": " << curr_gen_best_fitness << '\n';
+        std::cout << "Best fitness of gen " << curr_gen++ << ": " << pattern_fitnesses.at(curr_gen_best_pattern)
+                  << '\n';
         displaying_board = true;
         curr_step = 0;
         board.set_pattern(curr_gen_best_pattern);
@@ -112,6 +153,73 @@ int main()
     return EXIT_SUCCESS;
 }
 
+void score_networks(NEAT &neat, std::map<Board::pattern, int> &pattern_fitnesses, Board::pattern &curr_best, int &net)
+{
+    Board::pattern temp_best;
+    for (int curr_net = grab_net(net); curr_net < neat_config::population_size; curr_net = grab_net(net))
+    {
+        const Board::pattern pattern_set(set_board_using_net(neat_get_individual(neat, curr_net), true));
+        if (pattern_is_recorded(pattern_fitnesses, pattern_set))
+        {
+            neat_set_individual_fitness(neat, curr_net, pattern_fitnesses_at(pattern_fitnesses, pattern_set));
+            continue;
+        }
+
+        Board curr_board(pattern_set, true);
+        const int found_fitness = methuselah_fitness(curr_board);
+        pattern_fitnesses_insert(pattern_fitnesses, pattern_set, found_fitness);
+        neat_set_individual_fitness(neat, curr_net, found_fitness);
+        if (!pattern_is_recorded(pattern_fitnesses, temp_best) ||
+            found_fitness > pattern_fitnesses_at(pattern_fitnesses, temp_best))
+        {
+            temp_best = pattern_set;
+        }
+    }
+
+    std::lock_guard<std::mutex> lock(curr_best_lock);
+    if (curr_best.empty() || pattern_fitnesses_at(pattern_fitnesses, temp_best) > pattern_fitnesses_at(pattern_fitnesses, curr_best))
+    {
+        curr_best = temp_best;
+    }
+}
+
+int grab_net(int &net)
+{
+    std::lock_guard<std::mutex> lock(net_lock);
+    return net++;
+}
+
+NeuralNetwork &neat_get_individual(NEAT &neat, const int idx)
+{
+    std::lock_guard<std::mutex> lock(neat_lock);
+    return neat.get_individual(idx);
+}
+
+bool pattern_is_recorded(const std::map<Board::pattern, int> &pattern_fitnesses, const Board::pattern &pattern_set)
+{
+    std::lock_guard<std::mutex> lock(pattern_fitnesses_lock);
+    return pattern_fitnesses.count(pattern_set) != 0;
+}
+
+int pattern_fitnesses_at(const std::map<Board::pattern, int> &pattern_fitnesses, const Board::pattern &pattern_set)
+{
+    std::lock_guard<std::mutex> lock(pattern_fitnesses_lock);
+    return pattern_fitnesses.at(pattern_set);
+}
+
+void pattern_fitnesses_insert(std::map<Board::pattern, int> &pattern_fitnesses, const Board::pattern &pattern_set,
+                              const int found_fitness)
+{
+    std::lock_guard<std::mutex> lock(pattern_fitnesses_lock);
+    pattern_fitnesses[pattern_set] = found_fitness;
+}
+
+void neat_set_individual_fitness(NEAT &neat, const int index, const double fitness)
+{
+    std::lock_guard<std::mutex> lock(neat_lock);
+    neat.set_individual_fitness(index, fitness);
+}
+
 void test_cgol()
 {
     auto window = sf::RenderWindow{{win_config::width_u, win_config::height_u}, "NEAT-Life", win_config::style};
@@ -119,7 +227,8 @@ void test_cgol()
 
     Board board(patterns::big_boi, true);
     auto view = sf::View(sf::FloatRect(0.0f, 0.0f, win_config::width_f, win_config::height_f));
-    setup_view(view, board.is_infinite(), static_cast<int>(board.get_pattern_width()),static_cast<int>(board.get_pattern_height()));
+    setup_view(view, board.is_infinite(), static_cast<int>(board.get_pattern_width()),
+               static_cast<int>(board.get_pattern_height()));
     window.setView(view);
     board.draw(window);
 
@@ -281,7 +390,7 @@ bool is_stable(const std::vector<double> &activities, unsigned int &unique_count
     for (int i = static_cast<int>(activities.size()) - 1; i >= lower_bound; --i)
     {
         unique_activities.insert(activities[i]);
-        if (unique_activities.size() > 4)
+        if (unique_activities.size() > 8)
         {
             unique_count = unique_activities.size();
             return false;

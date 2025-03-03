@@ -55,14 +55,14 @@ namespace neat_config
     const int num_output = 2;
     const std::vector<int> layer_counts = {num_input, num_output};
     const int population_size = 100;
-    const int num_gen = 100;
+    const int num_gen = 1000;
     const bool debug_mode = false;
     const int tournament_size = 3;
     const double weight_prob = 0.35;
     const double node_prob = 0.001;
     const double conn_prob = 0.0005;
-    const int pattern_width = 10;
-    const int pattern_height = 10;
+    const int pattern_width = 3;
+    const int pattern_height = 4;
     const int max_steps = 10000;
     const int max_same = 25;
 }
