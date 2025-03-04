@@ -51,22 +51,22 @@ namespace events_config
 
 namespace neat_config
 {
-    const int pattern_width = 8;
-    const int pattern_height = 7;
-    const int target_cells = 9;
+    const int pattern_width = 3;
+    const int pattern_height = 4;
+    const int target_cells = 5;
     const int area = pattern_width * pattern_height;
     const double max_distance = area - target_cells + 1;
     const int num_input = pattern_width * pattern_height + 2;
     const int num_output = 2;
     const std::vector<int> layer_counts = {num_input, num_output};
     const int population_size = 100;
-    const int num_gen = 40;
+    const int num_gen = 100;
     const bool debug_mode = false;
     const int tournament_size = 3;
     const double weight_prob = 0.8;
     const double node_prob = 0.001;
     const double conn_prob = 0.0001;
-    const int max_steps = 15000;
+    const int max_steps = 20000;
     const int max_same = 75;
 }
 
