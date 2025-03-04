@@ -243,7 +243,7 @@ bool NeuralNetwork::operator==(const NeuralNetwork &other_net) const
     const double average_weight_diff = matching_count == 0 ? 0 : weight_diff_sum / matching_count;
 
     // c1 = 1, c2 = 1, c3 = 3, ct = 4
-    return 5 * excess_count / max_genes_count + 5 * disjoint_count / max_genes_count + 0.1 * average_weight_diff < 3;
+    return 50 * excess_count / max_genes_count + 50 * disjoint_count / max_genes_count + 1 * average_weight_diff < 3;
 }
 
 doubles NeuralNetwork::activate(doubles &activation_values)

@@ -86,6 +86,11 @@ public:
         return pattern_height;
     }
 
+    inline unsigned int get_num_live() const
+    {
+        return live_cells.size();
+    }
+
     inline void draw(sf::RenderWindow &window) const
     {
         window.clear();
