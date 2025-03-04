@@ -58,13 +58,13 @@ namespace neat_config
     const int num_gen = 100;
     const bool debug_mode = false;
     const int tournament_size = 3;
-    const double weight_prob = 0.35;
-    const double node_prob = 0.001;
-    const double conn_prob = 0.0005;
+    const double weight_prob = 0.8;
+    const double node_prob = 0.01;
+    const double conn_prob = 0.001;
     const int pattern_width = 10;
     const int pattern_height = 10;
-    const int max_steps = 10000;
-    const int max_same = 25;
+    const int max_steps = 15000;
+    const int max_same = 50;
 }
 
 static std::random_device random_device;

@@ -34,6 +34,8 @@ class NEAT
     int next_node_id = 0;
 
 public:
+    unsigned int num_species = 1;
+
     explicit NEAT(int population_size = neat_config::population_size,
                   const std::vector<int> &layer_counts = neat_config::layer_counts);
 
@@ -50,6 +52,10 @@ public:
     void set_individual_fitness(int index, double fitness);
 
     void generate_next_population();
+
+    double average_num_nodes();
+
+    double average_num_conns();
 
 private:
     species_groups network_speciation(double &population_mean_fitness) const;

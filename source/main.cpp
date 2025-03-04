@@ -43,7 +43,6 @@ int main()
     int curr_gen = 0;
     std::map<Board::pattern, int> pattern_fitnesses;
     Board::pattern best_pattern;
-    int best_fitness = 0;
     Board::pattern curr_gen_best_pattern;
     int curr_gen_best_fitness = 0;
     bool displaying_board = false;
@@ -64,7 +63,7 @@ int main()
         curr_gen_best_pattern.clear();
         if (curr_gen == neat_config::num_gen)
         {
-            curr_gen_best_fitness = best_fitness;
+            curr_gen_best_fitness = pattern_fitnesses.at(best_pattern);
             board.set_pattern(best_pattern);
             board.draw(window);
             displaying_board = true;
@@ -73,36 +72,64 @@ int main()
             continue;
         }
 
+        int min_fitness = INT32_MAX;
+        double average_fitness = 0;
         auto &networks = neat.get_curr_population();
         for (int net = 0; net < static_cast<int>(networks.size()); ++net)
         {
             Board::pattern set_pattern(set_board_using_net(networks[net], true));
             if (pattern_fitnesses.count(set_pattern) != 0)
             {
+                const int found_fitness = pattern_fitnesses.at(set_pattern);
+                if (found_fitness > curr_gen_best_fitness)
+                {
+                    curr_gen_best_fitness = found_fitness;
+                    curr_gen_best_pattern = set_pattern;
+                }
+
+                if (found_fitness < min_fitness)
+                {
+                    min_fitness = found_fitness;
+                }
+
                 neat.set_individual_fitness(net, pattern_fitnesses.at(set_pattern));
+                average_fitness += found_fitness;
                 continue;
             }
 
             Board curr_board(set_pattern, true);
             const int found_fitness = methuselah_fitness(curr_board);
-            if (found_fitness > best_fitness)
-            {
-                best_fitness = found_fitness;
-                best_pattern = set_pattern;
-            }
-
             if (found_fitness > curr_gen_best_fitness)
             {
                 curr_gen_best_fitness = found_fitness;
                 curr_gen_best_pattern = set_pattern;
             }
 
+            if (found_fitness < min_fitness)
+            {
+                min_fitness = found_fitness;
+            }
+
             pattern_fitnesses.insert({set_pattern, found_fitness});
             neat.set_individual_fitness(net, found_fitness);
+            average_fitness += found_fitness;
         }
 
+        if (best_pattern.empty() || curr_gen_best_fitness > pattern_fitnesses.at(best_pattern))
+        {
+            best_pattern = curr_gen_best_pattern;
+        }
+
+        std::cout << "\n------------------------------------------------------------------\n";
+        std::cout << "Generation " << curr_gen++ << '\n';
+        std::cout << "Worst fitness: " << min_fitness << '\n';
+        std::cout << "Best fitness: " << curr_gen_best_fitness << '\n';
+        std::cout << "Average fitness: " << average_fitness / neat_config::population_size << '\n';
+        std::cout << "Average #nodes per network: " << neat.average_num_nodes() << '\n';
+        std::cout << "Average #connections per network: " << neat.average_num_conns() << '\n';
+        std::cout << "Number of species: " << neat.num_species << '\n';
+
         neat.generate_next_population();
-        std::cout << "Best fitness of gen " << curr_gen++ << ": " << curr_gen_best_fitness << '\n';
         displaying_board = true;
         curr_step = 0;
         board.set_pattern(curr_gen_best_pattern);
@@ -119,7 +146,8 @@ void test_cgol()
 
     Board board(patterns::big_boi, true);
     auto view = sf::View(sf::FloatRect(0.0f, 0.0f, win_config::width_f, win_config::height_f));
-    setup_view(view, board.is_infinite(), static_cast<int>(board.get_pattern_width()),static_cast<int>(board.get_pattern_height()));
+    setup_view(view, board.is_infinite(), static_cast<int>(board.get_pattern_width()),
+               static_cast<int>(board.get_pattern_height()));
     window.setView(view);
     board.draw(window);
 
@@ -212,7 +240,7 @@ Board::pattern set_board_using_net(NeuralNetwork &network, const bool is_infinit
             std::vector<double> inputs{static_cast<double>(row), static_cast<double>(column),
                                        static_cast<double>(surrounding_live), percent_filled};
             const std::vector<double> &outputs = network.activate(inputs);
-            const bool light_cell = outputs[0] > rand_prob(gen);  // > rand_prob(gen);  // > outputs[1];
+            const bool light_cell = outputs[0] > outputs[1];  // > rand_prob(gen);  // > outputs[1];
             net_pattern[row] += light_cell ? 'O' : '-';
             if (light_cell)
             {
@@ -281,7 +309,7 @@ bool is_stable(const std::vector<double> &activities, unsigned int &unique_count
     for (int i = static_cast<int>(activities.size()) - 1; i >= lower_bound; --i)
     {
         unique_activities.insert(activities[i]);
-        if (unique_activities.size() > 4)
+        if (unique_activities.size() > 12)
         {
             unique_count = unique_activities.size();
             return false;

@@ -60,6 +60,7 @@ void NEAT::generate_next_population()
 {
     double mean_fitness = 0;
     const species_groups groups = network_speciation(mean_fitness);
+    num_species = groups.size();
     std::vector<int> new_sizes;
     int size_sum = 0;
     for (const auto &group : groups)
@@ -97,6 +98,28 @@ void NEAT::generate_next_population()
     curr_population = std::move(next_population);
     next_population.clear();
     mutate_networks();
+}
+
+double NEAT::average_num_nodes()
+{
+    unsigned int nodes_sum = 0;
+    for (const auto &individual : curr_population)
+    {
+        nodes_sum += individual.get_nodes().size();
+    }
+
+    return nodes_sum / static_cast<double>(neat_config::population_size);
+}
+
+double NEAT::average_num_conns()
+{
+    unsigned int conn_sum = 0;
+    for (const auto &individual : curr_population)
+    {
+        conn_sum += individual.get_conn_refs().size();
+    }
+
+    return conn_sum / static_cast<double>(neat_config::population_size);
 }
 
 NEAT::species_groups NEAT::network_speciation(double &population_mean_fitness) const
@@ -195,6 +218,7 @@ void NEAT::mutate_add_connection(NeuralNetwork &network)
             {
                 const int inno = connection_innovation({from_id, to_id});
                 network.add_connection(from_id, to_id, inno);
+                return;  // to ensure only one new connection can be added at most
             }
         }
     }
@@ -221,6 +245,7 @@ void NEAT::mutate_add_node(NeuralNetwork &network)
             const int conn2_inno = connection_innovation({new_node_id, conn.to});
             network.add_connection(conn.from, new_node_id, conn1_inno);
             network.add_connection(new_node_id, conn.to, conn2_inno);
+            return;  // to ensure only one new node can be added at most
         }
     }
 }

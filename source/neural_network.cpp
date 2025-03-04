@@ -99,17 +99,6 @@ bool NeuralNetwork::has_conn(int from_id, int to_id) const
     });
 }
 
-void NeuralNetwork::recalibrate_to_connections()
-{
-    for (auto &[id, conns] : connections)
-    {
-        for (auto &conn : conns)
-        {
-            conn = &conn_refs.at(conn->innovation);
-        }
-    }
-}
-
 void NeuralNetwork::add_node(int id)
 {
     add_node(id, weight_distribution(gen));
@@ -254,7 +243,7 @@ bool NeuralNetwork::operator==(const NeuralNetwork &other_net) const
     const double average_weight_diff = matching_count == 0 ? 0 : weight_diff_sum / matching_count;
 
     // c1 = 1, c2 = 1, c3 = 3, ct = 4
-    return 4 * excess_count / max_genes_count + 4 * disjoint_count / max_genes_count + 3 * average_weight_diff < 3;
+    return 5 * excess_count / max_genes_count + 5 * disjoint_count / max_genes_count + 0.1 * average_weight_diff < 3;
 }
 
 doubles NeuralNetwork::activate(doubles &activation_values)

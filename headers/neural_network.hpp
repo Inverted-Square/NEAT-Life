@@ -85,8 +85,6 @@ public:
 
     bool has_conn(int from_id, int to_id) const;
 
-    void recalibrate_to_connections();
-
 public:
     void add_node(int id);
 
