@@ -27,8 +27,6 @@ bool is_stable(const std::vector<double> &activities, unsigned int &unique_count
 
 int main()
 {
-    // TODO: continue to look at the networks' structures
-
     NEAT neat(neat_config::population_size, neat_config::layer_counts);
 
     auto window = sf::RenderWindow{{win_config::width_u, win_config::height_u}, "NEAT-Life", win_config::style};
@@ -238,18 +236,25 @@ Board::pattern set_board_using_net(NeuralNetwork &network, const bool is_infinit
 {
     Board::pattern net_pattern(neat_config::pattern_height);
     std::unordered_set<Board::coord, Board::hash_pair> live_in_pattern;
-//    int total_live = 0;
-    std::vector<double> inputs(neat_config::area + 2);
+    int total_live = 0;
+    std::vector<double> inputs(neat_config::area + 3);
     for (int row = 0; row < neat_config::pattern_height; ++row)
     {
         for (int column = 0; column < neat_config::pattern_width; ++column)
         {
+            if (total_live == neat_config::target_cells)
+            {
+                net_pattern[row] += '-';
+                continue;
+            }
+
 //            const int surrounding_live = live_neighbours({row, column}, live_in_pattern, is_infinite);
 //            const double percent_filled = total_live / area;
 //            std::vector<double> inputs{static_cast<double>(row), static_cast<double>(column),
 //                                       static_cast<double>(surrounding_live), percent_filled};
             inputs[neat_config::area] = row;
             inputs[neat_config::area + 1] = column;
+            inputs[neat_config::area + 2] = total_live;
             const std::vector<double> &outputs = network.activate(inputs);
             const bool light_cell = outputs[0] > outputs[1] && outputs[0] > rand_prob(gen);  // > rand_prob(gen);  // > outputs[1];
             net_pattern[row] += light_cell ? 'O' : '-';
@@ -257,7 +262,7 @@ Board::pattern set_board_using_net(NeuralNetwork &network, const bool is_infinit
             {
                 inputs[row * neat_config::pattern_height + column] = 1;
                 live_in_pattern.insert({row, column});
-//                ++total_live;
+                ++total_live;
             }
         }
     }
@@ -291,8 +296,7 @@ int live_neighbours(const Board::coord &pos, const std::unordered_set<Board::coo
 
 double methuselah_fitness(Board &board)
 {
-    const double live_cell_scale =
-            1 - abs(static_cast<int>(board.get_num_live()) - neat_config::target_cells) / neat_config::max_distance;
+    const double live_cell_scale = 1 - abs(static_cast<int>(board.get_num_live()) - neat_config::target_cells) / neat_config::max_distance;
     std::vector<double> activities;
     for (int step = 0; step < neat_config::max_steps; ++step)
     {
