@@ -51,8 +51,11 @@ namespace events_config
 
 namespace neat_config
 {
-    const int pattern_width = 12;
-    const int pattern_height = 12;
+    // TODO check up on the complexity function and see if Board::get_complexity returns the correct value by comparing against know values
+    // TODO you could also use your python version to cross-reference
+
+    const int pattern_width = 15;
+    const int pattern_height = 15;
     const int target_cells = 14;
     const int area = pattern_width * pattern_height;
     const double max_distance = area - target_cells + 1;
@@ -60,7 +63,7 @@ namespace neat_config
     const int num_output = 2;
     const std::vector<int> layer_counts = {num_input, num_output};
     const int population_size = 150;
-    const int num_gen = 250;
+    const int num_gen = 150;
     const bool debug_mode = false;
     const int tournament_size = 3;
     const double weight_prob = 0.8;

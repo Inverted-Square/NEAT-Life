@@ -11,7 +11,7 @@ void Board::set_pattern(const Board::pattern &starting_pattern)
     live_cell_activities.clear();
     dead_cell_neighbours.clear();
     vertices.clear();
-    if (starting_pattern.size() > board_config::rows)  // TODO: shouldn't this also say '&& !infinite'
+    if (starting_pattern.size() > board_config::rows && !infinite)
     {
         std::cout << "Pattern too tall in finite area. Increase board_config::rows in 'neat-life_header.hpp'.\n";
         return;
@@ -52,6 +52,73 @@ double Board::average_activity() const
     }
 
     return live_cell_activities.empty() ? 0 : activity_sum / static_cast<double>(live_cell_activities.size());
+}
+
+int Board::get_complexity() const
+{
+    int width = 0;
+    int height = 0;
+    get_min_bounding_box(width, height);
+    const int width_bits = get_min_bits(width);
+    const int height_bits = get_min_bits(height);
+    const int num_live = static_cast<int>(live_cells.size());
+    const int num_live_bits = get_min_bits(num_live);
+    const int alpha = width_bits + height_bits + width * height;
+    const int beta = width_bits + height_bits + num_live_bits + \
+                     static_cast<int>(ceil(log2Comb(width * height, num_live)));
+    return 1 + (alpha < beta ? alpha : beta);
+}
+
+void Board::get_min_bounding_box(int &width, int &height) const
+{
+    width = 0;
+    height = 0;
+    if (live_cells.empty())
+    {
+        return;
+    }
+
+    int min_row = INT32_MAX;
+    int max_row = INT32_MIN;
+    int min_column = INT32_MAX;
+    int max_column = INT32_MIN;
+    for (const auto &[row, col] : live_cells)
+    {
+        min_row = row < min_row ? row : min_row;
+        max_row = row > max_row ? row : max_row;
+        min_column = col < min_column ? col : min_column;
+        max_column = col > max_column ? col : max_column;
+    }
+
+    width = max_column - min_column + 1;
+    height = max_row - min_row + 1;
+}
+
+int Board::get_min_bits(const int value)
+{
+    return value == 0 ? 0 : static_cast<int>(ceil(log2(value + 1) + log2(value))) + 1;
+}
+
+double Board::log2Comb(const double n, const double r)
+{
+    if (r == 0)
+    {
+        return 1;
+    }
+
+    if (r > n / 2)
+    {
+        return log2Comb(n, n - r);
+    }
+
+    double res = 0;
+    for (unsigned long long k = 1; static_cast<double>(k) <= r; ++k)
+    {
+        res += log2(n - static_cast<double>(k) + 1);
+        res -= log2(static_cast<double>(k));
+    }
+
+    return res;
 }
 
 bool Board::cell_stays_live(const coord &row_column)
