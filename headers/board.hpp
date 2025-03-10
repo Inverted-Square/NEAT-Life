@@ -53,8 +53,6 @@ private:
 
     static int get_min_bits(int value);
 
-    // log2Comb is a slight modification of Steven's NCR function from the stack overflow post linked below
-    // https://stackoverflow.com/questions/9330915/number-of-combinations-n-choose-r-in-c
     static double log2Comb(double n, double r);
 
     bool cell_stays_live(const coord &row_column);

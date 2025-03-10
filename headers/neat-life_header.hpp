@@ -51,18 +51,18 @@ namespace events_config
 
 namespace neat_config
 {
-    // TODO check up on the complexity function and see if Board::get_complexity returns the correct value by comparing against know values
-    // TODO you could also use your python version to cross-reference
+    // TODO: do some tests with torus boards because the max complexity is prolly from an earlier steps because the
+    //  gliders make the area too large which makes the complexity score worse for those later steps
 
-    const int pattern_width = 15;
-    const int pattern_height = 15;
+    const int pattern_width = 25;
+    const int pattern_height = 25;
     const int target_cells = 14;
     const int area = pattern_width * pattern_height;
     const double max_distance = area - target_cells + 1;
     const int num_input = pattern_width * pattern_height + 3;
     const int num_output = 2;
     const std::vector<int> layer_counts = {num_input, num_output};
-    const int population_size = 150;
+    const int population_size = 50;
     const int num_gen = 150;
     const bool debug_mode = false;
     const int tournament_size = 3;
@@ -71,6 +71,8 @@ namespace neat_config
     const double conn_prob = 0.0001;
     const int max_steps = 20000;
     const int max_same = 100;
+    const char fitness_function = 'b';  // 'm' - methuselah, 'c' - complexity, 'b' - both
+    const bool infinite_board = true;
 }
 
 static std::random_device random_device;
