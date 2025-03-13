@@ -1,0 +1,170 @@
+pattern_width = 10
+pattern_height = 10
+target_cells = 14
+population_size = 100
+num_gen = 150
+tournament_size = 3
+weight_prob = 0.8
+node_prob = 0.001
+conn_prob = 0.0001
+max_steps = 30000
+max_same = 160
+fitness_function = b
+infinite_board = 0
+infinite_axis = x
+rows = 100
+columns = 600
+
+Other notable patterns:
+
+
+------------------------------------------------------------------
+------------------------------------------------------------------
+BEST GEN: 1
+FIT: 17251
+
+O---------
+OOOOO-----
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 0
+FIT: 13425
+
+OOOOOOOOOO
+------OOOO
+--------OO
+---------O
+---------O
+---------O
+---------O
+---------O
+---------O
+---------O
+
+------------------------------------------------------------------
+GEN: 1
+FIT: 17251
+
+O---------
+OOOOO-----
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 2
+FIT: 17251
+
+O---------
+OOOOO-----
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 3
+FIT: 7854.5
+
+OO--------
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 4
+FIT: 8583
+
+-OOOOOOOOO
+-----OOOOO
+--------OO
+----------
+----------
+----------
+----------
+----------
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 5
+FIT: 17251
+
+OO--------
+OOOOO-----
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 6
+FIT: 8583
+
+-OOOOOOOOO
+-----OOOOO
+--------OO
+----------
+----------
+----------
+----------
+----------
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 7
+FIT: 17251
+
+O---------
+OOO-O-----
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 8
+FIT: 11980.5
+
+OOOOOOOOOO
+--O-OOOOOO
+----OOOOOO
+-----OOOOO
+-------OOO
+--------OO
+---------O
+---------O
+----------
+----------

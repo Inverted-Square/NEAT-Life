@@ -1,0 +1,163 @@
+pattern_width = 25
+pattern_height = 3
+target_cells = 14
+population_size = 50
+num_gen = 150
+tournament_size = 3
+weight_prob = 0.8
+node_prob = 0.001
+conn_prob = 0.0001
+max_steps = 30000
+max_same = 100
+fitness_function = b
+infinite_board = 0
+rows = 400
+columns = 25
+
+Other notable patterns:
+
+
+------------------------------------------------------------------
+------------------------------------------------------------------
+BEST GEN: 6
+FIT: 7858.5
+
+OOOOOOOOOOOOOOOOOOOOOOOOO
+---OOOOOOOOOOOOOOOOOOOOOO
+------OOOOOOOO-OOOOOOOOO-
+
+------------------------------------------------------------------
+GEN: 0
+FIT: 4807
+
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 1
+FIT: 5896.5
+
+OOOOOOOOOOOOOOOOOOOOOOOOO
+---------OOOOOOOOOOOOOOOO
+---------------OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 2
+FIT: 6371
+
+-------------------------
+OOOOOOOOOOOOOOOOOOOOOOOOO
+-------------O-OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 3
+FIT: 6251.5
+
+OOOOOOOOOOOOOOOOOOOOOOOOO
+-----OOOOOOOOOOOOOOOOOOOO
+---------OOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 4
+FIT: 6916.5
+
+-------------------------
+OOOOOOOOOOOOOOOOOOOOOOOOO
+-----------------OO-OOOOO
+
+------------------------------------------------------------------
+GEN: 5
+FIT: 5317.5
+
+O--OOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 6
+FIT: 7858.5
+
+OOOOOOOOOOOOOOOOOOOOOOOOO
+---OOOOOOOOOOOOOOOOOOOOOO
+------OOOOOOOO-OOOOOOOOO-
+
+------------------------------------------------------------------
+GEN: 7
+FIT: 5317.5
+
+O--OOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 8
+FIT: 4807
+
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 9
+FIT: 5317.5
+
+OO--OOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 10
+FIT: 5317.5
+
+OO--OOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 11
+FIT: 5160.5
+
+-------------------------
+-OOOO-OOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 12
+FIT: 5070.5
+
+-------------------------
+OOOOOOOOOOOOOOOOOOOOOOOOO
+--------------OOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 13
+FIT: 4807
+
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 14
+FIT: 4807
+
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 15
+FIT: 5046
+
+-O--O-OOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 16
+FIT: 5481
+
+OOOOOOOOOOOOOOOOOOOOOOOOO
+-----OOOOOOOOOOOOOOOOOOOO
+--------OOOOOOOOOOOOOOOOO

@@ -1,0 +1,2287 @@
+pattern_width = 10
+pattern_height = 10
+target_cells = 14
+population_size = 100
+num_gen = 150
+tournament_size = 3
+weight_prob = 0.8
+node_prob = 0.001
+conn_prob = 0.0001
+max_steps = 20000
+max_same = 100
+fitness_function = b
+infinite_board = 0
+rows = 250
+columns = 250
+
+Other notable patterns:
+29 - lasted a while
+34 - lasted a very long time
+44 - also lasted quite a while
+62 - lasted a super long time
+
+------------------------------------------------------------------
+------------------------------------------------------------------
+BEST GEN: 62
+FIT: 33405
+
+----------
+OOOOO-----
+OOOO-----O
+OO-OO-----
+OOOO------
+OO-O---O--
+OOOO------
+OOO---O---
+O-O-OO----
+O-O-OO----
+
+------------------------------------------------------------------
+GEN: 0
+FIT: 9288.5
+
+----------
+OO--------
+OOO-------
+OOOOO-----
+OOOOOOOO--
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 1
+FIT: 7397
+
+----------
+OOO-------
+OO-O------
+OO-OOOO---
+OOOO------
+OOOOOOOO--
+OOOO-O----
+OOOOO-O---
+OOOOOOOOO-
+OOOO-O----
+
+------------------------------------------------------------------
+GEN: 2
+FIT: 7068
+
+-OOOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+----OOOOOO
+-----OOOOO
+-----OOOOO
+------OOOO
+-------OOO
+-------OOO
+-------OOO
+
+------------------------------------------------------------------
+GEN: 3
+FIT: 9767
+
+O---------
+OOOOO-----
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 4
+FIT: 12584
+
+-OOOOOOOOO
+----OOOOOO
+------OOOO
+-------OOO
+---------O
+---------O
+----------
+----------
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 5
+FIT: 11219
+
+-OOOOOOOOO
+-----OOOOO
+-------OOO
+--------OO
+--------O-
+-------OOO
+--------OO
+--------O-
+-------OOO
+--------OO
+
+------------------------------------------------------------------
+GEN: 6
+FIT: 12584
+
+-OOOOOOOOO
+----OOOOOO
+-------OOO
+--------OO
+---------O
+---------O
+----------
+----------
+---------O
+----------
+
+------------------------------------------------------------------
+GEN: 7
+FIT: 11219
+
+-OOOOOOOOO
+-----OOOOO
+--------OO
+----------
+----------
+----------
+----------
+----------
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 8
+FIT: 20871
+
+-OOOOOOOOO
+---OOOOOOO
+----OOOOOO
+-----OOOOO
+------OOOO
+-------OOO
+--------OO
+--------O-
+---------O
+---------O
+
+------------------------------------------------------------------
+GEN: 9
+FIT: 10533
+
+-OOOOOOOOO
+-----OOOOO
+-------OOO
+---------O
+---------O
+---------O
+----------
+----------
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 10
+FIT: 10533
+
+-OOOOOOOOO
+-----OOOOO
+-------OOO
+---------O
+---------O
+---------O
+----------
+----------
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 11
+FIT: 7725
+
+----------
+-OOOOOOOOO
+---OOOOOOO
+-----OOOOO
+------OOOO
+-------OOO
+--------OO
+--------O-
+--------OO
+--------O-
+
+------------------------------------------------------------------
+GEN: 12
+FIT: 7800
+
+----------
+OOOO------
+O-OO-OOOO-
+---------O
+-------O-O
+-------OOO
+--------O-
+-------OO-
+-------OOO
+--------O-
+
+------------------------------------------------------------------
+GEN: 13
+FIT: 11729.5
+
+-OOOOOOOOO
+---OOOOOOO
+-----OOOOO
+-------OOO
+--------OO
+--------OO
+---------O
+---------O
+---------O
+----------
+
+------------------------------------------------------------------
+GEN: 14
+FIT: 12584
+
+-OOOOOOOOO
+----OOOOOO
+-------OOO
+--------OO
+---------O
+---------O
+----------
+----------
+---------O
+----------
+
+------------------------------------------------------------------
+GEN: 15
+FIT: 12584
+
+-OOOOOOOOO
+----OOOOOO
+-------OOO
+--------OO
+---------O
+---------O
+----------
+----------
+----------
+---------O
+
+------------------------------------------------------------------
+GEN: 16
+FIT: 12117.5
+
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OO-OOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 17
+FIT: 10387
+
+-OOOOOOOOO
+-OOOOOOOOO
+OOO-OOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+--OOOOOOOO
+--OOOOOOOO
+--OOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+
+------------------------------------------------------------------
+GEN: 18
+FIT: 16443.5
+
+-OOOOOOOOO
+--O-OOOOOO
+----OOOOOO
+----OOOOOO
+-----OOOOO
+------OOOO
+------O-OO
+------OOO-
+------OOOO
+------OOOO
+
+------------------------------------------------------------------
+GEN: 19
+FIT: 5570
+
+----------
+OO--------
+OOOO------
+OOOOOO----
+OOOOOOO---
+OOOOOOOO--
+OOOOOOOOO-
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 20
+FIT: 8963.5
+
+OOOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+---OOOOOOO
+---OOOOOOO
+----OOOOOO
+----OOOOOO
+----OOOOOO
+
+------------------------------------------------------------------
+GEN: 21
+FIT: 15808
+
+-OOOOOOOOO
+--OOOOOOOO
+----OOOOOO
+-----OOOOO
+------OOOO
+------OOOO
+-------OOO
+-------OOO
+-------OOO
+-------OOO
+
+------------------------------------------------------------------
+GEN: 22
+FIT: 15808
+
+-OOOOOOOOO
+--OOOOOOOO
+----OOOOOO
+-----OOOOO
+------OOOO
+------OOOO
+-------OOO
+-------OOO
+-------OOO
+-------OOO
+
+------------------------------------------------------------------
+GEN: 23
+FIT: 12117.5
+
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OO-OOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 24
+FIT: 10089
+
+OOOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+--OOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+---OOOOOOO
+---OOOOOOO
+---OOOOOOO
+---OOOOOOO
+
+------------------------------------------------------------------
+GEN: 25
+FIT: 12584
+
+-OOOOOOOOO
+----OOOOOO
+-------OOO
+--------OO
+---------O
+---------O
+----------
+---------O
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 26
+FIT: 12117.5
+
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OO-OOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 27
+FIT: 12117.5
+
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 28
+FIT: 12117.5
+
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OO-OOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 29
+FIT: 17814
+
+----------
+-O--------
+-OOO------
+---OO-O---
+------O-O-
+--------OO
+----------
+---------O
+---------O
+---------O
+
+------------------------------------------------------------------
+GEN: 30
+FIT: 12584
+
+-OOOOOOOOO
+----OOOOOO
+-------OOO
+--------OO
+---------O
+---------O
+----------
+---------O
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 31
+FIT: 10533
+
+-OOOOOOOOO
+-----OOOOO
+-------OOO
+---------O
+---------O
+---------O
+----------
+---------O
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 32
+FIT: 10533
+
+-OOOOOOOOO
+-----OOOOO
+--------OO
+---------O
+---------O
+---------O
+----------
+----------
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 33
+FIT: 15808
+
+-OOOOOOOOO
+--OOOOOOOO
+----OOOOOO
+-----OOOOO
+-----OOOOO
+------OOOO
+-------OOO
+-------OOO
+-------OOO
+-------OOO
+
+------------------------------------------------------------------
+GEN: 34
+FIT: 25578
+
+-OOOOO-O-O
+O-OO-OOOOO
+OOOOOOOOOO
+OOOOO-OOOO
+-O-OOO-OOO
+-OO-OOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 35
+FIT: 9288.5
+
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+----OOOOOO
+----OOOOOO
+----OOOOOO
+-----OOOOO
+-----OOOOO
+
+------------------------------------------------------------------
+GEN: 36
+FIT: 9288.5
+
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+---OOOOOOO
+----OOOOOO
+----OOOOOO
+-----OOOOO
+-----OOOOO
+
+------------------------------------------------------------------
+GEN: 37
+FIT: 14003.5
+
+----------
+OOO-------
+-OOOOOO-O-
+------OO-O
+-------OO-
+------O-OO
+-------OO-
+-------OO-
+-------O-O
+-------O-O
+
+------------------------------------------------------------------
+GEN: 38
+FIT: 9288.5
+
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+---OOOOOOO
+----OOOOOO
+----OOOOOO
+----OOOOOO
+-----OOOOO
+-----OOOOO
+
+------------------------------------------------------------------
+GEN: 39
+FIT: 15778
+
+----------
+OO--------
+-O--------
+-O--------
+-O---O----
+-----O----
+-----O----
+------O---
+------O---
+------O---
+
+------------------------------------------------------------------
+GEN: 40
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 41
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOO-OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 42
+FIT: 11729.5
+
+-OOOOOOOOO
+---OOOOOOO
+-----OOOOO
+-------OOO
+--------OO
+--------OO
+---------O
+---------O
+---------O
+----------
+
+------------------------------------------------------------------
+GEN: 43
+FIT: 9288.5
+
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+----OOOOOO
+----OOOOOO
+----OOOOOO
+-----OOOOO
+-----OOOOO
+
+------------------------------------------------------------------
+GEN: 44
+FIT: 22584.5
+
+----------
+-OOOOOOOO-
+--------O-
+--------OO
+---------O
+---------O
+----------
+---------O
+---------O
+---------O
+
+------------------------------------------------------------------
+GEN: 45
+FIT: 11510
+
+----------
+OO--------
+OO--O-----
+-O----OO--
+--------O-
+-----O----
+--OOOO----
+----------
+-----O----
+--O----O--
+
+------------------------------------------------------------------
+GEN: 46
+FIT: 20871
+
+-OOOOOOOOO
+---OOOOOOO
+-----OOOOO
+------OOOO
+-------OOO
+-------OOO
+--------OO
+--------O-
+---------O
+---------O
+
+------------------------------------------------------------------
+GEN: 47
+FIT: 11715.5
+
+----------
+OOOOOOOO--
+OOOO---OOO
+OO--OO----
+OOOOO-----
+O-OOO-O--O
+OO-OO-O---
+OO-OO-O-O-
+O-OO-OOO--
+OOO-OO----
+
+------------------------------------------------------------------
+GEN: 48
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 49
+FIT: 15808
+
+-OOOOOOOOO
+--OOOOOOOO
+----OOOOOO
+-----OOOOO
+------OOOO
+------OOOO
+-------OOO
+-------OOO
+-------OOO
+-------OOO
+
+------------------------------------------------------------------
+GEN: 50
+FIT: 12584
+
+-OOOOOOOOO
+----OOOOOO
+-------OOO
+--------OO
+---------O
+---------O
+----------
+----------
+---------O
+----------
+
+------------------------------------------------------------------
+GEN: 51
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 52
+FIT: 17195
+
+----------
+OOOOOOOO--
+OOOOO---O-
+OOOOO----O
+OOOO-O----
+OOOOO-O---
+OOOOO---O-
+OOOOO----O
+OOOO-O----
+OOO-OOO---
+
+------------------------------------------------------------------
+GEN: 53
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 54
+FIT: 15808
+
+-OOOOOOOOO
+--OOOOOOOO
+----OOOOOO
+-----OOOOO
+------OOOO
+------OOOO
+-------OOO
+-------OOO
+-------OOO
+-------OOO
+
+------------------------------------------------------------------
+GEN: 55
+FIT: 14899.5
+
+----------
+OOOOOOOOOO
+OOOOOO-OOO
+OO-OOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOO-OO-
+OOOOOOOOOO
+OOOOOOOOO-
+OOO-OOOOOO
+
+------------------------------------------------------------------
+GEN: 56
+FIT: 17863
+
+----------
+OOO-------
+OO--------
+O---------
+OO--------
+O-O-------
+O---O-----
+O-----O---
+O--------O
+--O-------
+
+------------------------------------------------------------------
+GEN: 57
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 58
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 59
+FIT: 15108.5
+
+-OOOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+----OOOOOO
+-----O-OOO
+------OOOO
+------OOOO
+-------OO-
+-------OOO
+--------OO
+
+------------------------------------------------------------------
+GEN: 60
+FIT: 12584
+
+-OOOOOOOOO
+----OOOOOO
+-------OOO
+--------OO
+---------O
+---------O
+----------
+----------
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 61
+FIT: 12191.5
+
+----------
+OOO-------
+OO--------
+OO--------
+OOO-------
+OO--------
+OO--------
+OO--------
+OOO-------
+OO--------
+
+------------------------------------------------------------------
+GEN: 62
+FIT: 33405
+
+----------
+OOOOO-----
+OOOO-----O
+OO-OO-----
+OOOO------
+OO-O---O--
+OOOO------
+OOO---O---
+O-O-OO----
+O-O-OO----
+
+------------------------------------------------------------------
+GEN: 63
+FIT: 12117.5
+
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OO-OOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 64
+FIT: 9704.5
+
+OOO-OOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 65
+FIT: 12117.5
+
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 66
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 67
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 68
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 69
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 70
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 71
+FIT: 12117.5
+
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 72
+FIT: 12117.5
+
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 73
+FIT: 12822
+
+-O-----OOO
+-O-OOOOOOO
+------OOOO
+-------OOO
+-------OOO
+------O-OO
+------O-OO
+------OO-O
+------OOO-
+------OOOO
+
+------------------------------------------------------------------
+GEN: 74
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 75
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 76
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 77
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 78
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 79
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 80
+FIT: 17765
+
+OO-OOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+O-OOOOOOOO
+
+------------------------------------------------------------------
+GEN: 81
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 82
+FIT: 17765
+
+OO-OOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+O-OOOOOOOO
+
+------------------------------------------------------------------
+GEN: 83
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 84
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 85
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 86
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 87
+FIT: 11477
+
+----------
+OOOOO-OO--
+OOOOO-O--O
+OO-OO----O
+-OOO-O--O-
+OOO--O--O-
+OOOO---O--
+OOO-O--O--
+OOOO--O--O
+OOO---O--O
+
+------------------------------------------------------------------
+GEN: 88
+FIT: 12606
+
+----------
+OOOOO-----
+---O------
+OO----O---
+-O---O----
+O---O----O
+---O----O-
+--O----O--
+-O---O----
+O---O----O
+
+------------------------------------------------------------------
+GEN: 89
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 90
+FIT: 12584
+
+-OOOOOOOOO
+----OOOOOO
+-------OOO
+--------OO
+---------O
+---------O
+----------
+---------O
+----------
+---------O
+
+------------------------------------------------------------------
+GEN: 91
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 92
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 93
+FIT: 20999.5
+
+----------
+OOOOOOOOO-
+OOOO-O--OO
+OO-OO---O-
+OOOO-O--O-
+OOO-OO--O-
+OOOOOO----
+OOOOO---O-
+OO-OOOOO--
+OOO--O--O-
+
+------------------------------------------------------------------
+GEN: 94
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 95
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 96
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 97
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 98
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 99
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 100
+FIT: 14535.5
+
+----------
+OOOOO-----
+OOOO---O--
+OO--O---O-
+OO--O----O
+OO---O----
+OOO---O---
+OO-O---O--
+OO--O---O-
+OO---O---O
+
+------------------------------------------------------------------
+GEN: 101
+FIT: 13995
+
+----------
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOO-OOOO
+OOO-OOOOOO
+OOOOOO-OOO
+OOOOOOO-OO
+OOOOOOO-OO
+OOOOOOO-O-
+
+------------------------------------------------------------------
+GEN: 102
+FIT: 12823
+
+----------
+OOOOOOOOOO
+OOOOOOO---
+OOOOOOOO--
+OOOOOOO-O-
+OOOOO-OO-O
+OOOOOOO---
+OOOOOOOO--
+OOOOOOOO--
+OOOOOOO---
+
+------------------------------------------------------------------
+GEN: 103
+FIT: 11190
+
+----------
+OOOOOOOOOO
+OOOOOOO-OO
+O--OO-OO-O
+--OO-OOO-O
+-O-OO-OO-O
+-O-O-O-OOO
+-O-OO-O-OO
+-O-OOO-OO-
+-OO-OO-OO-
+
+------------------------------------------------------------------
+GEN: 104
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 105
+FIT: 11729.5
+
+-OOOOOOOOO
+---OOOOOOO
+-----OOOOO
+-------OOO
+--------OO
+--------OO
+---------O
+---------O
+---------O
+----------
+
+------------------------------------------------------------------
+GEN: 106
+FIT: 9704.5
+
+O-OOO--OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOO-OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 107
+FIT: 9704.5
+
+OOO-OOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 108
+FIT: 15266.5
+
+-O------OO
+OO-OOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOO-
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 109
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 110
+FIT: 12725.5
+
+----------
+OOO-------
+--O-------
+O----O----
+---O------
+--O---O---
+----OO----
+-------O--
+------O---
+----O----O
+
+------------------------------------------------------------------
+GEN: 111
+FIT: 12584
+
+-OOOOOOOOO
+----OOOOOO
+-------OOO
+--------OO
+---------O
+---------O
+----------
+----------
+----------
+---------O
+
+------------------------------------------------------------------
+GEN: 112
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 113
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 114
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 115
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 116
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 117
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 118
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 119
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 120
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 121
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 122
+FIT: 13366.5
+
+OO---OOOOO
+OOOOO-OOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 123
+FIT: 13366.5
+
+OO---OOOOO
+OOOOO-OOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 124
+FIT: 13366.5
+
+OO---OOOOO
+OOOOO-OOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 125
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 126
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 127
+FIT: 12019
+
+----------
+OO-OOOOOOO
+OOOOOOOOOO
+OOOOOOOOO-
+OOOOOOOOO-
+OOOOOOOOO-
+OOOOOOOOO-
+OOOOOOOOO-
+OOOOOOOOO-
+OOOOOOOOO-
+
+------------------------------------------------------------------
+GEN: 128
+FIT: 17010.5
+
+----------
+OOOOOOO---
+OO--O-O--O
+O---OO---O
+--OO---O-O
+--O-O--O--
+O-O--O--O-
+O-O--O--O-
+O--O-O--O-
+O--O-O--O-
+
+------------------------------------------------------------------
+GEN: 129
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 130
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 131
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 132
+FIT: 13366.5
+
+OO---OOOOO
+OOOOO-OOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 133
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 134
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 135
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 136
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 137
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 138
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 139
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 140
+FIT: 12564.5
+
+----------
+OOO-------
+OO--------
+OO--------
+OO--------
+OO-------O
+O------O--
+O---O-----
+O-O-------
+O-O-------
+
+------------------------------------------------------------------
+GEN: 141
+FIT: 12191.5
+
+----------
+OOO-------
+OOO-------
+OO--------
+OOO-------
+OO--------
+OOO-------
+OO--------
+OOO-------
+OO--------
+
+------------------------------------------------------------------
+GEN: 142
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 143
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 144
+FIT: 11071.5
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 145
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 146
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 147
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 148
+FIT: 11516.5
+
+----------
+OO--------
+OO--------
+OO--------
+O---------
+OO--------
+OO--------
+O---------
+OO--------
+OO--------
+
+------------------------------------------------------------------
+GEN: 149
+FIT: 11071.5
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO

@@ -4,7 +4,7 @@ void setup_view(sf::View &view, const bool is_infinite, const int pattern_width,
 {
     const float half_width = win_config::width_f / 2.0f;
     const float half_height = win_config::height_f / 2.0f;
-    if (is_infinite)
+    if (is_infinite || neat_config::infinite_axis != '-')
     {
         const float half_pattern_rows = static_cast<float>(pattern_height) / 2.0f;
         const float half_pattern_columns = static_cast<float>(pattern_width) / 2.0f;

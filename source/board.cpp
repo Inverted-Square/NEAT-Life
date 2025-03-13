@@ -11,7 +11,7 @@ void Board::set_pattern(const Board::pattern &starting_pattern)
     live_cell_activities.clear();
     dead_cell_neighbours.clear();
     vertices.clear();
-    if (starting_pattern.size() > board_config::rows && !infinite)
+    if (starting_pattern.size() > board_config::rows && !infinite && neat_config::infinite_axis != 'y')
     {
         std::cout << "Pattern too tall in finite area. Increase board_config::rows in 'neat-life_header.hpp'.\n";
         return;
@@ -22,7 +22,7 @@ void Board::set_pattern(const Board::pattern &starting_pattern)
     int row = 0;
     for (const auto &row_string : starting_pattern)
     {
-        if (row_string.size() > board_config::columns && !infinite)
+        if (row_string.size() > board_config::columns && !infinite && neat_config::infinite_axis != 'x')
         {
             std::cout << "Pattern too wide in finite area. Increase board_config::columns in 'neat-life_header.hpp'.\n";
             live_cells.clear();
@@ -64,8 +64,8 @@ int Board::get_complexity() const
     const int num_live = static_cast<int>(live_cells.size());
     const int num_live_bits = get_min_bits(num_live);
     const int alpha = width_bits + height_bits + width * height;
-    const int beta = width_bits + height_bits + num_live_bits + \
-                     static_cast<int>(ceil(log2Comb(width * height, num_live)));
+    const int beta = width_bits + height_bits + num_live_bits +
+            static_cast<int>(ceil(log2Comb(width * height, num_live)));
     return 1 + (alpha < beta ? alpha : beta);
 }
 
@@ -128,9 +128,13 @@ bool Board::cell_stays_live(const coord &row_column)
     {
         int row_index = row_column.first + direction[0];
         int column_index = row_column.second + direction[1];
-        if (!infinite)
+        if (!infinite && neat_config::infinite_axis != 'y')
         {
             row_index = Board::neg_mod(row_index, board_config::rows);
+        }
+
+        if (!infinite && neat_config::infinite_axis != 'x')
+        {
             column_index = Board::neg_mod(column_index, board_config::columns);
         }
 

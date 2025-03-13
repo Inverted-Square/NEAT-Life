@@ -12,6 +12,11 @@ void EventHandler::process_events(sf::RenderWindow &window)
             return;
         }
 
+        if (!neat_config::infinite_board && neat_config::infinite_axis == '-')
+        {
+            continue;
+        }
+
         if (event.type == sf::Event::KeyPressed)
         {
             up_held = event.key.code == sf::Keyboard::Up || up_held;

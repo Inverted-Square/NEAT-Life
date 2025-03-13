@@ -56,6 +56,34 @@ namespace patterns
             "--O-----------------------------",
             "---O----------------------------",
             "----O---------------------------"};
+
+    [[maybe_unused]] const Board::pattern oh_yeah{
+            "-------------------------",
+            "OOOOOOOOOO---------------",
+            "OOOOO-OOOO-------O-------",
+            "OO-OOOOOO---------O------",
+            "OOOOOOOO----------O------",
+            "OOOOOOOO----------O------",
+            "OOOOOOOOO----------------",
+            "OOOOOOOO-----------O-----",
+            "OOOOOOOO------------O----",
+            "OOOOOOOO------------O----",
+            "OOOOOOOO-------------OO--",
+            "OOOOOOO--------------O---",
+            "OOOOOOOO-------------O---",
+            "OOOOOOOO--------------O--",
+            "OOOOOOOO--------------O--",
+            "OOOOOOOO---------------O-",
+            "OOOOOOOO---------------O-",
+            "OOOOOOO-O--------------O-",
+            "OOOOOOO-O---------------O",
+            "OOOOOOO--O--------------O",
+            "OOOOOOO--O---------------",
+            "OOOOOOOO-O---------------",
+            "OOOOOOOO--O--------------",
+            "OOOOOOOO--O--------------",
+            "OOOOOOOO---O-------------"
+    };
 }
 
 void setup_view(sf::View &view, bool is_infinite, int pattern_width, int pattern_height);
