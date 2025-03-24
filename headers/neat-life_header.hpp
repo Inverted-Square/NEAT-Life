@@ -22,13 +22,13 @@ namespace win_config
     const float width_f = static_cast<float>(width);
     const float height_f = static_cast<float>(height);
 
-    static int frame_rate = 0;
+    static int frame_rate = 1;
 }
 
 namespace board_config
 {
-    const int rows = 100;
-    const int columns = 600;
+    const int rows = 150;
+    const int columns = 350;
     const float cell_length = 10.0f;
     const int directions[8][2] = {{-1, -1},
                                   {-1, 0},
@@ -51,26 +51,27 @@ namespace events_config
 
 namespace neat_config
 {
-    const int pattern_width = 3;
-    const int pattern_height = 90;
-    const int target_cells = 14;
+    const int pattern_width = 100;
+    const int pattern_height = 3;
+    const int target_cells = 13;
     const int area = pattern_width * pattern_height;
     const double max_distance = area - target_cells + 1;
-    const int num_input = pattern_width * pattern_height + 3;
+    const int num_input = pattern_width * pattern_height + 2;
     const int num_output = 2;
     const std::vector<int> layer_counts = {num_input, num_output};
-    const int population_size = 25;
+    const int population_size = 100;
     const int num_gen = 150;
     const bool debug_mode = false;
     const int tournament_size = 3;
     const double weight_prob = 0.8;
     const double node_prob = 0.001;
     const double conn_prob = 0.0001;
-    const int max_steps = 10000;
-    const int max_same = 160;
-    const char fitness_function = 'b';  // 'm' - methuselah, 'c' - complexity, 'b' - both
-    const bool infinite_board = false;
+    const int max_steps = 20000;
+    const int max_same = 150;
+    const char fitness_function = 'l';  // 'm' - methuselah, 'c' - complexity, 'b' - m and c, 'l' - max num live
+    const bool infinite_board = true;
     const char infinite_axis = 'x';  // 'x' to make it infinitely wide, 'y' to make it infinitely tall and '-' to do leave the board completely finite
+    const bool random_element = true;
 }
 
 static std::random_device random_device;

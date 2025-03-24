@@ -1,0 +1,2436 @@
+pattern_width = 10
+pattern_height = 10
+target_cells = 13
+population_size = 100
+num_gen = 150
+tournament_size = 3
+weight_prob = 0.8
+node_prob = 0.001
+conn_prob = 0.0001
+max_steps = 20000
+max_same = 150
+fitness_function = l
+infinite_board = 0
+infinite_axis = -
+random_element = 1
+rows = 350
+columns = 350
+
+Other notable patterns:
+
+
+------------------------------------------------------------------
+------------------------------------------------------------------
+BEST GEN: 117
+FIT: 15132
+
+----------
+OOOOO-O-O-
+OOOOOOOO-O
+OOOOOO--O-
+OOOOOO-O-O
+OOOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 0
+FIT: 3594.5
+STEPS: 2090
+
+----------
+-OO-------
+O---------
+OOOO------
+-O--O-----
+OO-OOO----
+-O-OO-OO--
+O-OOOO-O--
+OO-OOOO---
+----O---O-
+
+------------------------------------------------------------------
+GEN: 1
+FIT: 11808.5
+STEPS: 7176
+
+--OOO----O
+---OOO---O
+-----O-OOO
+-------OOO
+----------
+----------
+----------
+----------
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 2
+FIT: 6268.5
+STEPS: 3930
+
+----OOOO-O
+-OO-OOO-O-
+---O--O---
+----OO-OO-
+-----O-O--
+--------O-
+--------OO
+----------
+----------
+----------
+
+------------------------------------------------------------------
+GEN: 3
+FIT: 2816
+STEPS: 1765
+
+OOOOO-----
+O---OOO---
+-O-----O--
+-O--------
+O-O-------
+----------
+-OO-------
+OOOO------
+O--OO-----
+-OO-------
+
+------------------------------------------------------------------
+GEN: 4
+FIT: 5099
+STEPS: 2925
+
+OO-OOO--OO
+-O---O---O
+OOOOOO-OOO
+-O-O--OO-O
+--OO---O-O
+-O-OO-OO-O
+O-O--O-OO-
+--OO--OOOO
+OO-OO-O-O-
+--OOO-O-OO
+
+------------------------------------------------------------------
+GEN: 5
+FIT: 9455
+STEPS: 5649
+
+-OOOOO---O
+-O--OOO-OO
+OO-OO-OOO-
+OOOOO-OOOO
+---OO-OO-O
+--OOOOOO--
+O-OOOOOOOO
+-O-OOOOO--
+-OO--OOOOO
+-O-O--O---
+
+------------------------------------------------------------------
+GEN: 6
+FIT: 6174.5
+STEPS: 3670
+
+-O-O-O-OO-
+---OO---O-
+--O--OOOOO
+--O-O-OO--
+--O--OO-O-
+--OOOO-O-O
+---OO---OO
+---OO--OO-
+----O--OOO
+----O-OO--
+
+------------------------------------------------------------------
+GEN: 7
+FIT: 4116
+STEPS: 2437
+
+-O------O-
+O----O----
+OOO-OO-O--
+O--------O
+O-OOO--O--
+O--O----OO
+OOO--OO-OO
+-OO---OOOO
+O---OO----
+-O-OO-OO--
+
+------------------------------------------------------------------
+GEN: 8
+FIT: 5294
+STEPS: 3001
+
+-OO-OOOOO-
+OO--OOO--O
+O--O-O-O-O
+--O--OO--O
+O----OO--O
+-OO-OOO-OO
+-O--OO--O-
+-OO--O----
+-OOO-OO---
+-O-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 9
+FIT: 7045
+STEPS: 4111
+
+-OO-OOO-OO
+-O-O-OOOOO
+O---OO---O
+-O--O--O--
+----O-O---
+----OOO-OO
+-OO---OO--
+O-OOOOO--O
+-OOOO-OO-O
+-OO---O---
+
+------------------------------------------------------------------
+GEN: 10
+FIT: 4984
+STEPS: 2757
+
+-O-O-OO--O
+---O-O-OOO
+-O--O--O--
+-O-O-OO-OO
+--O--O--OO
+---O-O--O-
+--O----O-O
+----OO-OOO
+O-O--OOOO-
+--OO----OO
+
+------------------------------------------------------------------
+GEN: 11
+FIT: 11220.5
+STEPS: 7026
+
+----OOOOO-
+OOOO-OOOOO
+-OOOOO--OO
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOO-O
+-OOOO-OOOO
+-O-OO-OOOO
+OOOOOOO-OO
+O-OOOOOOOO
+
+------------------------------------------------------------------
+GEN: 12
+FIT: 3020.5
+STEPS: 1834
+
+--O----OO-
+OO-OOOOOOO
+O---OOOO--
+O-O-O-OOO-
+O-O-OO-OOO
+OOOO-O----
+----O--OO-
+OOO-O-OO-O
+O--O------
+-OOOO-OO-O
+
+------------------------------------------------------------------
+GEN: 13
+FIT: 5657.5
+STEPS: 3520
+
+----------
+OOOOOO--OO
+OOOOOO--OO
+OOOOO-OOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOO-O
+OOOOOOOO-O
+-OOOOOOOOO
+O-OOOOOOOO
+
+------------------------------------------------------------------
+GEN: 14
+FIT: 6652.5
+STEPS: 3914
+
+OOOOOOO-O-
+-OOO-OO-O-
+OO-O-O-OO-
+-OOOOOO-OO
+OOOOOO-OOO
+O-O-O--OOO
+OO--OOO-OO
+--OOO-OOOO
+-OOOOOO-OO
+O-O--OO--O
+
+------------------------------------------------------------------
+GEN: 15
+FIT: 14651
+STEPS: 8605
+
+-OOOO--O-O
+OOOOO--OOO
+OOOOOOOOO-
+OOOOOO-OOO
+OOOOOOO-O-
+OOOOOOOOOO
+OOOOOOOO-O
+OOOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 16
+FIT: 7227.5
+STEPS: 4496
+
+----------
+OOOOOO-O--
+OOOOOOOOO-
+OOOOO-OOOO
+OOOOOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOO-O
+OOO-OOOO-O
+OOOOOOOO-O
+
+------------------------------------------------------------------
+GEN: 17
+FIT: 5374.5
+STEPS: 3264
+
+--OO-OO-OO
+OOOOOOOOOO
+OOOOOO-OOO
+OOOOOOOOOO
+OOOOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOO-OOOO-
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 18
+FIT: 7982.5
+STEPS: 5004
+
+--OOO---OO
+--------O-
+--O---OO--
+-OOOO-OO--
+--OO-O----
+-OOOOOO--O
+-OO-OO-OOO
+--OOO-OO-O
+--O-OOO-OO
+-OOOOO--OO
+
+------------------------------------------------------------------
+GEN: 19
+FIT: 5457.5
+STEPS: 3330
+
+----------
+OOOO---OOO
+OOOO-OOOO-
+OOO-OOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOO-O
+OOO-OOOOOO
+
+------------------------------------------------------------------
+GEN: 20
+FIT: 10046.5
+STEPS: 5428
+
+OO--OOO-O-
+OOOOOO-O--
+OOOOOOOOOO
+OOOOOOOOOO
+O-OOOO-OOO
+OOOOOOO--O
+O-OOOOOOO-
+OO-OOO--OO
+OOOO-OOOOO
+OOOOOO-OO-
+
+------------------------------------------------------------------
+GEN: 21
+FIT: 10227
+STEPS: 6087
+
+--OOOOOOO-
+-OOO-OOOOO
+O-O-OOOOOO
+O-O-OOOOOO
+O-OOO-OOOO
+-O-O-OOOOO
+-OOOOOOOOO
+O-OO-OOOOO
+O-OOOOOOOO
+-OO-OOOOOO
+
+------------------------------------------------------------------
+GEN: 22
+FIT: 8432
+STEPS: 5159
+
+-OOOOO-O-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOO-OOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 23
+FIT: 6857
+STEPS: 4243
+
+OO-O-OOOO-
+OOO-O--OOO
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 24
+FIT: 7649.5
+STEPS: 4600
+
+-OOOOO-OOO
+OOOOOOOOOO
+OOOOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OO-OOOOOOO
+OOOOOO-OOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 25
+FIT: 6721.5
+STEPS: 3754
+
+-OO-OOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 26
+FIT: 6368
+STEPS: 3599
+
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+O-OOOOOOO-
+-OOOOOOOOO
+-OOOOOO-OO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+O---OOOOOO
+
+------------------------------------------------------------------
+GEN: 27
+FIT: 7666.5
+STEPS: 4710
+
+----------
+OOOOOO-O-O
+OOOOOOOOOO
+OOOOOOOOOO
+OO-O-OOOOO
+OO-OOOOOOO
+OOOOOOOO-O
+OOOOOOOOO-
+OOOOOO-OOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 28
+FIT: 5921.5
+STEPS: 3640
+
+--OO-OOOOO
+OOO--OOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 29
+FIT: 8415.5
+STEPS: 4934
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 30
+FIT: 6857
+STEPS: 4243
+
+O-OOO-OOO-
+OO-OOOOOO-
+OOOOO--OO-
+OOOOOOOOOO
+OOOOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 31
+FIT: 5590
+STEPS: 3537
+
+-------O-O
+OOOOOOOOO-
+OOO--OOO--
+OOOOOOOO-O
+OO-OO---OO
+OOOOO-OOO-
+OOOOOO-O-O
+OOOOOOOOOO
+OOOO-OOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 32
+FIT: 10543.5
+STEPS: 6032
+
+-OOOOOOO-O
+OOOOOO-OO-
+OOOOOOOOOO
+OO-OOOOO--
+OOOOOOOOOO
+OOOOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 33
+FIT: 9370.5
+STEPS: 5568
+
+----------
+OOOOO--O--
+OOOOO-OOOO
+OOOOOOOOO-
+OOOOO-OOOO
+OOOOOOOOOO
+OOO-OOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 34
+FIT: 2768
+STEPS: 1615
+
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOO-OOOOOO
+-OOO-OOOOO
+
+------------------------------------------------------------------
+GEN: 35
+FIT: 8904.5
+STEPS: 4892
+
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OO-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 36
+FIT: 6932
+STEPS: 4201
+
+-O--OOOOO-
+OOOO-OOOOO
+OOOOOO-OOO
+OOOOOOOO-O
+OO-OOOOOOO
+OOOOOO-OOO
+OOOOOOOOOO
+OO-OOOOOO-
+OOOOO-OOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 37
+FIT: 14651
+STEPS: 8605
+
+-OOO-OOOO-
+OOOOOOOO--
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOO--
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 38
+FIT: 11667
+STEPS: 7057
+
+----------
+OOOOOOOOO-
+OOOOOOOO-O
+OOOOOOOOO-
+OOOOOOO--O
+OO-OOOOOOO
+OOOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOO-OOOOOO
+
+------------------------------------------------------------------
+GEN: 39
+FIT: 12831.5
+STEPS: 7822
+
+--O---OO--
+O-OO----O-
+O-OOO--O-O
+O-O--OOO-O
+-O---OO-OO
+---OOOO---
+OO------OO
+-OO--OOO-O
+OOOO--O-OO
+O-----O-OO
+
+------------------------------------------------------------------
+GEN: 40
+FIT: 7130
+STEPS: 4253
+
+OOOOOO---O
+OOOOOOOO-O
+-OOOO-O-OO
+OOOOOOO-OO
+OO-OOOOOOO
+OOOOOOOOOO
+OOOO-OOOOO
+O--OOO--OO
+-OOO--OOO-
+OOOO-O--O-
+
+------------------------------------------------------------------
+GEN: 41
+FIT: 4384.5
+STEPS: 2474
+
+-OO-OO-OOO
+--O-OOOOOO
+-OOOOOOOOO
+O-O--OOOO-
+OOOOOOOO--
+OOOOOOO-OO
+-OO-OOOOOO
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOO-OOOO
+
+------------------------------------------------------------------
+GEN: 42
+FIT: 11778
+STEPS: 6943
+
+-OOO-O--O-
+OOOOO-O-OO
+OOOO-OOOOO
+OOOOOO-OOO
+OOO--OOOOO
+OOOOOOO---
+OOO-OOOOOO
+OO-OOOOOOO
+O--OOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 43
+FIT: 5497
+STEPS: 3271
+
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+O---OOOOOO
+O-OOOOOOOO
+OOOOO-OOOO
+-OOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 44
+FIT: 7048
+STEPS: 3985
+
+-O-OOOOOOO
+OOOOOOOOOO
+-OOO-OOO--
+-OOO--O-OO
+-OO-OOOOOO
+-O-OOOOOOO
+O----OOOOO
+-OOOOOOO-O
+OO-OOO-OOO
+---OOOO-OO
+
+------------------------------------------------------------------
+GEN: 45
+FIT: 8415.5
+STEPS: 4934
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 46
+FIT: 3711
+STEPS: 2213
+
+----------
+OOOO-OOOOO
+OOOOOOOOOO
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOO-OOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 47
+FIT: 8415.5
+STEPS: 4934
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 48
+FIT: 2926
+STEPS: 1711
+
+----------
+O-OO-OO-OO
+OO---O--O-
+O--OOOO-OO
+OOO-OOOOOO
+OOOO-O-OOO
+OOOO--O-O-
+OOOOO-OOOO
+OOO-OOO-OO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 49
+FIT: 10653
+STEPS: 6345
+
+---OOO-OOO
+OO--OOOOOO
+OO-OOOOOOO
+OOO-OOOO-O
+-OOO--O-OO
+O-OOO-O-O-
+O--OOOOOOO
+-O--OOOOO-
+-O--OOOOO-
+-OOO-O-OOO
+
+------------------------------------------------------------------
+GEN: 50
+FIT: 6598
+STEPS: 3911
+
+OOOOOO-O-O
+OOOOOOO-O-
+OOOOOOOOOO
+-OOOOOOOOO
+OOOO-OOOOO
+OO-OO-OOOO
+OOOO-OOOOO
+OOOOOOOO-O
+OOOOOOOO-O
+-OOO-OO-OO
+
+------------------------------------------------------------------
+GEN: 51
+FIT: 3711
+STEPS: 2213
+
+----O-O---
+OOOOOOOOO-
+OOOOOOOO--
+OOOOOOO-O-
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 52
+FIT: 4215.5
+STEPS: 2532
+
+OOO--O--OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 53
+FIT: 10104.5
+STEPS: 5820
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOO-OOO
+--OOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OO--OOOOO
+-OO--OOOOO
+-O-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 54
+FIT: 4457
+STEPS: 2677
+
+-OO---O---
+OOO--O---O
+OOOOOO-OOO
+OOOOOOOO--
+OOOOOOOOOO
+OOOOOOOO--
+OOO-OOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 55
+FIT: 4255
+STEPS: 2515
+
+---OOOOOO-
+-OOO---O-O
+--O-O---O-
+-O-OOO-O-O
+-O--OO-O-O
+----O--OO-
+-O-OOOO-O-
+-O-OOOO-OO
+-O---O-OO-
+----O--O--
+
+------------------------------------------------------------------
+GEN: 56
+FIT: 8415.5
+STEPS: 4934
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 57
+FIT: 6857
+STEPS: 4243
+
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OO-OOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+O--OOOOOOO
+
+------------------------------------------------------------------
+GEN: 58
+FIT: 13505.5
+STEPS: 7818
+
+----------
+OOOOOOOO-O
+OOO-OOOOO-
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 59
+FIT: 5831
+STEPS: 3629
+
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+---OOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 60
+FIT: 8415.5
+STEPS: 4934
+
+O--OOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 61
+FIT: 4215.5
+STEPS: 2532
+
+OOO-OOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 62
+FIT: 8901
+STEPS: 5263
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+--O-OOOOOO
+-OOO---OOO
+
+------------------------------------------------------------------
+GEN: 63
+FIT: 6097.5
+STEPS: 3600
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+-OOOO-OOOO
+-O-OOOOO-O
+
+------------------------------------------------------------------
+GEN: 64
+FIT: 8415.5
+STEPS: 4934
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 65
+FIT: 4041
+STEPS: 2565
+
+---OOO-OOO
+--OOOO-OOO
+--OOOOOOOO
+--OOOO-OOO
+---O-OO-OO
+-OO-OOOO-O
+--OO-OOOOO
+--O-O-OOOO
+--OOO-OO-O
+----OOO-OO
+
+------------------------------------------------------------------
+GEN: 66
+FIT: 8415.5
+STEPS: 4934
+
+OO-OOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 67
+FIT: 4215.5
+STEPS: 2532
+
+O-OOOO-OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 68
+FIT: 3807
+STEPS: 2123
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+--OOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+-O-OOOOOOO
+-OOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 69
+FIT: 3050
+STEPS: 1905
+
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOO-OOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OO-OOOOOOO
+-OOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 70
+FIT: 6539
+STEPS: 3799
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+O--OOOOOOO
+O-OOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+OOOOOOOOOO
+OO-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 71
+FIT: 13505.5
+STEPS: 7818
+
+----------
+OOOOOOOO-O
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 72
+FIT: 3346.5
+STEPS: 2040
+
+-OOOOOOOOO
+-OOOOO-OOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOO-O
+---O-OOOOO
+-OOOOOOOOO
+---O--OOOO
+
+------------------------------------------------------------------
+GEN: 73
+FIT: 4215.5
+STEPS: 2532
+
+O---O--OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 74
+FIT: 8415.5
+STEPS: 4934
+
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-O-OOOOOOO
+OO-OOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 75
+FIT: 8415.5
+STEPS: 4934
+
+OO-OOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 76
+FIT: 4215.5
+STEPS: 2532
+
+O----O-OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 77
+FIT: 4215.5
+STEPS: 2532
+
+O---OO-OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 78
+FIT: 8415.5
+STEPS: 4934
+
+OO-OOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 79
+FIT: 14335
+STEPS: 8675
+
+----------
+--OOO-----
+----O-O-O-
+OO-O-O--OO
+O--O-O-OO-
+O---O-OOO-
+OO--OOO-OO
+-------OO-
+O-----O-O-
+-----OOOOO
+
+------------------------------------------------------------------
+GEN: 80
+FIT: 7571.5
+STEPS: 4618
+
+----------
+----------
+OO--------
+O-OOO-----
+OO---OO---
+O-OO-O----
+OOO-------
+---OOOOOO-
+OOOOOO---O
+-O--O-OOOO
+
+------------------------------------------------------------------
+GEN: 81
+FIT: 6857
+STEPS: 4243
+
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+O-OOOOOOOO
+--OOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-O-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 82
+FIT: 6857
+STEPS: 4243
+
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+O-OOOOOOOO
+--OOOOOOOO
+O--OOOOOOO
+
+------------------------------------------------------------------
+GEN: 83
+FIT: 6857
+STEPS: 4243
+
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OO-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 84
+FIT: 8415.5
+STEPS: 4934
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 85
+FIT: 8415.5
+STEPS: 4934
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 86
+FIT: 13050.5
+STEPS: 7800
+
+----------
+--OOOOOOOO
+-O-OO---OO
+-O--O---OO
+O---OOOO--
+OOOO-OO-OO
+OO---OOOO-
+OO--O-OOOO
+-OOOOO--OO
+OOO-OOO-OO
+
+------------------------------------------------------------------
+GEN: 87
+FIT: 4250
+STEPS: 2655
+
+----------
+OO--------
+OOO--O----
+OO-OO-OOO-
+OO---OO-O-
+OOOOOOO--O
+O--O---OOO
+OOO-OO-OO-
+O--OO-OOOO
+-OO-OOO---
+
+------------------------------------------------------------------
+GEN: 88
+FIT: 8415.5
+STEPS: 4934
+
+O--OOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 89
+FIT: 13505.5
+STEPS: 7818
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+---OOOOOOO
+
+------------------------------------------------------------------
+GEN: 90
+FIT: 4475.5
+STEPS: 2652
+
+-O-O-OO-OO
+OOOOOOO---
+OOOOOOOO--
+OO-O-OO-OO
+-O---O-OOO
+OOOOO-OOOO
+OO--O-OO--
+OOOOOO-O-O
+O-OOOOOOOO
+OOOOOOOO-O
+
+------------------------------------------------------------------
+GEN: 91
+FIT: 6857
+STEPS: 4243
+
+O----OOO-O
+OOOOOOOOOO
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 92
+FIT: 4215.5
+STEPS: 2532
+
+O--O---OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 93
+FIT: 14666
+STEPS: 8911
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+O-OOOOOOOO
+O--OOOOOOO
+
+------------------------------------------------------------------
+GEN: 94
+FIT: 6601.5
+STEPS: 3812
+
+OOOOOOO-OO
+OOOOOOOOOO
+OOOO-OOOO-
+OOOOOOOOOO
+--OO--OOOO
+OOOOOOOOOO
+OOOOOOOO--
+OOOO-OOOOO
+-OOOOOOO-O
+-O--OOOOOO
+
+------------------------------------------------------------------
+GEN: 95
+FIT: 8415.5
+STEPS: 4934
+
+O-OOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 96
+FIT: 13505.5
+STEPS: 7818
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+O-OOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+
+------------------------------------------------------------------
+GEN: 97
+FIT: 8691
+STEPS: 5491
+
+O-OOO-OO-O
+--O-OOOOOO
+OOOOOOOO-O
+O-OOOOOOO-
+--OOOOOOOO
+O-OOOOOO-O
+OOOOOO-OOO
+-OOOOOOOOO
+-OOOOOO-OO
+OOO-O-OO-O
+
+------------------------------------------------------------------
+GEN: 98
+FIT: 6857
+STEPS: 4243
+
+O-O--O-OOO
+OOOOOO-OOO
+OOOOOOOOO-
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 99
+FIT: 4215.5
+STEPS: 2532
+
+O---OO-OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 100
+FIT: 5898.5
+STEPS: 3586
+
+-OOOOOOOOO
+-OOOOOOO-O
+-OOOOO-OOO
+-OOOOOOOOO
+-O-OOO-OOO
+-OOO--OOOO
+-OOOOOOOOO
+--OOOOOOOO
+-OO-OOOOOO
+-OO--O-OOO
+
+------------------------------------------------------------------
+GEN: 101
+FIT: 7718.5
+STEPS: 4768
+
+-OOOOOOOOO
+-OOOOOOOOO
+OO-OOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+O-OOOOOOOO
+O-OOOOOOOO
+OO-OOOOOOO
+-OO-OOOOOO
+
+------------------------------------------------------------------
+GEN: 102
+FIT: 5084
+STEPS: 3091
+
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OO-OOOOOOO
+OOOOOOOOOO
+OOO-OOOOOO
+O-OOOOOO-O
+-OOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 103
+FIT: 6857
+STEPS: 4243
+
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+---OOOOOOO
+OOOOOOOOOO
+--OOOOOOOO
+OOOOOOOOOO
+OO-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 104
+FIT: 6535
+STEPS: 4063
+
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOO-OOOOOO
+
+------------------------------------------------------------------
+GEN: 105
+FIT: 5999.5
+STEPS: 3556
+
+OOOOOOOOOO
+OOOO-OOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+--OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+O--OOOOOOO
+-OO-OOOOOO
+
+------------------------------------------------------------------
+GEN: 106
+FIT: 6857
+STEPS: 4243
+
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+--OOOOOOOO
+OOOOOOOOOO
+OOO-OOOOOO
+-OOOOOOOOO
+OO-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 107
+FIT: 8316.5
+STEPS: 4940
+
+OO-------O
+OOOOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 108
+FIT: 4474.5
+STEPS: 2584
+
+-OOOOOOOOO
+OOOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+---OO-OOOO
+-OO-OOOOOO
+
+------------------------------------------------------------------
+GEN: 109
+FIT: 8415.5
+STEPS: 4934
+
+O--OOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 110
+FIT: 6857
+STEPS: 4243
+
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-O-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 111
+FIT: 7381.5
+STEPS: 4610
+
+---OO-OO-O
+OOOO--OO-O
+OOOOOOO-OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 112
+FIT: 9413.5
+STEPS: 5788
+
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-O-OOOOOOO
+-O-OOOOOOO
+-OOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 113
+FIT: 12872
+STEPS: 7481
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+--O-OOOOOO
+--OOOOOOOO
+OOOO--OOOO
+--OOOOOOO-
+-OOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 114
+FIT: 13505.5
+STEPS: 7818
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+-O-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 115
+FIT: 3711
+STEPS: 2213
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOO-OOOOOO
+
+------------------------------------------------------------------
+GEN: 116
+FIT: 4851.5
+STEPS: 3056
+
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+O--OOOOOOO
+-OO-OOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OO-OO-OOOO
+
+------------------------------------------------------------------
+GEN: 117
+FIT: 15132
+STEPS: 9061
+
+----------
+OOOOO-O-O-
+OOOOOOOO-O
+OOOOOO--O-
+OOOOOO-O-O
+OOOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 118
+FIT: 8577.5
+STEPS: 5086
+
+-OOOOOOO-O
+OOOO-OOOOO
+O-OOOO--OO
+-OOOOOOOOO
+--OOOOOOOO
+OOOOOOOOO-
+O-OOOOOOOO
+OOO-OOOOOO
+OOO-OOOOOO
+-OOO-OO-OO
+
+------------------------------------------------------------------
+GEN: 119
+FIT: 13419
+STEPS: 8287
+
+-OOOOO-OOO
+-OOOOO-OO-
+--OOOOOOOO
+-OOOOO-O-O
+----OOOOOO
+-OOO-OOO-O
+-OO-OOOOOO
+--OOOOOOOO
+-O-OOOOOOO
+--O-OOOOOO
+
+------------------------------------------------------------------
+GEN: 120
+FIT: 8415.5
+STEPS: 4934
+
+OO-OOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 121
+FIT: 4215.5
+STEPS: 2532
+
+OOO--O--OO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 122
+FIT: 4215.5
+STEPS: 2532
+
+OO--O--OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 123
+FIT: 8415.5
+STEPS: 4934
+
+O-OOOOO--O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 124
+FIT: 4215.5
+STEPS: 2532
+
+O-OOOO-OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 125
+FIT: 3778
+STEPS: 2383
+
+OO-----O-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 126
+FIT: 10685
+STEPS: 6417
+
+OOOOOOOOOO
+OOOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+--OO-OOOOO
+OOOOOOOO-O
+O-OOOO-OOO
+OO-OOOO-OO
+OOOOO-OOOO
+OOOO-OOOOO
+
+------------------------------------------------------------------
+GEN: 127
+FIT: 5719.5
+STEPS: 3324
+
+-OO-OOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OO-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 128
+FIT: 8065.5
+STEPS: 4996
+
+OOOOOOO-OO
+OOOOOO-OOO
+--OOO-OOOO
+-OOOOOOOOO
+OOOOOO-OOO
+O-OOOOOOOO
+OO-O-OOO--
+OOOOOOOOOO
+O--OOOOO--
+OOO-O--OOO
+
+------------------------------------------------------------------
+GEN: 129
+FIT: 3595.5
+STEPS: 2062
+
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OO-OOOOOO
+-OOOO-OOOO
+-OOOOOOOO-
+OO-OOOOOOO
+OOOO-OOOOO
+-O-OOOOOO-
+
+------------------------------------------------------------------
+GEN: 130
+FIT: 4215.5
+STEPS: 2532
+
+OO--O--OOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 131
+FIT: 9369
+STEPS: 5741
+
+-OOOOOO-OO
+-OOO-OOOO-
+OOO-O-O-OO
+O-OOOOOOO-
+-OOOOOOOOO
+O--OOOOOOO
+-OOOOO--OO
+O-OOOOOOOO
+OOOOOO-OOO
+OOO-OOOOOO
+
+------------------------------------------------------------------
+GEN: 132
+FIT: 6857
+STEPS: 4243
+
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+O--OOOOOOO
+--OOOOOOOO
+OO--OOOOOO
+O--OOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OO-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 133
+FIT: 10605
+STEPS: 6195
+
+-OOOOOOOOO
+OOOOOOOOOO
+-OO-OOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+--OOOOOOOO
+OOOOOOOOOO
+-O-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 134
+FIT: 8106.5
+STEPS: 5020
+
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OO-OOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+O-OOOOOOOO
+O-OOOOOOOO
+
+------------------------------------------------------------------
+GEN: 135
+FIT: 2114
+STEPS: 1291
+
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+-OOOOOOOOO
+---OOOOOOO
+--O-OOOOOO
+--OOOOO-OO
+----OOOOOO
+--O-OOOOOO
+--OOOOOOOO
+
+------------------------------------------------------------------
+GEN: 136
+FIT: 3478.5
+STEPS: 1818
+
+-OO-OO--OO
+OOOOO-OOOO
+OOOOOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 137
+FIT: 6857
+STEPS: 4243
+
+O-OOO-OO-O
+OOOOOOOOOO
+OOOOOOOOO-
+OOOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 138
+FIT: 8415.5
+STEPS: 4934
+
+OO-OOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 139
+FIT: 8415.5
+STEPS: 4934
+
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 140
+FIT: 4215.5
+STEPS: 2532
+
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+O-OOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 141
+FIT: 6857
+STEPS: 4243
+
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+O-OOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOO-OOOOOO
+OOOOOOOOOO
+-O-OOOOOOO
+
+------------------------------------------------------------------
+GEN: 142
+FIT: 6857
+STEPS: 4243
+
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOO-OOOO
+O-OOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+---OOOOOOO
+
+------------------------------------------------------------------
+GEN: 143
+FIT: 7015
+STEPS: 4219
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 144
+FIT: 13505.5
+STEPS: 7818
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+---OOOOOOO
+
+------------------------------------------------------------------
+GEN: 145
+FIT: 8415.5
+STEPS: 4934
+
+OO-OOOOO-O
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 146
+FIT: 7730.5
+STEPS: 4706
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-O-OOOOOOO
+--OOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+
+------------------------------------------------------------------
+GEN: 147
+FIT: 6562.5
+STEPS: 3708
+
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+--OOOOOOOO
+-OO-OOOOOO
+
+------------------------------------------------------------------
+GEN: 148
+FIT: 8415.5
+STEPS: 4934
+
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 149
+FIT: 4215.5
+STEPS: 2532
+
+OOOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+-OOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO

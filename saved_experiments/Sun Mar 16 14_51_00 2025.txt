@@ -1,0 +1,3058 @@
+pattern_width = 25
+pattern_height = 25
+target_cells = 13
+population_size = 100
+num_gen = 150
+tournament_size = 3
+weight_prob = 0.8
+node_prob = 0.001
+conn_prob = 0.0001
+max_steps = 20000
+max_same = 150
+fitness_function = l
+infinite_board = 0
+infinite_axis = x
+random_element = 1
+rows = 350
+columns = 350
+
+Other notable patterns:
+
+
+------------------------------------------------------------------
+------------------------------------------------------------------
+BEST GEN: 83
+FIT: 19698.5
+
+--OOOO-O-OO-OO-O--OO-----
+O-OOOOOOOO-OOOO-O--O-OO--
+OOO-O-OOOO--O----OO-OOOO-
+OO-OOO-OOOOOO--O-OOOOOOO-
+O-O---OOO-OO-OOO----OOO--
+---O-OOO--O--OO--O-O-OOO-
+OOO-O---O-OO--O------O-OO
+O---O--O---OO--OOO---OOOO
+O--O-O----OO--OO-O--O---O
+O---OOO-O-OO-O-OOO--OOOOO
+-O--OOO--O-OOO-O---OOOO-O
+-OOO-OO--OOOOOOOO-OO-O--O
+-O-OO---O-OOOOO--OO-O--O-
+----OO------O--OOO--OOOO-
+-O-O--O----OO-O-OO-OO-O-O
+-OO--OOO----OO--OOOO--O-O
+---OO-O-O--OO--OOOO--OOOO
+-------O-OOO-O-----OO----
+OO---O-OO-OO-OOOO---OO--O
+----O----O---OOO-O--O--OO
+OOOOO------OO--OOO-OOOO-O
+-OOO-OO-O--OO-OOOOOO-OOO-
+OOOOO-OO---OO--OOO-OOO-OO
+-O--OO-O-OO-O-O-OO-O-OOO-
+---OOO-O-O-------OOOOO-O-
+
+------------------------------------------------------------------
+GEN: 0
+FIT: 7225
+STEPS: 4231
+
+-O-O--OO-O------OOOOO-OO-
+O-------OOO----OOOOO-OO--
+OOO-O--OOO--OOOO--------O
+OO--O-O----OOOOOO----OOO-
+--O-O-O-----OOOOOOOOO-O-O
+--------OOO--OO-----OOOO-
+O--O-----O---OOO-OOOO-O-O
+---OOO--O-OO-OOO-----O--O
+OO-OO-OO-O-OOOO-OOOOO--O-
+-O--OO------OOOO-O-O--OOO
+OO-----OOOOOOOOOO--O---O-
+O-OOOOO--O--OO--OOO---O-O
+OO--O-OO-O-O--OO-OO-OO-OO
+O--OO--O----OO---O---O--O
+OO-OOO-O---OOO-O-----OOOO
+-O--O--OO-OO-O-O-OOO-O---
+-OOO-OO---O--O-OOOO---O--
+O-OO-OOO-OOO-OOOOO--OO-O-
+OOO-OOOO--O--O--OOOOOO--O
+-OOO-O-O-O--OO---OOOOO--O
+-O--OOO-OO---O----OOO-O-O
+OO----O-OOOOO-O---OO--OOO
+-OO----OOOO-O-OO----OOOO-
+-OO-OOO-OO---OOOO-OOOOO--
+--OOO-OO-OOO---OO-O-OO---
+
+------------------------------------------------------------------
+GEN: 1
+FIT: 12339.5
+STEPS: 7342
+
+-OO-OO-OO-O-OO----OO--OOO
+-OOO-O--OOO---O-----OO-O-
+-O-OOOOOOOOOOO---O-------
+OOOOO-OO-OOO-OOO-O-O-O-OO
+----OO-OO--O---O-O-OOO--O
+OOOO-OOO--OO---O-OO--O-O-
+-O--OO-OOOO-O-O-OOO---OO-
+----OOOOOOO--OO-O-OOO--O-
+-O---O----O-OO-O-O-OO-O--
+OOOOO-O---OO-----OOOOOOOO
+-OO-OO--O--O---O-O--O---O
+O-OOOOOO-O-O-O--OOO-O--OO
+OO-OOO-O--O-OO-OO-OOO-OOO
+OOOO----OOOO--OOO-O-O---O
+OOOO-O---OOOO----O--O---O
+-O-O----O-OOO-OOOO---O--O
+OOO-OO-O-O--OOO--OO-O-OOO
+------O---OOOOO-O-O-O--OO
+---O-O-OO---O--O--OO----O
+--OOOOOOOO-O--O-OO-O--O-O
+OOO-------O-O---OO-O--O-O
+OOO----OOOO--O---O----OOO
+-O-O-OOOOOOO-O---O---OOO-
+O-O-O---OO--OO--O-O-O-OOO
+-O-O-OOO-------OOOOO-OO--
+
+------------------------------------------------------------------
+GEN: 2
+FIT: 5779.5
+STEPS: 3422
+
+------OOOO-O-OO---O---O-O
+--OO-OOO-O--O--OO-O-O--OO
+--OO-O-O-O--OO--O-O--OO-O
+--OOO---O-O-O-O---OO----O
+----OO--OO--OO-O-OO------
+------OOO---O--O-O-OO--OO
+------O-O---O---OOOOOO-OO
+-----O-O----O------OOOO-O
+--------O-OO-----OOO--O--
+------O-O---O---O-OOOO--O
+---------O-O-O--OO-OO--OO
+---------OOO--O--OOO-OOOO
+----------O----OO-O-OOO-O
+-----------OO-OOO-OOO-O--
+----------O---OOO-O-O----
+----------OOO-OOO-O---O-O
+-----------O-O-OO--O-OO-O
+-----------OOO---OO-O---O
+------------OO-OOOOO--O-O
+-------------OOO--OO--O--
+-------------OOO----OO---
+--------------O-O--O-O---
+----------------OOOO---O-
+---------------OO-O----OO
+----------------OO-OOOO--
+
+------------------------------------------------------------------
+GEN: 3
+FIT: 13764.5
+STEPS: 8152
+
+-------------------------
+O------------------------
+-------------------------
+-------------------------
+O------------------------
+-------------------------
+-------------------------
+O-O----------------------
+-OO----------------------
+--OO---------------------
+---OO--------------------
+--O----------------------
+---OOO-------------------
+---O---------------------
+OO-OOO-------------------
+---O-O-------------------
+-O-O---------------------
+OO-----------------------
+OOO-O--------------------
+O-OO-O-------------------
+-O--OO-------------------
+----O-O------------------
+O-----O------------------
+O---O--O-----------------
+O--OOO-------------------
+
+------------------------------------------------------------------
+GEN: 4
+FIT: 8359
+STEPS: 4891
+
+-OO--O---OO----O-O-OOOO-O
+---O-O--O--O-O----O-OO---
+-OOOO-OOOOO-OOO-O-O--O--O
+--OOOOO---O-OOO-O---OO---
+----O--O--OO---OOO-O-OOOO
+---O--O-O--O-OOOOO-O-OO--
+---OOO-OOO-O-O---OO-OOO-O
+----O-OO--OO--O--O-OOOO-O
+----OO-----OO--OO-OO-O-O-
+-----O---OO--O-O-O---OOO-
+-----O-OO-OOO---OO--O---O
+--------------OO-OO-OOO--
+-----O--OO--O--OO-OOO-O--
+------O-O--O-O-O-O-O-O---
+------O---OOOO-OO-OOOOO--
+-------OO--O--OO--O-O-O--
+--------OO-----O--OOO-O--
+--------OO-OOO-OOOOOO-OOO
+---------OOOOO--OO--OOO--
+---------O------OO-----OO
+----------O-OO-O-OO-O-O-O
+----------O-OO-O--O---OOO
+----------O---O--OOOOO---
+----------O-O--O--O-OOOOO
+-------------O-OO---O-OO-
+
+------------------------------------------------------------------
+GEN: 5
+FIT: 8820.5
+STEPS: 5286
+
+-O---OO--OO-OO-OOOOO-O-O-
+OOOO-O--OOO-OOO----OOO---
+---O-OO--OO----O-O-OOO--O
+---OO-OO---O-OO-OOOO-----
+---O-O-OOOOOOOOO-O-O---OO
+OOOO-O--OO-OOOOO-O--O-OO-
+--OO-O-OOO-----OOO-O-OOOO
+OO-O-----OO-OOO-OO-OO-O-O
+OOOOOO-OO--OOO-OOO-O--O-O
+OOOOOOOO--OOO-OOOO---O-O-
+O-O----OO-OOOOO-OO---OO--
+-O--OO-OOO-OOOO--OO-OO---
+-OO--OOO--OO--O-OOO-O-OO-
+-O-O-O-OO---O----OO---O--
+O---OOOO----O-O-OOOOOO-O-
+OOOOO-OOO-O-O--O-O-OOO---
+OOOO-O-OO-O--OOO----OO-O-
+OO-OO-O----O--OO--O--OOOO
+O--OO-OO-O-O-O-OOO---O--O
+OOOOOO-OO-OO-O----OOOO---
+OOO--O-O-OOOOOOO---OO-OO-
+O---OO--OO-----OO-OO-OOOO
+O---O--O-OO-OO-O-OO-O--OO
+OOOO-O---O-O-O---O-OOOOOO
+--OO-O--OO--OOO-O-OOOO-O-
+
+------------------------------------------------------------------
+GEN: 6
+FIT: 9495
+STEPS: 5779
+
+-O-O---O----O-O-O--O---O-
+---O--O-O---OO-OO------OO
+O-OOO-OOO-OO-O--OO-OOO--O
+---O---OO-OO-O-O-----O-O-
+----O--O-O-OO------O-O--O
+-----------O--O-------O--
+---------O--O----O-O----O
+-------------OO-OOO------
+-----------O-OO-O----OO-O
+----------O-O-OOOOOO--OOO
+----------O--OO----O-O---
+------------OO-OO-O--O-O-
+-----------OO--O--OO---OO
+------------O----OO--O-O-
+--------------O-OOO-O--OO
+-----------------O---O--O
+--------------O-----OO-O-
+---------------OOOOOOOOO-
+----------------O--OO--O-
+-----------------OOO-OO--
+-----------------O--O-O--
+------------------O--O--O
+-------------------OOOO--
+--------------------O-O--
+---------------------O-OO
+
+------------------------------------------------------------------
+GEN: 7
+FIT: 13916.5
+STEPS: 8454
+
+OO---O-OO---OO-O--OO---OO
+-O--O-O--OO-O---O---OOO-O
+-O-OO--OOOOO--OOOO-O-O--O
+OOO---OO---O--O----O--OOO
+OO--OO--OO--OO--O-O--O---
+OOO-OOOOOO-OO--OOOOOOO---
+---OOOOO-OOOO-O-OOOOO-OOO
+-O--O---OOOOOO-OOOO------
+OOOOO---OOOOO-------OOOOO
+OOOOOO-OO------OOO----OO-
+-OOOOOOO--O-O---OOOO-OOO-
+O-OOO-OO-OOO---OO--OOOOO-
+--O-OO--O---O-O--O----OOO
+---O-O-OO--OOO-O--OO-O---
+--OO--OO-O-O-OO-O--OOO--O
+-OOO-OOOOOO--O--O--OO-O-O
+-O-OO-OOOO-O-O-OO-OOOOO-O
+--OO--O-O-OO----OO-O--OOO
+-O--OO-OOOO-O--OOO-O----O
+OOO------OOO--O---O-OO-O-
+O-OO-O-OO--OOO---OOO-O---
+O-OOOO--O-OO--OOOOO----O-
+-OO---O------O-OO-O-O----
+-O--OOO-OO-OOO-OO----OO-O
+OO--O-O-O--OOOOOO-OOO-OOO
+
+------------------------------------------------------------------
+GEN: 8
+FIT: 7028.5
+STEPS: 4188
+
+-O-----O--O--O-OOOOOOOOOO
+---OO-O-O-OO---OOO--OOO-O
+OOO-OOO---O--OOOO--OO-O--
+OO-O--OO-O-O-OO-O---OO-OO
+OOOO-OOOO-OO-O-OOO--O-O--
+OOOOO-OOOO----O-OO--O--OO
+OO-OO--OO-O--OOOOOO-O-OOO
+-OOOO-O-----O-------OOO--
+OOO-O--OOO-OOO-O--OO-OOO-
+O--OOOO-OOOO-OO--O-O---OO
+OO--OOOOOOOO-OO--O--OO-OO
+-OOOOOOOOOOOOO--OOOOOOOO-
+OO-----O-O-O-OOO---OOOO--
+OO-O--O--OOOO-O-OOOO--O--
+-OO---OO-OOO-OOOOOOO--O-O
+-OO-O---O---O-O--O--OOO--
+-OOO---OOO-O-O-OOO---OO--
+---OO-OO-OO----O-OO-OO-O-
+O---O-OO-O------OO-OOOOOO
+--O-------O----OOO-OO-O--
+OOOOOO-OOOOO---OO-OO-O-OO
+O--OO-OO--OOOO-O-O-OO-OOO
+O---OOO-O-OOO-O---OO--O--
+OO-----O--O-OO-----OOOOOO
+-OO---O-OOO--OOOOOOOO----
+
+------------------------------------------------------------------
+GEN: 9
+FIT: 11835
+STEPS: 6777
+
+--OOO--O-O--OO-O-O--O----
+-----O-O--OOOOOOO-OO--O--
+-O-O-O-O-----OOOO-OOO----
+-OO----O---OO---OO-OO-O-O
+--OOO--O------O--O-------
+-OO---OO---O---O--OOO--O-
+-O-O-----OOOOO--OO----OOO
+---OOOO-OOO-OO-O-OOOOOOOO
+------OOO-OO--O-O-O--OO--
+---O--OO---O---O---OOO---
+--OO-OO----OOOO-O-OOOOO--
+---OO-O----O-O-OO--OOOO--
+---OO-OOO---O-O--OOOO--OO
+--O-OOOO-OO-O-O-----O-OOO
+--O-OOO--O--OO----O--OOOO
+--O--OO--OOOOO---O-------
+----OOOO--O-O---OOO-OOOO-
+--O--O----O-----OOOOO-OOO
+---O-O-OOOO-O--O--OOOO-OO
+---O--OO--OOO-OOOOOO---O-
+---O-OOO---OOO--O---O-O-O
+-----OOO-O-O-O-O--OO-----
+---O-OOO--O---OOOO---OOO-
+-----O-O--------O-----O-O
+----O---OO-OO---O-O-O--OO
+
+------------------------------------------------------------------
+GEN: 10
+FIT: 6848
+STEPS: 4095
+
+-OO--OO-O-O---OO-O--O--O-
+----OO--OO-O--OO-OO-OO-OO
+O--O--O-O--O----OO-OOO-OO
+O------OO--O---OO--O----O
+----------O----OO-------O
+OOO-OOOOO-------OOO-O-OO-
+O------OOOO-O--OO-OOOOO-O
+O-O------OOO--O---OOOO-O-
+---OOO-O-O-O--OOOOO-O--OO
+OO--O--OOO---O----------O
+OOO---O--OOO-O-O-O-O-O-OO
+OOO-OO-OOO-O-OOOO--O-OO--
+-O-O-OOOO--OOO--O---OO--O
+--O-------OOOO-O-O-OO-O-O
+O--O-----O----OOO--OO-O--
+OOOO---O--OOO-OOOOO--O-O-
+-OOOO-O--OOO--OO-O-OOO-O-
+-O-O--OO-OOOOO----OOOOOO-
+-OO-O-----O----O--O-O---O
+O-OOOO-OOO-O-O-O---O--OOO
+OOOO-OO-O--OO----OO-OO--O
+O-O----O--O-OOO--O-----OO
+O---O--OOO----OO-OO---OO-
+O--O----O--O--OO--O-O--O-
+-O-OO---OO---O---OOOO-O-O
+
+------------------------------------------------------------------
+GEN: 11
+FIT: 11596
+STEPS: 7181
+
+-O-OOO-O---O--OOOOO---OO-
+-O--O-OOOO-OO-OO--OO--OOO
+O--O-O-----O-O---O-O-OO--
+OOO-----OO-OOO-OOOO-OO-OO
+--O-O-OOOOOO------OOOO-O-
+OO---OOO-----OO-O--O-O-OO
+---O-OO--OO-O-O-O-OO-OO-O
+OOO------O-O-O-O-OO-O--OO
+O---OO-----O--OOOO-OOO-OO
+OOO--OO---OOOO---O---OOOO
+--O-OOO-OO---OOOO-OO--O--
+OOOO-O-OOO-O-O-OOOO---OO-
+--O-OO-OO--O--OOOO--O--O-
+O-----O---O-O-OOOOO---O-O
+O------O-OOO-O-OOOOO-----
+-----OO--OO-OOOO--O-OO-OO
+OOOOOOO--OOOOO-O---O---O-
+-O-OO-O-O-OOO--OOO-O-OO-O
+-O-OOO--OOO----OOOO---O-O
+OO----OOOOOOOO-O---OO--OO
+---OOOOO-O-OOOOOO-OOOOO-O
+-OO-OOO--OO--OOOO------OO
+-OO--O-OO-------O-O--O-OO
+O---OOO--OOO-OOO--OOO-OO-
+--OO-OO--O-OOO--O-O--O--O
+
+------------------------------------------------------------------
+GEN: 12
+FIT: 12577
+STEPS: 7647
+
+----O-O---OOO-O-OO-OOO--O
+-OOOO-OO----OO-----OOO---
+-O-O-----O-O---OO-O---OOO
+--O----O-O-OOO-O-OOOOOO--
+----OOO-OO------OO-O-O-O-
+--OOOO-O----O--OOOOO-O-OO
+--O-O-OOO---OOO-OOOO-O-O-
+---O-O-OOOO-O-----O-O-OOO
+---O------O-O-OO-O-O--O--
+----O---OO---O--OOO--O--O
+------OO--OOOO-O--O--OO--
+----O--O--O---O--OOO-----
+--------OO--OO--O-OOO----
+-----O-O-OOO-OOO---OOO---
+-----O--O--O-O-OO-O-OO---
+-----O-OOO-O-O-OOOO--O-OO
+------O-OOOOOOO-OO----O-O
+------O--O-OOO--O--OOOO-O
+--------OOOOOO-OOOOOO--O-
+-------------O--OOO-O--O-
+----------OO---OO--OOOO-O
+-------OOOOOO----O-O---OO
+----------O-OO-O-O-OOOO-O
+---------OOOO---OO------O
+------------O-O-O--O-OO--
+
+------------------------------------------------------------------
+GEN: 13
+FIT: 9598.5
+STEPS: 5590
+
+-O-O--OOOOOO--OOOO---OO--
+-O-O---OOOOO-OO----O---OO
+O-OOO---OO---O---OOOOOO--
+-O-O-O--OO-OO-OO--O---OOO
+---O--O-OOOOO----------OO
+--O-OOO----O----O-OOO-O-O
+--OO-OO-OO-OOOOO-O----OO-
+----OOO-OOO---OO-O--O--O-
+----O--OOO-OO-O-O--O--O-O
+----O--OOOOO-OOOOO-O-O-OO
+--O--OO--OO-O-O-OOOOOO--O
+----O--OOO---O-O--OO--OOO
+---OOO-OO--O-OOO----O-OOO
+------OOO--O-OO-OO-O---OO
+---O-O---OO-O---O-O-O-OO-
+---OO-----OOO---OOOOO-OO-
+-----O-OOOOO-O--OOO---OOO
+-------O-O-O--OO-OO--O-O-
+----OOO-OOO---O-O--OO---O
+----O-OO--OOOO-O--O----OO
+----OOOOOOOO-OO-O-O--OOOO
+----O--O--OO-OO----O--OO-
+-----OO-OOOOO--OOOO-O-O-O
+-----O--OOOO--OOO--OO-O--
+-----O-OO---OOO-OOO-OO-OO
+
+------------------------------------------------------------------
+GEN: 14
+FIT: 9150
+STEPS: 5673
+
+O-O--OO-OO---O-OOO-O-OOO-
+-O--O--O----O--OO-O-O--OO
+OO--OOO--OO-OOO-O-O--O---
+O---OO-OOO-OO-O-O--O-O-O-
+OOO--OOO-OOO-O--O-OOO----
+OO--OO--------OOOO-O--OOO
+-OOO---O------OO-O--OOOOO
+-O----O--OOO-O---------O-
+OO-O-OOOOO----O--O--OOO--
+-OO-O----O----OOOOOOO----
+O-O-OOOOOOO-OO-------O---
+OO--OO-OO-OOOO----OO--OOO
+-O-------O-OOO-OOOOOOO-O-
+--OOOOO-O-OOO----O-OO--OO
+-O-O--O-O-OO-OO-O---O--O-
+O-OO--OO---OO-----O-O--OO
+----O-------O----OO-OOOOO
+OOOO--OOO--OO-O--OOOO-O-O
+---OO-O-O--OO-O---OO-----
+O-OOOOO-OOO-OOO--OO--O---
+-OOOOO-O-O-OOOOO-OO-OO---
+OO----O--OO---O-OOOOOOO-O
+O-O-O-OOO-O-O-O-OO--OOOO-
+-O-O-OOO---OOO-OOOOO-O---
+--OOOOO-OOOO-OOO-OO--O-O-
+
+------------------------------------------------------------------
+GEN: 15
+FIT: 6645.5
+STEPS: 3816
+
+-OOO--OOOO---OO-OOOOO-OOO
+---O-OO-O-OO--O--OOO---OO
+-O-----OOOOO--OO----OO-O-
+---OO------OOO-O-OOOO-OOO
+---OOO-OOOO--OO-OOO---O-O
+----OO-O----O--------O-OO
+-----OOOOO--OO-O-O--OOOO-
+------O-OOO---O-OO-OO-O-O
+-----OO-O--OOOO--OOOOO-O-
+----------OO--OOO-OOO--OO
+-------O---O-OOOOOOO----O
+--------O-O-OO----OO-OO--
+--------OOO-OOOOO-O--O-O-
+--------O----OO-OO----OOO
+----------O--O-OO-O-OO--O
+---------OOO-O-OOOO--OO-O
+-------------O-OO-OO--O--
+-----------O---O-OOOOOO--
+------------O-OOOOO-OOO--
+-------------OO-OO--O---O
+------------OOO--OO--O-OO
+-------------OOOOOOOOOO--
+--------------OOOOO-O----
+--------------OOOOOO-OOO-
+-----------------OOO-OO--
+
+------------------------------------------------------------------
+GEN: 16
+FIT: 12851.5
+STEPS: 7642
+
+-------------------------
+OO-----------------------
+--OOO-O--O---------------
+--OOO-OO---O-------------
+-O-OO----O-OO-OO---------
+O-OOOOOOOOO-OOO--O-OO----
+-OOOO-OOO---O-O--OOO-O--O
+O-OOOO-O-OOOO---O---OO--O
+O--OOO-O-OO---O-----OO---
+-O---OO--OO--OO-OO-OOOO--
+O---OOOO----OO-O---OO---O
+-O-OO---OO-O--O-OOO-OOO--
+O-OO-OOO--OOOOO-O-----O--
+OOOOOOOOOOOOOOOOOO--O-O-O
+O-O----O-OO-OO-O-O----OOO
+OOOOOOO--OOOOOO---OOOOOOO
+--O-OO--O--OOOO---OO-O---
+O-OOO-OO-OO-OO--O-OO-OOO-
+-OO--OOO---O--OO-O-OOO-OO
+-OOO--OO-OOO-OO-OO-O-OOOO
+O-OOO-O--OO-OOO--OO-OO--O
+O-OOOO-OO-OOO---OO--OO-O-
+O-O--OO--OOOOOOO-O-O---OO
+O-O-O-O-O----O---OO--OOOO
+OOO-O-OOOO--OO---OOOO--O-
+
+------------------------------------------------------------------
+GEN: 17
+FIT: 11515.5
+STEPS: 6948
+
+-O-OOOOOOOOOO-O-O-O----OO
+OOOOOOO-O-O--O-O----OOO--
+O--O-OO--OOO-OO-OO-O--O-O
+OOOO---OOO--O-----OOOOOOO
+O-OOOO-O--OO--O-O-OOO-OO-
+OOOOO-OOOO-O--OOO-----O-O
+OO-OO-O-OO--OO-O----O-O--
+OO-O-OOOO-OO--O--OOOO---O
+OOO--O----O---OOOO--OO-OO
+-O-OO-OO-OO-O-OO--OOOO--O
+---O--O--O-OOO-OOO---O---
+O-OO-OOOOO-OO-OOOO----OOO
+-O-O--OO-O-O-O-OOO-OO-O-O
+-OO-O-O-O-O-OO--O----OOOO
+-O-O-OO--O-O------OO----O
+---OO--OO----OOO------O-O
+OOO--O-OO--OO--O-OO----OO
+---O-OOOO-O-O-OO--OO-OO-O
+-OOOOO---OOO-OOOOO-O--OOO
+----O-OO-OO-OO--OOOO--OOO
+O--OO--OOOOOOOOO-OO-OO-O-
+O--O-O-O--OOO---O-OOO--O-
+O---OO-OOO--OOO--OOO-OO--
+--OO-OO-OOOOOO-OOOO-OO-OO
+O-----OOO-O--OOO--OOO--O-
+
+------------------------------------------------------------------
+GEN: 18
+FIT: 10237.5
+STEPS: 6272
+
+-----O-OOO-O-OO-OOO-OO-OO
+-OOOOO--O-OOOO-OO-O-OO-OO
+--O--O----O-O----O--O-OO-
+-----OOO---OO-OO-O-OOOOO-
+--OOO-OOOO-OOOOOO---OOOOO
+-O--OOOOOOO-OOOO----OOO-O
+--OOOO-OOO-OO-OO-OOOOO-O-
+-O---OOOOOOOO--O-OO--OOOO
+--OOO-O--O--O-OOOOOO-O-OO
+----OOOOOOO-OOOOOOOO--OOO
+-OOO-OOOOOOOOO-O-OOOOO-OO
+---OOO-OOOO--O-O-O----OOO
+---OOOOOO-OO-OOO----OOOOO
+--OOOOOO-OOOOOO----O--O--
+-O-O-OO--OO-OO---OOO-OO-O
+-O-OO-O-OOOO--OO-OOO---OO
+-OOOOOOOOOO--O-OO--O--O--
+--OOOOO---OO-O-O-OO-O-OOO
+--OOOOOO-OOOOOO-OO-OO-OOO
+--OOO-O-OO--OO-OOO--OO-OO
+----OOO--O-O-O-O--O-O--OO
+---OO-OO-O-----OO-O-OO--O
+---O---O-O--OO-OOOOO-OOO-
+--OOOO---O-OO-OOOO----OOO
+------OOO-O---O-OOO---OOO
+
+------------------------------------------------------------------
+GEN: 19
+FIT: 9287
+STEPS: 5597
+
+----OOOO---O-OO---OO-O-O-
+-OO--O--------OO--OOO-O--
+OO-O---OOOO-OOO----O-O-OO
+OO--OO-O-OO--OO---O-OO--O
+OOOO-O--OO-OOOO-OO--O--O-
+OO--OOOO-------OO--O-O--O
+OO----OOOO--O---OOOO---OO
+-OOO-OO--OO--OOOOOOOO--O-
+O-O--OO----O-O----O-O-OO-
+OOOOO--OO-O-OOOOOOO-OOOO-
+OO--OO--O--O-O--OO-O-O-O-
+-OOOOO--O--O---O-O---OO-O
+O-O---OO----OO----O-O--O-
+-OO-O-OO--O--OOOO--O-O---
+-O-OOOOO--O--O-O---O--OO-
+OOO-O---OO-O--OOOO-OOOOO-
+-O---O-O-O-OOO-O-O-O-OOO-
+-O-OO--OOOO-OOOOOO--OOO-O
+O--OOOOOOOO----OO-O-OOO-O
+-O--OOO---OOO-OO-OOO-O--O
+OO--OO-OOO-OOO-OO-OO--OO-
+-OOOOOO-O-O-O-OO-O---OOOO
+O-O--O-O--OOOOOOOO-OOOOOO
+OO-OOOOOOOO-OOOOOOO-O-O-O
+OOO----O---OOO-OO-O-O-OO-
+
+------------------------------------------------------------------
+GEN: 20
+FIT: 7432
+STEPS: 4641
+
+-OOOO---OO---O-----OOO--O
+OO--O--OOOOO---OO--O-OO--
+OOOOO-OOOOOO----OOOOOO-OO
+OOOOOOOOOOO--OOOO-O--O-O-
+O-OO-OO-OOOO-O-OO-OOOO-OO
+-O-OOOOOOOOOO-OO--OOOO--O
+O-OO-OOO----OO-OO--OOOO--
+OOO-OOOOOOOO-O---O--OOO--
+OOOOOOOOO-O---OOO-OOOOOO-
+OOOOO-O-O-OOO-O-OOO-OO--O
+OOO-OO-OO---OO-OOO----OOO
+OOO-O--O-OOOOO--OOO-OO-OO
+O-OOOO-OOOOOOOOOOOOOO-OOO
+OOOOOOOOO--OO-OOOO------O
+-O-OOO--OOOOOO-O---OOO-OO
+--OOO-O-OO-OOO-O---OO--OO
+OO-OO--OO-OOOOOOO--OOOO-O
+OO-OOOOO--OOO-OOOOO-OOOOO
+OOOOOOOOO-OOOO-OO-OOO--OO
+OOOOOOOOOO-O--OOOOOOOOO-O
+-O-O--OOOOOOOOOOOOOO-O-OO
+---O-OOOOOOO-OOOOOOO-OOOO
+OO-OOOOO-O-O-O-O-OO--OOOO
+O-O--O-O-O-OOOOO-O-OOOOOO
+-O-OO-O-OO-OO-OOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 21
+FIT: 8663
+STEPS: 5149
+
+--OOOO----OO-OOOOO-OOOO-O
+-O-OOOOOOOO---O--OO--O--O
+O-OOOO--OO-O-O-O-OO-OOOOO
+-O------O-O-OO-OOO-O-O---
+-OO-O--O-OOOOO-O-O---OO--
+---OO-OOO-O-OOO----O--OOO
+OOOO-OO--O-O-OOOO----OO--
+-OO--OO-OO--OOOOOO--OOOO-
+OOOO-O-O-OO--OO-OOOO---O-
+O-OOOO-OO-O-OOOOOO-OOO-OO
+---OO--O-OOOOOOOO-OOOOOOO
+-O-OOO-O-OOOOO--OO-O--O--
+-O-OOOOOO-OOOO--OO---OOOO
+OO-O----OOOO-OOO--OO-----
+O------OOO-O-OOOOOOOO-OO-
+-O---OOO-OOOOOO-OOOO--OOO
+-OOO--OO-OOO-OOOOO-OOOO-O
+O-OO-OOOO-OOOOO-OO---OO-O
+-OO--O--OO-OOOOO---O-OOOO
+O---OOOOO--OOOOO---OOO---
+--OO-O-O-O--O-OOO-O--OOOO
+O---O--O-O--OO----OOO-OOO
+O-OOO-----O-O--O---OOOOO-
+OO----O-OO-O-OO-O--OOOOO-
+O--OOO---OOO--O-O---O--OO
+
+------------------------------------------------------------------
+GEN: 22
+FIT: 13804.5
+STEPS: 8370
+
+-O-------OO--OOO-OO-O--OO
+OOO-O-OOO-OO--OO---OOO-O-
+--O--OOOOO--OOO--OO------
+OOO--OO--OOOO---OOOOOOOO-
+OOO-OO--O-O----OO-OOOO-OO
+OO-OOO---O-O-OOO-OOOOOO-O
+-OOO---O--OOOOO-O--OOO-OO
+-OO-OOOOOOOOOO-O--O-O-OOO
+--OO-OOOOO-O-OOO-OOOO-O-O
+-OOOO-O-OOOOO--OOOOOOOOO-
+-O--OOOOO-O-O-OO-OO-OO-OO
+OO---O---OO----O-OO-OOO-O
+-OOO-OOOO--OO--OOO-OOO-O-
+OOOOOOOO--O----OOOOOOO--O
+OOOOOOO----O-OOOO-O-OOO-O
+O--OOOOO----OO-OO-OO-OO-O
+O-OO-O--O--OOOO-O-OOOO-O-
+OO-O-OO-------OOO----OOO-
+O-O-O-OOO----OO-OOO--OOOO
+OO-OO-OO-OOOOOO---O--O-OO
+O-O--OOOOOOOO-OOO------O-
+OOO-OOO--OOOOOOOO--OOOOOO
+O---O-OO-OO--OOO-OOO-O-O-
+-OO-OO--O--O-OO-O-OOO-OOO
+OO--OO-OO-O-O-OOO-OOOOOO-
+
+------------------------------------------------------------------
+GEN: 23
+FIT: 8016.5
+STEPS: 4660
+
+-OOO-O----OOOO----OOOO-OO
+--O-O--O--OOO-OO----O-OO-
+OOO--OO-OOOOO-O-O---OO--O
+O--O-OOOO----OOO-O-----O-
+-O----OOO----OOOOO--O-O-O
+OO---OOOOO-O---O--OO-OOOO
+---OO-O-O--O-OO-O-O-OOO-O
+-OOO-OO--O------OO--OOO-O
+OOOOOOOOOOOOO---O-O-O--OO
+--O--O-O--OOO--OOOOOOOO-O
+-OOO--OOOOOO-OOOO-O-OOOOO
+---O----OOOOOO-O---O--OOO
+O-O-OOOOOO-O------OOOOOOO
+OOOO-O------OO---O-OOOOO-
+-O--OOO--O-OO-OOOOO----OO
+OO--O-OO--O--O------OO---
+-O-OOOOO--O--O--OOOO--O-O
+-O-O-O-O----OOO-OOO-OO--O
+-OO-O-OOOOOOOOO-OOOO---O-
+O-OO-----O-O-OO-O--O-OOO-
+OO-O-O--OOO-OOOOO--OO-O-O
+-O-O-O--O--OOOOO-OO-OO--O
+OO-OOOO-OO-OOO-O-OO--OOOO
+O--O-O---OO-O-O-OOO---O-O
+O--O--OOO-OOOOO-O-O---O-O
+
+------------------------------------------------------------------
+GEN: 24
+FIT: 6204
+STEPS: 3595
+
+---O---OOOOOO-O---OOOOO--
+-O-O--OO-OOOOOOOO--O--O--
+-O-O-O------O--OO-OO-O---
+-OO------OOO-----OO---OO-
+---O-O-OO--O-O-OO-OOOO--O
+-O-OO-O-OO-OO-O-O-O---OO-
+-O--OOOO--OOO--O---OOO--O
+--O--O-OO--OO-OO---O--O-O
+--OO-O-O-OO--O-------O-O-
+-----OOO-OOO----OOOOO--OO
+--O-OO-OOOO-O--OO-OO--OO-
+--O---OOOOOO-O-------O-O-
+---OO-OOOOO-O-OO--OOO--OO
+----O-O-OO-OOOO---OOOOO-O
+-----O-OOOOO-O-O----O-O-O
+---OOO-O---OO-OO--O-OO---
+---O-O----OOOO-O-OO-O-OOO
+-------OOO---OOOOOOOO-OO-
+---O-O-OO--O---O-O-O-O---
+---------OOO------OO---O-
+----OO--O-O--OOOOO---OOO-
+----OO-OOO--OOO--O-OO-OOO
+----OO-O-O--O--O---O-O---
+-----O--OO-O-OO------OOO-
+------O-OO-O--OO---O--O--
+
+------------------------------------------------------------------
+GEN: 25
+FIT: 13672.5
+STEPS: 8274
+
+OO-O-OOOO-O-O-OOOOOO-OO-O
+--OOOO-OO-OOOOO-OOOO-O-OO
+---OO---OO---O-O----O-O--
+-OO--OO--OO----O--O-OO--O
+-OOOO---O-OO-O---O-O-O-O-
+OOOOO-OO-O-O-O-OOO--O-O--
+OOO--OOOOOO-OOOO---O--OO-
+OOO--O-OO--O-OO-OO--O-O-O
+--OO-OO-O-OO-OO--OO-OOOOO
+OO---O-OOOOO---O-OO-O-O-O
+OO-O-O--OO--O--O--O--OOOO
+-O---O-OOOOO-O---O--OOO--
+OOO--OOO-OOO-O---O--OOO-O
+OO-OOOOO--O--O-OOOO--OOOO
+O--OO-OOOO-O-OOO-O----OOO
+-O-OOOO-O-OOO----OOOO-O--
+O--O-O-OOO-OOO-O-O-OOO-O-
+------OOOOOOO-OOOO-OOOOO-
+OOO--O-OOOOO-OOOO-OO-O--O
+OOOOOOOO--OOOOO-OO-OOOO--
+OO-OOO---O----OO-OOOO----
+O-OOO-O----O-O-O-OO---O-O
+OOOOOOO-----O-O-OOO-OOOO-
+--O-OOOOOO-OO-O----OO-O--
+OO-O--O-O-OO-------OO-OOO
+
+------------------------------------------------------------------
+GEN: 26
+FIT: 14808.5
+STEPS: 8790
+
+--OO-OO---OOOO--OO-OOOO-O
+------O-OOOOO-OOO-OO---OO
+-OOOO----O--OO--OO-O--O-O
+-----OO-OOO---O-OOO-O---O
+O---O--OO-O--O-O---OOOO--
+O---O----O-O--O---OO-OOO-
+---O--OOOO--OO-OO--OO-OOO
+--OOOOOO-OO-O---OO----O-O
+O--OOOOO----OO--O--OO--OO
+-----O-O-O--OO-O---O-O-O-
+O----O-O--O--O--OOOOOO-O-
+--OOOO-OOOOO-O-OOOOOO--OO
+O-OOOO---OOOO----O--OOOO-
+-O--O---O-OOOOO-O-O-OOO--
+O--OOOOO--OOO-O-OOOOOO--O
+OO-OOO---O--OOOOO-OO--O-O
+OO--O-OO-OO-O-OO-OOO-O-O-
+OO-O--O-OOOOOO-OOO-O---O-
+O--OOOOOOO-----OOO-O----O
+-OOO---O-----O-OOOOOOO-O-
+----OO---OOO---OOOOOOOOO-
+-O-OOO--OO--OOO---O----O-
+-OO-OOO-O----O--OO-OO--OO
+----OOOO--OOO-OO--O-OOO--
+O-OOO--OO--OOOOO-------O-
+
+------------------------------------------------------------------
+GEN: 27
+FIT: 7372.5
+STEPS: 4396
+
+-O-O--OO--OOOO--OOOOO--OO
+---O-OOO---O---OO---O--O-
+-O---O-O-O--OO-OO-O-O-O--
+O-O-OOOOOO---O-OOOOOOOOOO
+OO-OOOOO--O-OO--O-OO-OO--
+-O-OO-O-OOO-OOO---OOOOOOO
+O--O-O----OOO----O-OO-OO-
+-OOOOO--OO-OOO-OOOOOOO-O-
+O-OOO------O---O--O------
+O--OO-OOOO-O-OO-OO----O-O
+OO--O-OOOO-O-OO--O-O-OO--
+--O-OOO--O-OOO--O-O--OOO-
+O-O--O--O-OOO-OOOOO-OOOO-
+-O-OO---O-O-O-OOOOO--OO-O
+OO--OO-O---OOO-OO--OO--OO
+----O----OO-OOOOOOOOOO-O-
+O--O----OO-OOO-OO--OO-O-O
+-OO---O---O-O-OOO---OO---
+OO--OO-O----O-OO---O-OO-O
+-----OO--OOO-O---O--O---O
+-O-O-O---OO-O-OOO-OOOOO--
+OOOOOO--O-O--OO-OO---OOOO
+---OOO-OOOOOO-O-O-OO---OO
+O-O-OOO--O-O---OO-O-O-OO-
+--O---O---OOO-OO--O-O---O
+
+------------------------------------------------------------------
+GEN: 28
+FIT: 9881.5
+STEPS: 5686
+
+--OOOO---OO---OO-O-O--O--
+OOO---OOOOOOO-OOO-O-O-OOO
+--O-OOO-OO--O--O--OO--O-O
+OOOOO-O--OO------OOO-OOO-
+O-OOOO---O-O--O-OO-----O-
+---OO---OOOOOOO-OO-OO-O--
+OO-OO--OOOO-O-O--OOOO-OOO
+OOOOO-OOOO-OOOOO--O--OO-O
+O-OOOOO-OOOOOOO-O--O-OO-O
+OOO-OO--OOOOOOO-O-OO---OO
+O---O--O---OO--OOOO-OO---
+--OOO-OO--O-OO--OOO--O--O
+--OO-O-O-O-OO-OOOOOOO--OO
+--OOOO---O-OOO-O---O-----
+-O-OOO-OOO-OO---O-OO-OOO-
+OOOO-O-OOOOO--OOOO-----OO
+--O---OOOOOOOOOOOOO-O--OO
+-O-O--OOOOO--OO-OO-OO-OO-
+O--O-O-OOO--OOOOOO--OOOO-
+O---O--OO--OOO-OOOOOOOOOO
+OOO--OO-OOOOO-O-O--OOOOOO
+O-O-OOOO-OOO--O--OO----O-
+-O-O--OOO---O--O-OO----O-
+-OOO-OOOOOO--OOO--O-O-O--
+-OOO-O--OO--O-OO-OOOOO-OO
+
+------------------------------------------------------------------
+GEN: 29
+FIT: 11834
+STEPS: 7267
+
+-O---O--OO-O---OO-----OO-
+OOOOOO-OO-O-OOOOO-O---OO-
+OOOO-O-O-OO-OOO-O--OOOO--
+OOOO-O-OOO-OOO-O--OOOOOOO
+O-O-O-O-OOOO--O-OO--O---O
+--O--OOOO-OOOO-O---O--O--
+--OO-O--OOO--O-O----OOO-O
+-OOOOOOOOOOOOO---O----OO-
+OOOOO--OOO--OO-O-OOOOOO--
+OOOOOOOOOO--OOOOOOOO--O--
+O--O-O--OO--OO-OO---OOOOO
+OO--OOO-OO-OOOOO-OOOOO-O-
+OO-OO--O-OOO-O-OO-O-OOOOO
+OO----OOOO-OO--OOOOOOOOO-
+O-OO-O--OOO---O-OO--OO-OO
+OOOOOOOOOOOOOO-O-OOOOOOO-
+-O--OOOOOOOOOOOOOOOOO-O-O
+OOOOOO-O-O-OO--OOOOOOOOO-
+OO-O-OOOO--O-O-O-O-OOOOOO
+OOOOO---O-OO---OOOOOO-O-O
+--O-OO-O--OOOOOO-OO-OO-OO
+--O---O--OO--OOOOOO-OOOO-
+OO---O--O--OO-OOOOO--O-OO
+-OOOOO--O-O-OOOOOOOOO-OOO
+OOOOOO-O-OO-OOO--O----OOO
+
+------------------------------------------------------------------
+GEN: 30
+FIT: 9746.5
+STEPS: 5938
+
+-----OOOOO-O--OOOOOOOO-OO
+O-O-OOOO--OO-O-OO-OOO-OO-
+OO-OOO-O----OO-O-O-O-O-O-
+OOOOOOO-O-OO-OOOO-OOOOO-O
+-OOOOOO-OO-O-OO-O---OOOOO
+-O-OOO-O-O-OOOO--O--OOOO-
+OOOOO------OOO----OOO----
+O-OOO-O--O--OO-OOO-OOO--O
+O--OO---OO--OOO-OOO--O-O-
+-O-OOOOOOO-O-OOO-OOO-O--O
+-O-O-O-O-O---O---O-O--O-O
+--O-O-OOOOOOOOO-O--OO-OO-
+OO-O-O-OOOO--OO--OO-O-O--
+----O-OOOOO-OO-----O---OO
+-O-OOOOOOO-OOO-O----O--O-
+OO-OOOOO-O-O--OO-O-OOO-O-
+OO--OOO---OOO-OOOO-O-O-OO
+O--OO--OOO--OOOOOO-OO---O
+O--O---O-O-O-OO-OO-OOOOO-
+--OOO-OO--OO--OOOOO-OOO--
+-O----OOO-O-OO-OOO-OOOOOO
+OOO-O-O-O-OOO--OOO---OOOO
+--O--O---O-OO--OOOO--O-OO
+-O-O--O-----O--OOOOOOO-OO
+O-O-OO--O-OO----OOO---OOO
+
+------------------------------------------------------------------
+GEN: 31
+FIT: 15838.5
+STEPS: 9476
+
+-OOO-OO-O-OOO----OOO-O-OO
+-O----OOOO-O-O---O-OO---O
+O-OOOOO-O-O-OO----OO-OOO-
+---O----OO-O-OO-OOO---OOO
+OOOOO--O--O-O--OOOOO---OO
+---OO-O----O--OOOOO-OOO-O
+OOO-OO-O--O--OO--OO-OO-OO
+O---OOOO-O-OOOO-OOO---OO-
+-OOOOOO-OO-O-O-OO-OO-OOOO
+-OOOO-OOO-OOO-----OO-OOOO
+---O----OOO-OO--OOO-OOO--
+OOOO-OOO-O-O-OO---OOOO-OO
+-OOO-----OO--OO---OOOO--O
+----OO-OO--OOOO-OO-OO-OOO
+O----OOO-OOOOO-OOO-OO---O
+O---O--O-OO----OOOO-O-O--
+O-OOO----O-O-OOOO----O---
+-OOOO--O----OOO-O-OO-O-OO
+OOOO----OOOOOOOO-OO---O-O
+--O--OOO-OO-O--OO-O----O-
+--O-OO--OOOOOO-O-O-----OO
+OO-OOOO-OO-O-O--OOOOOOOOO
+OO-O-OOO-O---OOO----OOOOO
+O---OOOOOOOOOO-OOO-O--O-O
+----O-----OOO-O-O--O-OOOO
+
+------------------------------------------------------------------
+GEN: 32
+FIT: 7461.5
+STEPS: 4410
+
+-OO-OO-O-OOOOOOOOO-O-O--O
+--O-OOO-O-OO-OO-OOOO--O-O
+-OO-----OO--O-O-O-O-O--OO
+OO-O-OO---OO-O--O--O-OO--
+OOOO-O--O--O-OO--O-OOOO-O
+---OOOO-O-OOO-OOO-O-OOO-O
+OO-OO-OOOO----OOO-O-O-OOO
+-OOO-----OO-O-O--O-O-OOO-
+--O-OOO-OOOO-OO-O-O-O-O-O
+--O--OOOO-O-O-O-O-O--OO--
+OO-O-O-O-O-OOO--O-----OOO
+-----OOOO-O-OOO--O----O-O
+OO-OOO---OO-OO-O-O-OOO--O
+-OOOOOOO--OOO-----O--OO-O
+-O-OOOO--O-O-OOOOOO--OO--
+----OO--OO-----OO--O-OO--
+-OO-OOO-O-O-O-OOOOOO-----
+--OOO-O-OOO---O---O--O-OO
+---OOOO--O-OOOO-O---OOO-O
+O-O--OOO--O-OO---O----O--
+O-----OO---OOOO-O-O-O---O
+OOO-OOOO----O-OOO-OO-O-OO
+O-O--O-OO---O--O---OOOOOO
+-O--O---OO-O--OO-O--O---O
+O-OOOOO--OO----O-OO-OO--O
+
+------------------------------------------------------------------
+GEN: 33
+FIT: 15498
+STEPS: 9097
+
+-------------------------
+--O-O-OO--O--O--O-O-OO-O-
+-O--O-O------O---OO--OO-O
+O----OOOO--OO-O-O--O-O---
+O-O-O---OO--O-OO---O--O--
+O--OO-O-O--OO-O-OOOOOO---
+--OO--OOO--O-OOOOO---OO--
+O---O---O--O--OO----O--OO
+-OO---OO--OOOOOO--O--OO-O
+OOO-O-O----O-OOO----O--O-
+O-OOO-OOOO-O-OOOO-OOO--OO
+O-O----O-O-O-O-O-OO-OOO--
+O-O-OO-OO-OOO-O-OO-OO-OO-
+O-----OOOOO-OO--OOO--OOOO
+---O-O-OO-O-OO-OOOO-OOOOO
+-OOOO----OO--OO-OOOO-OO-O
+OO-O----O-O-OO----OO--OOO
+O----O-----O---O---O----O
+OOO-O--O-OOO---O----OO--O
+---O-OO-OOOOO-OO--O-O-OO-
+--OOO---O-OO-O---OOO----O
+--OOOOOOO--O--O-OOO-O--OO
+OOOOOOOOO-OO---O--O----O-
+-OO-O-OO-O-O-O----O-O-O-O
+-O--OOOO---OOOOOOO-O-OOOO
+
+------------------------------------------------------------------
+GEN: 34
+FIT: 8465.5
+STEPS: 4930
+
+-------------------------
+-O-----------------------
+------OO-O---------------
+---OOOO-OO-O-O-----------
+------OO-O--OOO--OO------
+----OOO---O-O-OO-OO---O--
+----OO-O-O-O--O-----O-O-O
+---------OOOOOOO--O-O-O--
+--------OOOO--OOOOOOO--O-
+-------OO-O---OOOO-OO-OOO
+--------O--O--OOOO-O---O-
+-------OOOO-OO-O-O---O-OO
+--------OO-----O--O---OOO
+------------O--OOOO-O--O-
+----------O-OOO--O---O--O
+-------------OOOOOO----O-
+--------------OO-OO-O--OO
+------------O----OOOO-OOO
+------------OO--OOO--O-O-
+--------------OOO---OO--O
+-------------O----OO---O-
+---------------OOOOOO--OO
+--------------OOO--------
+---------------O-O-O-OO-O
+-----------------OO-O-O-O
+
+------------------------------------------------------------------
+GEN: 35
+FIT: 10766
+STEPS: 6507
+
+-OO-OOOO--O--OOO---OOOO--
+O--O--OO--OO---OO-O-O--O-
+---OO-O-----O-------OOOO-
+OO--O-O-OOO--OOO-OOO-O-O-
+OO---OOO-O-OOO-OOO--O-OO-
+OOOO-O-OOOO--O-OOOOO-O-OO
+--O---O--OOO-OO--OO-OO-O-
+O--OOOO-O-OO-O-O---O-O-OO
+--OOO-OOOO-O---O-O---OOOO
+O--O-O-O-OOO-OOOO-OOOO---
+OO-OO-O-OOO-O-OOOO--O--O-
+O-OO----O--O--OOO--OOO--O
+OOO-OOO-O-OOOOOO-----OO-O
+O-O--OO-OO--OO---OOOOO-O-
+-O---OO-OO-O--OO-OO---OOO
+--O-O--OOOOOOO-OOOO----O-
+OO--O-O-O-OOOOO-OOO-OO--O
+O-OOO--OO----O-OOOOOOO--O
+OO--OO-O-OO-OOOOOO----OOO
+O-OO-O---OO-O-OOOOOO-OOOO
+OOOOO-OO-O--OOO--O-O-OOOO
+O-OOOO-O-O-OO-----OO-O-O-
+--OOOO-OOO-OO---O-O-OO---
+--O---O-O-OOOOOO--O------
+OOO-O-O--OOO-O-OOOO------
+
+------------------------------------------------------------------
+GEN: 36
+FIT: 9368
+STEPS: 5705
+
+-OO--OOOOOOO-OOOOOOO-O-OO
+-OO-OOOO---O---OO--O-O-OO
+O-OOOOO--O--OOOO--O-OOOOO
+-O-O-OO--OOOO-OOO-OOOOOO-
+-O-O-OOOOOOOO-O-OOOOO-O-O
+----OO-O-O-O-OO---OO-OOOO
+-OOO-OOO-O-OO--O--O-O-OOO
+-OOOOOOOO-OO--O-OOOOOOOOO
+-OO-OO---O--O--OOO-OO--OO
+--OOO-OOOO-OOOOO-O-OOO-OO
+---O-OOOO-OOOOOOO-O-OOOO-
+-OOOOO-OOO-OOOO-O-OOOO-OO
+-O-OOO-O---OOOO--OOOOO-OO
+-OO-OO-OOO----OOOOOOO---O
+--O-OOOO-O--OO-----O---OO
+-OOOOO--OO--OOOO--OOO--OO
+--OO--O--OOOOOOO-O-OO--O-
+-OOOO-OOOOOO--OO-OOOO-OOO
+-OOO--O-OOOOO-OO--O---OOO
+-OOOO----O-OOOOOO-OOOOOO-
+--OO---OO--OOO-OOOOO-OOOO
+----OOOOO------O-O---OO--
+-OO-OO-O--O-OO-O-OOOOOO-O
+-O-OOO-OO----OOOOOO-O--OO
+-OO--OO-OOOOOOO-OOO--O-OO
+
+------------------------------------------------------------------
+GEN: 37
+FIT: 7611
+STEPS: 4653
+
+-OOOOOOO-OOOOO---O-OOOOO-
+-OO-O-O--OO---O---OOOOOOO
+-OO--O--OOO--OOOOO---OOOO
+OO-OO--OO--OOOO--OOOOOO-O
+-O--OOOOOOOOOOOOOOOOOOOOO
+OO--O-OOOOO--OO-O---OOOOO
+-O---OOO--OOO--O-OO-OOOOO
+-O-OOO-O-OOOOO-OOO--OOO--
+OOOOO-OOOOOOOOOOO---OOOOO
+O-O-OOOO-OOO-OOOOOOOOO-OO
+----OOOOOOO-OOOOOOOOOOOOO
+-OOOOOO--OOO-O-O-O-OOOOOO
+OOOOOOOO-----OOOO-OO-OOOO
+O-OOOOOOOOO--OOO-OO-OOOOO
+-O-O---O-OO-OOOOOO-OO-OOO
+O--OOOOOO-O-OOOO-OOOOOO--
+OO-OO---OOO-O-OOOO-O-OO-O
+-OO-O--O-OO-OO--OO-O--OO-
+O---OOOOO-O---O-OO-OOO-O-
+O-OO-OOOOO-OO--O--OOOOOOO
+OOOOO-O-OO-O-O-OO-OO-OOOO
+O-O-OO--OOOO-OOOOO-OOOOOO
+-OOOOOOO-OO-OOOO-OOOOOO-O
+O-OOOOOOOOO-OO--OOO-OO-OO
+OO-OOOOOO-O-OOOO-OOOOOOO-
+
+------------------------------------------------------------------
+GEN: 38
+FIT: 11662.5
+STEPS: 7018
+
+OOOOOOO---O-O-------O--OO
+-OO-O--OO--O--OOOOOO--OOO
+OOOOOO---O---OOOO---OOOOO
+OO-OOO----O--O--OOOOO-O-O
+OO-O---OO-O-O--O-O--OO-OO
+OO-OOOOOO-OOOOOO-OOOOO--O
+-O--OO-OOOOOOOO--OOOO-O-O
+OO-OOOOOO---O-O--O-OO--OO
+--OOOOOO-OO-OOOOOOOO-OOOO
+-OOOOO-OO-OOOOO---OOO-OOO
+OOOO-OOO-O--OOO---OOO-OOO
+O-OO-OOO-OO-OOOOO-OO-OOOO
+OOOOO-OO--O--OO-OOOOO--OO
+---O-O----O-OO--OOOOOOOO-
+OOO-OOOOOO-OOOOOO-O--O-O-
+O----O-OOOO-OO-OO--O-O--O
+O-OO---O-OO-OOOOOO-OOO-OO
+-O-OO-OOOO-OOOO-O----OOOO
+-OOO-O--OOOOO---OO-O--O--
+O-OOOO-OO-OOO-OOOO--OOOOO
+--O-O-O---O-OO-OOO-O-OOOO
+-O--OO-OO-OOO-OOOO-OOOOOO
+O-OOOO-OOOO-O---OO-OOOOOO
+-O-OO-O-OO-O-OOOOOO-OOOOO
+OO-OO-O--OOOOOO-O---O-O--
+
+------------------------------------------------------------------
+GEN: 39
+FIT: 8421.5
+STEPS: 5024
+
+-OO--OOO---OOOOO-O--OOOOO
+--O--OOOOOOO-OOOO-OOO-OO-
+O-O--O--OOOOOO-OOOOOOO-OO
+-O--OO-OO-OO-OOOO---OOOOO
+--O-OOOO-O--OOOOOOOO-OOOO
+-OOOO-OOOOOO--O-OOOOOOOO-
+O-O-OOO--O---O--OOO-OOO-O
+OOOOOOOOOOOO---O--OO-OO-O
+OO-O-O-OO--O-OOOO-O-O--OO
+O--OOOOOOO-OO--OOOOOOO-O-
+OO-OOOOOOOOOO-OOO-OOOOO--
+OOO-OOOOOO--O-O--O-OOOOO-
+OOOO-OOOOO-OO-OOO--OOO-OO
+OOOOOOOOOOOO-OOOOOO-OOOO-
+OO-OOO--O--OO--O-OOOOOO--
+O-OOO-OOOO-O-O--O-O-OOO-O
+OOO--OOOOOOO-O-O-OOOO--OO
+OO-OOO-OOOO-O-OOOOOOOOO-O
+O--O-O-OOO--O-OOOO-OO-O-O
+--O-OOOOOOOO-OOOOOOOOOOOO
+OOO-O--OOOO--OOOOOOOO-O-O
+OO-OOOO---OOOOOOO-OOOO-OO
+-OO-OO--OOOO-O---OOOOO--O
+OOOO-OO-OO-OOOOOOO-OOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 40
+FIT: 6367.5
+STEPS: 3874
+
+-O-OO-----O----O-O--O-O-O
+--OO-O--OOOO-O-O-OOO---O-
+-OOOOOOOO-O-O--O--O-OO-OO
+---OOO--OOOOO--OOO---OO-O
+----OOO-OOOO---O-O-O-O-O-
+-O-OOOO--O-OOO-OOOO---O--
+-OOOOOOO---O-O-OO--O-OOOO
+-OOO-----O-OO--O-OOO-OO-O
+-O-O----OOO-OOO-OOOOOO---
+--OO-O----OOO-OOO-OOOOO--
+--O----OOO-O--O-OO-OO-O--
+---OOO-OOO-O----O-O-O-OOO
+----O--OOO--OO-------OOOO
+O-OOOO-O-OO-OO--OOOOO--OO
+----O--OOOOO-O-O-O-O-OOOO
+-----OO--O--O-OOO-O-OO-OO
+--OO-OO-OO-O--O-O-OOO----
+---O-OO--OOO-OO-OOO--OOOO
+--OO-O-O-O-OOO-O-OO--O-OO
+----OO-OO-OOOO-O-OOOO-O--
+----OO---O---OOOO--OO----
+-----O-O-O-OO-OO-----O---
+---O-OO----O-O-O--O--OO--
+---O-OO--OO-O-O---OOOOO-O
+---OO-O-O-OO-O-OOO---O-OO
+
+------------------------------------------------------------------
+GEN: 41
+FIT: 12864.5
+STEPS: 7876
+
+-OO-O-O-O-OO-OOOOOO-OO-O-
+-O---OOO-O--O-OOO-OOO---O
+-O-O--O-OOO-OO-OOOO-OO-OO
+--OOOO-OOOOOO-OO-OOO--O-O
+-O-O-OOOO-OOO-OOOOO-O---O
+-OO----O-OOOO-O-OO-OO-O-O
+--O--OO--O-O----OOO--O-OO
+--O--OO-OOOO--OOOOOOOOO-O
+---O--OOOO-O-O---OO-O-O--
+--O---O----OO---O----O--O
+--O--OO-OO---O--O--OOOOOO
+---OO-O-O-OO---OO-O---OO-
+----O-OO-O--O--OOO--OOOOO
+----OOOO-O--O--OO-OO-OOOO
+---OOO---O-OO--OOOO-OOOOO
+---O-OO--OO-OOO--OOOOOO--
+---OOOOOO-OOO-OO-OOO----O
+------O----O-OOO-O-O--OOO
+----OO-OOO-OO-O-OOOO-OO--
+----O--O--OO-OOOOOOO-OO-O
+-------OOOOO---OOOO-OOOOO
+----O---O----O---O--O--O-
+-------O---O-OOOO-OOO----
+------OOOOOO-OOOOO-O--OO-
+-----OO-OOOOOO---O--O--OO
+
+------------------------------------------------------------------
+GEN: 42
+FIT: 8461.5
+STEPS: 4998
+
+--OO-OO-O------OOOOO-OOO-
+OOO-OOOO--OOO--OO-OOOO---
+O--O--O--O-O--OOO-O--O-OO
+--OO--O-O-OOO-OO-OOOO-O-O
+-O-O-O-O--OO--O-OO--O--O-
+O-OO--OO-OO-----OO-OO-O-O
+O--O-O-O-OOO--O-O----O---
+O--OOOO-----OOOOOOOO-----
+O---OO-O-OOO-OO-OO-OO----
+O--OOO---OOO---OO-O-O-OOO
+--OO----OOO-O-O-O-O---OOO
+---OOOO----O--O-OOOOOO--O
+-OOO--OO-OOO-------O----O
+-OOO-O--O----OOO--O-OO-OO
+O--O---O--OOO---OOOOO-O--
+-OOOOOOOO-O-O--O-OO---OO-
+-O-OO-O--O---O-OO-OO-OO--
+OO-OOOO-OOO----O--OO--OO-
+O-OOO-OO----O-OOO---OO-O-
+-----O--O-OO-O---OO-O--O-
+-OO--OOO---O--OOO--O-O-O-
+OO-OOOOO-OO-OO-O--O-O---O
+O-OOO-OO-OOOOOOO--O-O----
+-O-----OO-OOOO-OOO--O-OO-
+OOOO-O----O---O--OO-OOOO-
+
+------------------------------------------------------------------
+GEN: 43
+FIT: 6216
+STEPS: 3869
+
+--OOOOO-OO-O---OOOOO-O---
+OOOOO-OO--OOO-OOO-O-O---O
+-OOO-OO----OOOOOOO-O--OO-
+OOO--OOO---O-OOOOO--OOO--
+-OOO-O--O-O-O-O-O----O-O-
+-O-O-OOOOOOOOO-OOO-OOO-OO
+O-OOO-OOO-OOO-O--OOOOO-OO
+O-O--OOOOO-O-OOOO---OO-OO
+----OOOOOOOOO-OO-OOO-O--O
+OOO-OOOOO--OO-O-OO--OO---
+OO-OO-OOOOOO---O-O--OO---
+OOOO-O-OOOOO--OOOO-OO---O
+OOO---OO-O-OO--O-OOO-O-OO
+OOOOOOOO-OOOOOOO-OOOOO--O
+OOOOOOOOOOOOOO-OOO-OOOOO-
+OOOO-O----OOO-OO-OO-O-OO-
+OOOOOO-OOO-OOOO-OO-OO-OOO
+OO-OOOOOOOOOOOO-OO-O-OOO-
+OOOOO-OO-O-OOO--OO--O-OOO
+-OOOOOOOOOO-OOO-OOOO-OOOO
+OOOO--O--O--OO--OOOOO--O-
+OOOO-OOOOOO-O--OOOOO-OOOO
+OOOOOOOO--OO-O-O--OO-OOO-
+OOOOOOOO-OOO-OOOO--OO-OO-
+OOOO---OOO---OOOOO-OOO-OO
+
+------------------------------------------------------------------
+GEN: 44
+FIT: 10513.5
+STEPS: 6334
+
+--O-O----O-O-O-OOOOOOO--O
+OOO---O-O-O---OO-OOO-OO-O
+OO-OOOO------O---OOO--OOO
+--O--O-O--OOO-OO-O-OO-O-O
+O--OO--O--OOO-----OO---O-
+-OO-O--OOOO-O-OOOOO--OO--
+OOOO---O-OOO-O--OO--O-O--
+OOOOO-OOO---OO--O--OO---O
+-O-------O---OOO-O--OO---
+OOOO--OO-OOOO-OOOOOOO-O-O
+OOO-OOO--OOO----O--O-O---
+-OOO-O--O-OOO--OOOOO-OO-O
+-OOOO-O-O--OOOO-OO-O-OOOO
+O-O-O-OOOOO----OOOOO-OOOO
+-OO-O-O-OO-OOOOO--O--O-O-
+OOO--OO----O-OOOOOOOO-OOO
+OO-OOOOOOOOOOOO---O-O-O--
+-O-OO-O--OO-OO---OO--O--O
+OO-O---OOOO-O---OOOOOO-O-
+O-O----O--OO-O-OO-OOOO--O
+--O-O---O-OO-O--OOOO-O---
+O-O-O-OO---O-O-OOO-O--OOO
+-OO-OOOOOO---OOO-OOO---OO
+OO-OO---O-OO-O----O--O--O
+-O-O-OO-OO----OOOO-----OO
+
+------------------------------------------------------------------
+GEN: 45
+FIT: 11762
+STEPS: 6979
+
+--OO-OOOO------OO--O--OOO
+-O-O-O----OOOO---OOOO--OO
+OOOO-O---OOOOOOOO---OOO--
+---OOO-O---O-OOO-O---OO--
+O---OO-OO--O--OO-OO--O-O-
+OOOOOO-OO--O-O-----O--O-O
+--O--O--O-OOOOOO--OO-OOO-
+O--O-OOO--O-O-OO-O--OOOO-
+---O--OO-----O---OOO-OOOO
+OOO------OOOO--O---O-OOO-
+-OO-O---O-----O-OO----OO-
+O-O-OOO-OOOOOOOOO--O--O-O
+--O-O-O-OO--OO----O-O-O--
+OO-O-OOOO-O-OOOO----O-O-O
+O-OO-OO-OO-O-O--O-O--OO--
+OOO--OO-OOOOOO---O--OOO-O
+O---OO--OOOOO-O--OOOO-OO-
+OOOOOOO-OO--O-OO--OOOOOO-
+-O-O-O-O-O----OOOO--OOOOO
+O--OO-O---O-O-O-OOO----O-
+OOOO--O--O---OO-O--O---OO
+------OO---O-O-O--OOOOOO-
+O--O-OOO-OOO-OO-OO-OOO-O-
+O-OO-OO-OOO-O---O-O-OO--O
+-OO--OOO--OOOO--OO-OOOO--
+
+------------------------------------------------------------------
+GEN: 46
+FIT: 8410.5
+STEPS: 4468
+
+-OO--OO--OOOOOO-OO--O-O--
+-OO-OO--OOOOO-OO-OOOOOOO-
+OOO----OOOOOOOOOOOO--O-OO
+O-OOOOOO--O-OO---O-------
+O-OO------O--OO-O-O-OO-OO
+OO-OOOOO-OO-OOOOOOO-OO---
+--O-O-O-OOO-OOOOOOOO-OOO-
+OO--OOOOOOO-OOO--O-O--OOO
+OOOOOOOOO-O--O-OOO-OOO-O-
+O-O-O-OO-OO----OOO-O-OOO-
+O-OOOO--OO-OO-OO-O-OOOO--
+OOOOOOOOOO-O--OOO-O--OO--
+---O---O-O----O--OOOO---O
+-OO---OO-OO-OOOO---OOOOO-
+O-OO-OO--O--O-O-OO-O-OO-O
+-O--O-O-OOO--OO--OOO-OO--
+OOOOOO--OO-O----O-OO-OO-O
+-OO-----O----O---O---O-O-
+OO--OOO-----OOOOO-OO-OO-O
+OOOO----OOO---OO---OOOOOO
+OOOOO-O-OOOO-OOO-O-O--OO-
+OOO--O--OOO-O-OOO-O----OO
+----O---O-O--O-O-OOO-O-O-
+---OOOOOO--O-OO-O---OOO--
+OOOO-OOOOOOOOOOOOOO---O-O
+
+------------------------------------------------------------------
+GEN: 47
+FIT: 9219.5
+STEPS: 5712
+
+---OOO-OO-OO--OO---OOOO-O
+---OOOO-OOOOOOO-OO-OOO-O-
+-OO-O-OO---O--O-O---OO-OO
+O-OOOOO--OO-O-OOOOOOO-OOO
+OOOO-OOOO--O--OO--O-OO-OO
+OO-OOOO--OO-OOOO--OOO-OOO
+O--OOOO-OO-OOOOO-O------O
+OO-OOOOOOOOOOOO-OOO-O---O
+-OOOOO-O-OO-OOO-O--OOO-OO
+O----OOOOOOO-OOOOOOO-OOO-
+OO-OOOO-----OOOO-OO--OO--
+O-OOOO-OOOOOOOO--O-OOOO-O
+O--OO-O-O--OOO-OOO-OOO-OO
+OOOO---O--OOOO--OOOO--OO-
+OO-OOO-OOOOOOOOO-OOOOO-O-
+-O-OOOOOOOO-O--O-OO-O--OO
+O--OOOOO-O---OOOOO-OO-O--
+OOO-OOO-OOO-OOOOOOOO-OOOO
+O-OO--O-OOOOO--OOO-OOOOOO
+OO-OO-OOOO-O-OOOO-OOOOOOO
+OO-O-OOO-OOO-O--OO-OOOO-O
+OOOO-OO-O-OOO-O-O-OOOO---
+OO-OOOOOOO-O-OOOOOO--OOO-
+OO-O--O-O-OOO-O-OO---OOO-
+OO-OOOO--OO---OOOOO-OOO-O
+
+------------------------------------------------------------------
+GEN: 48
+FIT: 9226.5
+STEPS: 5206
+
+--OO--OOO-OOO---OO-------
+--OO-OO-O-OO----OOO-OO-OO
+-O-O-O-OO--OO----O---OOO-
+O--OO-OO--OO---OO----OOOO
+O-O---O-O-OO-----O--OOOOO
+---OO-O-OOO-OO-O-OO-O-OOO
+O---O-O--OO---OOO-O--OO--
+-OO--OOOOO--OO-O-O-O--O--
+-OO---OOOO-OOOO--OOO-OOO-
+OOOO-O-OOO--O-OO-O-----O-
+O---OOOO--OO-O--OOOOOOOOO
+OOOO----OOOO---OO-O-O----
+--OOO-OOOO-O--O----O-O--O
+-OOOOOO-O--O-O-OOO-O--OO-
+OOOOOO-O-O-OO-OO-OOO-OO-O
+---OOOOOOO-OOO--OO-O-O-O-
+-OOOOO---O----O--OOO--OOO
+OOO-O-OOO---OO--OOOOOO-OO
+OOO---O-OO-OO-OOO--OO-OO-
+---OO-O-O-O-O-OOOO-OO--OO
+O---O--------OOO---OO-O-O
+O--O-O-O--OOOOO-O-OOO-O--
+O----O--O-OO-OOO-----OO-O
+-----O--OOO-O-OOOO--OOOO-
+---OO--OOOO-OO-OOO----OOO
+
+------------------------------------------------------------------
+GEN: 49
+FIT: 8412.5
+STEPS: 4734
+
+O-O---O---O-OOO-O----OOO-
+OOO---O--OO-OOOO-O----O-O
+-O-OOOOOO-OOO--O-O-O--O--
+O--OOOOO---OO-O-OO--OO--O
+O-OO-OOOO---OO-O-O---O-O-
+-OOOO--OO--O--O-O-OO-O--O
+O---OO-O-OOOOO--OOOO-OO-O
+-OOOOOO-OO-OOOO-O-OO-O-OO
+---OO-O-O--OOO-----OOO-OO
+O-O-OO-OO-OOO-OO-OOOOOO-O
+OO--OO---O-OOOO--O-OO-OOO
+O---O-OOOO-O--OOOOOO-O---
+OO--O--OOOO---O----OO-OO-
+O--O-OO-O----OO-O-O--OO--
+O-O-OOOO--OOO-OOOOO-OOO-O
+------O---O-OO-OOOO-OO-OO
+OO-OOOO--O-OOOOOO---O-OO-
+-O-OO---OOOOOOOOO-O-OOOOO
+-O--O--O--OOO----O---OO-O
+OOO---OO--OO-O-OO-O-O-OO-
+OO-O-OOOOO-OOO-OO---OO--O
+OOOO-OOO-OOOOOOO-OOOO-OOO
+-OO--O-OO--O-O---OO-OOOOO
+O-OO-O-----O-OO-O-O-----O
+O-OOO-OOOOO-O-OO-OO-----O
+
+------------------------------------------------------------------
+GEN: 50
+FIT: 14268
+STEPS: 8277
+
+OOOO--O-OOO-OOOO-OOO---OO
+O-OOOOOOO-O-OOO-O-O---O--
+O-O-O-O-O-O---O-OO--OO-OO
+OOOO---OO-OO-O---OOO-O-OO
+OOO---O-OOO-------OO-O-O-
+--OO--O-O--OOOOOOO-O---O-
+O-OO--O---O-OOOOO-O------
+---OO-O-OO-OOO-O-O-O--OO-
+OOOO---OO--OO-O--OO-O-O-O
+O--OO--OO-O-------O--O---
+OOOOO-OOOOO-O-----O-O---O
+-O----O--O----OO-----OO--
+-OO-O-O--O-OO-OO---O-O--O
+OO-OO--OO-O-OO-O-O-O--O-O
+OOO-O-O-OO-OOOO--O-OOO-OO
+----O--O---OOOO---O--OO-O
+-OOOOOO-O----OO--OOOO---O
+O---OO-O-O---OO-OO-OOOOOO
+O--O-OOO--OOOOO--O--O-OO-
+--OO---O--OOO-OO-OOO-OOOO
+--OO--OO-O---OO-OO-O---OO
+O--OO-O--OOOO-OOOO---OO-O
+OO-OOOOO---O-OO--OOO-OO-O
+-O-OO--OOOOO-O-O-OOO-O---
+-O--O-O--OO-O-OO--O-O-OOO
+
+------------------------------------------------------------------
+GEN: 51
+FIT: 7979.5
+STEPS: 4706
+
+-OOO---O-OO-OOOOO-O-OO-O-
+--O-O-O--O---O-OOOOOO-OO-
+--OO----OO--O--O---OOO-O-
+-OOOO-OO----OOOOOO----OOO
+-OOOOOO-O-OOOOOOO--O--OOO
+--OOOOO-OO-OOOOOO-OOOO-O-
+-O--O--OOOOOOOO--OO-OOO-O
+--OO--O--O--O-OOOOO--OOOO
+---OOOOOOO--OOO--O-OOO--O
+-----O-O----O--O-OOO-OOO-
+---OOOOO--OOO-O---OOOOOOO
+--OOOO-OOOOOO--OOO-OO-OO-
+--OOO-OO-O--O--O--OOOOOO-
+----OO--OO-O---O-OO-OO-OO
+----O---O--OO--OO-O-OOOOO
+--------O-O--OO---OO--OOO
+---------OOO-O-OOOOOO-O-O
+---OO--O-OO----OOO-OOO-O-
+-------OO---O-O-OOOO-O--O
+-----O--OOO-O---OOOOOOO-O
+----O---OO----OO-OO--O-OO
+-------OO-OO--OO-OO-O-OO-
+----O-O-OO-OOO--OOO--O-OO
+-----O-OOO-OOOOO--OOO-OO-
+----O--OOOO-OO-OOOOO---O-
+
+------------------------------------------------------------------
+GEN: 52
+FIT: 8946
+STEPS: 5301
+
+O--OO--O--O---O---OOOOO--
+OO-O--O-O-O--O-OO-O------
+----O-O-OO--O--O-----O-O-
+-OO-OO-OOOOOO--OOO-OOOO--
+O------OOO--O--OOOOO-O-OO
+-O-O-O-O-O--OOO-O---O-OO-
+O---OO---OO--OOOOO-O---O-
+---OO-OOO--O-OO--OO-OOO--
+O--O--O---O-OO----O-OOO-O
+O--OOO--OO-OO-OOO------OO
+--OO-OOOOO--OO----OOO--OO
+OO-OO-O-O-O-O---O-OO-OO-O
+---------O-OO-OOOO--OOO-O
+---OO-----O-OOO----O--OOO
+O--OOOOOO-----OOOOOOO--O-
+--OO-OOO-O-OO---O-O--OO-O
+-OO-----OOOO---O----O-OO-
+OOOO-OO-O--O---OOO-O-O---
+OOO----O-O-OO--O-O----OO-
+--O--O-----O-OO-O-OO--OOO
+---------O-OOO-OO-O-OO-OO
+OO-OO-O--OO-O-OOOOOOO-OOO
+-OO-O-O--O-OO-O--O-OOO--O
+--OO---O-OO-O--O----O-OO-
+--O--OOOOOOOO-O--OO-OO-O-
+
+------------------------------------------------------------------
+GEN: 53
+FIT: 7146
+STEPS: 4159
+
+-OO-OOO-O-OOOOOO-O-OO-OO-
+OO---O---OOO-O--O--O-O-OO
+O--OOOOOOO--OOOOO-O-O----
+OOOO---O-OOO-O-O-OOO---OO
+---OO-OOO-O-O----O--O----
+-OOO-O-O----O-----OO-O--O
+OOO-OOO-----OO-OO----OO-O
+-OO-O-O---O----O---O-----
+-O--O-OOO-OO-OOO-OO--OO--
+--O--O-OOOO--OOO-OOOO-O--
+O-O---OOOO--OOO-O-OOOO---
+--O-O--O-O---OO-OO--O-O--
+--O-O--O-O-O-O-OOO--O-OOO
+----OOO-OO---OOO-OOO-OOOO
+-O---O-OO---O--OO--OOO-O-
+--O--O-----O--OOO--------
+---OOOOOOO--OO-OOOO-----O
+-OOO--OOO-O-O--------O-OO
+O-O-O-OOO--O-OO----O-O-O-
+--O-OOOOO-O--OOOOO----OO-
+OOO-O----OO-O----OOO----O
+O--O--O---OOO---OOOOOOOO-
+O-----O-OO------O--OOOOOO
+----O-O-O-OOOOO-OOO--O---
+OOOOO-OOO---OO-O-O--O-OO-
+
+------------------------------------------------------------------
+GEN: 54
+FIT: 8437.5
+STEPS: 4916
+
+-------------------------
+O--O-O-------------------
+OO--OOO------------------
+OOOOOO-O-O---------------
+--OOOOO----OO----O-OOO---
+OO---O--O-O----OO--OOOOOO
+---O-OOOOOOOO-OOO-OO-OO-O
+-O--OO-O-O--O---OOOOO--O-
+O-OO--O-O--OO-OOO-O-O-OOO
+OO-O-OO-------O---O--O-OO
+O-O--OOO-OO-OOO--OOOOOO-O
+---OO-OOO-OO--O-OOO-O-OO-
+---O-O--OO-OO----OO---O--
+O--OOOO-OO--O--O--OO--OO-
+OOOOO-OO--OO--O-OO--OO---
+--O-O-OO-OOOOO-OOOOOO--O-
+O--OOOOOO-OO----OO--OO-O-
+OO--OOOO-O--OOOO--O-O---O
+O--O-OOO-----O-O-OOOOOO-O
+---O-O-O-O---OO-O--OO--OO
+OOOOOOO---OO-O------OOOO-
+--O-O--OO-OOOOO-O-OO--OO-
+--OOO--OOOO-OO-O-OOO-O---
+OO-OOO-O-OOOOOO---O--OOOO
+OOOOOO--OO-O-OO--O-O-----
+
+------------------------------------------------------------------
+GEN: 55
+FIT: 6866
+STEPS: 3993
+
+O-OOOO-OOO-OO-O----OO----
+--OOOOOOOOOO----OOOOOO-OO
+-O-OO-OO-O-OOO-O----OO-OO
+OOO---OOO-O------OOO-O---
+O---OO-OOOO--OO-----OO-O-
+OOOO--OOO-O----OO-OOO---O
+OOO-OOO-O---O--OO-O-OO-O-
+-OOOOO-OOOO-O---O---OOO--
+OO-OOO-OO-O-O-O---O-OOOOO
+-OO---O-OOOOOO-OOO-OOOOOO
+OO-OOOOOO-OOOO---OO-O----
+O-OOOOOOO-O--O-O---O-OO--
+O---OOO---O-OOO--O--O----
+OOOO-OOOO-O--O-OOOOOOO-OO
+OOOOO-O--OOO-OOO-O-OOO--O
+OOOOO--O--OO-OOOOO-OOOO-O
+-OOOOOOO-O---OO-OO--OO-OO
+O-O-OO--O--OOO---OOO-O-O-
+OO----OO----OOOO-OOOO-OOO
+OOOOO--OO-OOOOOOO--OOO-OO
+-OO-O-OO-OOOOO-OOOO-OOOOO
+---OOOO-OOOOO-OO-OOO-OOOO
+OOOOOOO-OOOOO--O-OO--O-OO
+O-O--O-OOOO-OOO-O--OOO-OO
+-O-OO-O-OOOO----OO--OOO--
+
+------------------------------------------------------------------
+GEN: 56
+FIT: 5133
+STEPS: 3035
+
+-O-O--O-OO-O-O--O-O-O-OOO
+OOOO--O--OO--O-O---OOO--O
+--O-OO--O-OO-OOOO--OO--OO
+O-O-OOO----OO-O---O--O-OO
+-O-O---OO-O----OO-O-O---O
+---OOO-O-OOOO--O-OO-O-O-O
+O--OO-OO-OOOOO--OOO-OO---
+-OO--OOOOOOOOO-O-OOO-O-OO
+---O--OOOOOO-OOOOOO-OO---
+O-OO--O---O-O-OO-O-O-OOOO
+O-O----O-O--O--O-O-OO-O-O
+-OOO--OOOOOOOOOOO-OO--OOO
+OO--OOO--OOO-O--O--O---O-
+O-OOO-OOO---O-OO--O-OOOO-
+--OOO---OOO---OOOOO------
+OOO-----O-OO--O-OOO---O--
+OO-O--OO-OOO--OOOO--OOO-O
+--OOOO-OO--OOOO-O---OO---
+O-OOO-O---O-OO-----OO-O-O
+-OOO--OOOO---OO--O-OO--OO
+----OOOO-OOOOO----O--O---
+OOO--OOOOOOOO-O-O-OO-----
+O--O----OOOOOOO--OOO-O-OO
+O-OO---OO-O----OO-OOOOOOO
+OO---O--O-O--OOO-OOOO-O--
+
+------------------------------------------------------------------
+GEN: 57
+FIT: 8884
+STEPS: 5293
+
+O--O-OOOOOOO-OOOOOOOOOO-O
+-O--OOOOOOOOOOOOOOOO--O-O
+O-OOOOOO--OOOO-OOOO-OOOOO
+O-OOO-OOOOOOOO-OOOO-OOOOO
+O-O-OOO-OOO-OOOO-O-O-OOOO
+OOOO-O---O-OO-OOO-OOOOOOO
+O-OOOOOO-OOOOOOO-OO-OOOOO
+-OOO-O-OOOOOOOOOOOOO-O-OO
+-O-O-OOOOOOO-OOOO-OOO--OO
+--OO-O-OOOO-OO-OO-OOOOOOO
+O--O-O---OOOOO--OOO-OO-OO
+O-OOO-O-OOOO-O-OO-OO---O-
+OO-O--OO--OOOOOOOO-OOOO--
+OO--O--OOO-OO-OOOOO-OOOOO
+OO--OOOO--OOOO--OOOOO-OOO
+--OOOOOOOO--O-OOO--OOOO-O
+-O-O-OOOOOOOOOO-OOOOOOOOO
+OOO--O--OOOO-OO-OOO-O--O-
+-OOO-O-O--OOOOOOOOOOOOOOO
+O-OOOO-O--O-OOOO-OOOOOO-O
+O---O---OOO-OOOOOOO--OOO-
+O--O---OOOO-O-O-OOOOOOOOO
+OOO-OOOOOOOOO-OOO---OO-OO
+O-OO--OOO-OO--O-OOOOOOOO-
+OOO-O-O----OO-OOOOOOO-O--
+
+------------------------------------------------------------------
+GEN: 58
+FIT: 18311
+STEPS: 11015
+
+-O-OOOOOOO-OOO-O-OOO-OO--
+OOO-OO-O---O-OO-O-O-OOOOO
+OO-O--OO-OO---OOO-O---O--
+-O-OO--OO-O--OOOO-OO-OO-O
+-O--OO-O---OOOO-OOOO---O-
+OOO-O----OOO------O--OO--
+-OO-OOOOO--O-O-OOOOOO-O-O
+---O--O-OO--OO--O---OO-O-
+O-OOOOOOOOO-OO-OOOOO---OO
+-O-O--O-OOO-O-O-O-OOOO-OO
+-OOOOOO-OO--OO--O--OO-O-O
+--O--OOO-OO--O-O---O-O--O
+O-OOO-----OO-O-OOO-OO-OO-
+-OOO-OO-OOO--OOOOOO--OO--
+OO--O----OO--O--O-OO-OO-O
+--OO-OO--OOOOO--OOO-OO---
+O-O--OO--O-O-OO-O----OO-O
+----OO------O-OOOO-OOO-OO
+-O---O--O-O----OO-OOO-OO-
+-O-O--OO----OOOO-OOO-OOO-
+---O-OOOOO-OO-OOO-OO--OOO
+OOOOOOO-OO---O-OOO-OOOO-O
+--OO-OO---O---OOOOOO-OOOO
+O----OOO-OO--OO-O-O-O----
+O-O-OO----OOOOO-OOO-OOOOO
+
+------------------------------------------------------------------
+GEN: 59
+FIT: 15211.5
+STEPS: 8988
+
+-------------------------
+O-OOOOO------------------
+OO-OOO--OO--OOO----------
+-O-OO-OOOO-O--OO--OOOO---
+O--OOO-O-O-O--OO--O--O--O
+-OO-O-O-O-OO-----OO--OO-O
+OOOOO-OOOOO-O-OO-OOO-OO--
+OO--O-O----O-O-OOOO-OO--O
+-O--OO-OOOOOOO--OOOOOO-OO
+-OO-OOOOO-OOOOO---OOO-O--
+-OO--O-O--O--O--OOOOO-O--
+O-O-O--OOO--O-----O-----O
+OO--OOOOOOO-OOO---O-----O
+O--O-OOO----O--O--O----OO
+-OOO-OOOOOOO-OOOOOOO-OOO-
+OO--O-----OOO-O--OO-OO--O
+--OO-OOOOO--OO-O--OO-OOO-
+-O-OO---O-O-OO----OOOOOOO
+----OOO---OOOOOOO---OOO--
+OO--O-O-OO-O--OOOOO-O--OO
+----OOOOO-O----OOO---OO--
+OOO-OO-OOO-O-OO-OOO--O-OO
+O-O---O-OOOO--OOO----OOO-
+O-OO---O-O--O------O-OO--
+O-OOO-O-----O-O-OO-OO-OOO
+
+------------------------------------------------------------------
+GEN: 60
+FIT: 7691.5
+STEPS: 4540
+
+OOOOOOOOOO--OOOOO-OO--OO-
+OOOO-OOOOOO-OOOOO-OOOOO-O
+-OOO--OOOO--O-O-O-OOOOOOO
+OOOOOOOOOO-OOOOO-OOOOOOO-
+OOOOOO-OOO--O-OOOOOOOOO--
+OOOOOOO-OO--O-O-OO-OOO-O-
+OOOOOOOO-OOOOOOOOO-O-OO-O
+O-OOOOOOOOOO-O-OOOOOOOOOO
+OOOOOOOOOOOOOOOOOO--OOOOO
+OOOO-O-OOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOO-O-
+OOOOOOOOOOOO-OOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOO-O
+OOOOOOOOOOOOOOO-OOOOOO--O
+OOO-O-OOOOOOO-OOOOOOOOO-O
+OOOO--OOOOOOOO-OOOOOO-OOO
+O-OO-OO-OOOOOOO---OOOOOOO
+OOOOOO-O-OO-OOOOOOOOOOO-O
+OOOOOOOO-OOOOOOOOO-O-OOOO
+OO-OOOO-OO-OOOOOOOOO-OO--
+OOOOOOOOOOOO-OOOO-OOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOO-OOOOOOOO--OOOOO
+-OOO-OOOOO-OO-OOOOOOOO-OO
+OOOOOO-O-OOOOOOOOOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 61
+FIT: 8022
+STEPS: 4833
+
+-OO-OOO-OOO--OO-O-----OOO
+OO--OOOOOO---O-OO--OOOOO-
+-OOO-O--OOOO-OOOOOOO-O-O-
+OO-O-OOO--OOOOO--OO-OOO--
+O--OOO-O-OOOOO----O-OOOOO
+O----OOOO-OO-OOOOOOO---OO
+OO-OOOOOO-O-O-OO---O-O--O
+-OO--O-OOOOOO-O--OOOO--OO
+O-OOOO-O-O-O-O--OOO-OO---
+OOO-OO--O-OO----O-OOOOOOO
+O-OOO--OOOOOO--OOOOOOO-OO
+-O-OOO--OOOO-O-OOOO--OOOO
+O--OOO--OOOOO--OOOOOOO--O
+-O----O----O--O-O--O--OO-
+--O-O-OO-O-O-OO-OOO--OO--
+OOOOO--O-O-O---OOOO-O-O--
+-O-O--O-O-O--OO--O---OOOO
+O--OO-O-OOO-O-OOO-OO----O
+--OO-O--OO-OOO-OOO--OOO--
+-----OO-OOOOO-O-O--O-O-OO
+--O-O--OOOO-OOO-OOO-OOO--
+-O------OO-OO-O-O-O--OO--
+-O---OOOOOO---O-OO----OOO
+--OO-OO--O--OO--OOOO----O
+OOOO--OO-OO-O-OOOOOOO---O
+
+------------------------------------------------------------------
+GEN: 62
+FIT: 9880
+STEPS: 5779
+
+-O-O--OO-O---OOO-OO-O-OO-
+----OOO-OOOOOOO-OOOOOO-O-
+-OOOO---OOOOOOOOO-OOOOOO-
+-OOOOO-OOOO-O-OOOO-OOOOOO
+-O-OOO-OO--OO--OO--OO-O--
+-OOOOOO-OOOO-OO-O-OOO--OO
+-O-OOOO--OOO---O--OO-O-O-
+-O-OO-OOO--O-OO-O-OO-OOOO
+---OO-OOOOOOOO-OO-OOOOO--
+-O--OOOOO-OO--OO-O--OOO--
+-OO-O-OO--OO--O--OO--OO-O
+-O-OOO---O-OO---O-OO-OOOO
+--OOOO---OOOOOO--O---OOOO
+-O--OO-OOO--OOO-O-O-O---O
+--O--OOOOOOO--OOOOOOO-OOO
+---OOO-----OOOOOO-OO---OO
+---O--OO----OOOOOO-OO--OO
+--O-OOO-O--OO-OOO-OOOOOOO
+--O-OOO--OOO-OO-OOOOOO-O-
+---OOO-OOO----O-O-O---OOO
+--O-OOO-OOO-OO-OOO--OO-OO
+--OO-O-----OOO-OO-OOOO-OO
+--OOOOOO-----OO---OOOOOO-
+--OOOOOO-OOO-O--O--OOO--O
+----OO--OO-OOO--O-OOOOOO-
+
+------------------------------------------------------------------
+GEN: 63
+FIT: 4255.5
+STEPS: 2354
+
+OO---OOOO-----OOOOOOO-OO-
+----O-----OOOO-O--O----OO
+-O-O-OO-OO---O-OOO--OOOO-
+--OOO-------OOOOOO----OOO
+O-O--OOOO----OOOOOOOO--OO
+--OOO-OO-OOO-O-O-OO--OOOO
+--OO-OOOOOOO-OOO-OOO-OO--
+O----O-OOO-O---OOOO-O-O--
+-OO---OO-O-OO--O-OOO----O
+--O----O---O-OOOOO-O--O--
+OO-O--OO----O--OO-OO-----
+OOO--OO-O-OOO--OOO-O-O-OO
+O---OOOOOOOO-OO------O---
+-O--OOOOO-OOOOO--OOO---O-
+-O-O-------OOOOO-OO-O--OO
+OO-OO-O-OO--O-O-OO-OOOO-O
+-O--OO-O--O---OOO-O-O-O-O
+O--OOO---O-OO-OOOOOOOOOO-
+---OOOO-OO--OOO---O-OOO-O
+O-O-OOO---O--OO-OOOOO-O--
+----OOO--O-O-O-O-OO-O-O-O
+--O-O----O-OOO-O---OOO--O
+OO-O-O--O-OOOOOOOO--OOO-O
+OOO-OOO-O------O-OOO---O-
+O--OOO-O-O--OOOOOO---OO--
+
+------------------------------------------------------------------
+GEN: 64
+FIT: 10279
+STEPS: 6231
+
+-------------------------
+OO-----------------------
+-OO-O--------------------
+-OO--OO------------------
+-OO---O------------------
+O-O--O--OOO--------------
+-O---O-OO-O-OOO----------
+O--OOOOOO-OOO-OOOO-------
+-OO-------OO--OOO--------
+O-O--O--OO-OOOO--O-OOO---
+OOO--OOO--OO-OOOO-----O--
+-OOO-OO-OOO--OO--OOOOOOO-
+O--OOOOOOOO--OO--OOOO-O-O
+OOO---O--OO-O-OOOO--O-OOO
+O-O-O-O-----OOOO-OOO---OO
+OO-OO--OOOOOO--O-O--O--O-
+O--O-O-OOO-OOO----OOOO-O-
+OOO-OOOOO-OO--O-O-O-O--OO
+OO-O-OOOOOO---OO-----O---
+O---OO-OO-OO---OO-O-OO--O
+O-O-----OO-O-O-O-O-O-OO-O
+O-OOO-----OOOOOOOOO--O-OO
+O-O-O--O--OOOOOOOOOO-OO-O
+-OOO--OOO--O-O-OOOO-O----
+O---O-O-O--OOO-OO--O-OOO-
+
+------------------------------------------------------------------
+GEN: 65
+FIT: 17045
+STEPS: 10243
+
+OOO---OO--OOO--O-O-OO-OOO
+-O---O---OOO-O-O----O--O-
+----O-OO--O-O-OO---O-OOO-
+--O-OO-O---O---O--OOOO-O-
+O--OO-OO----OO---O----O--
+OOOOOO-OO-OOOO--OOOOOOO-O
+O-OO---O--OOO-O-O---O-O--
+--O--OO-OO--O-O-O---O-OO-
+---OOO--OO--OOO----O---O-
+O------OOOO-O--OOOO-OO---
+--O---O--------O-OO-OO-OO
+-O-OOOO-OOOO-OOO-O----OOO
+OOO-OO--O-O-OOOOO-OO-OO--
+OO--OO-----O----O-OO---O-
+---O-OO--OO-OOOO-O-O--O-O
+--O---OOO--OO----O-O-O--O
+OO--OOOO----O-O-OOO---OOO
+-O---O-O-OOOO-O-O---O--OO
+O---OO---OO--O-O--OOO-OO-
+O-O-OO---OO-OOO-OOOOO---O
+--O-----O---OO-O-OOO-OOOO
+-O----OO-OO-O-OOO-O-O-OO-
+--OOO--OOOO--O----OOOO--O
+OOO-O-OO-OO---O--OOOOOO-O
+OOO----OO-OO-OO-------O-O
+
+------------------------------------------------------------------
+GEN: 66
+FIT: 15766.5
+STEPS: 9490
+
+-O-OOO--O-O-OO--O-OO--OOO
+-OO--O-O-OOO-O-O-OOOOO-O-
+-OOOOO--O---O--O--OOOOOO-
+OOO--O-OOOOOOOOOO-OO--OOO
+O--OO-O--OOO--OO---O-OO-O
+O-OOO----OOO-OOOOOO-O-O-O
+--OOO-OOO---O-O-OOO-OO--O
+O--O--OO-OOO--OOO-----OO-
+OO-OOO----O--OOOOOO-O-OOO
+O--OOO--O--OOOO--OOOOOO-O
+OO--OOOO-O-OOOO-OO-O-OO--
+----O-O--O--OOOO----O-OOO
+---O--OO-OO-O---O-OO---OO
+--OO-O-OOOO--O-OOOOOOO--O
+O-O-O-OO-OOOO--OO--O-OO-O
+-OOO--O-OOOO-OO--OO-O--OO
+OO-O-OOOOOO-O-O--OOO--OO-
+O-O-O--O-OO-O--OOOO--OOOO
+-OO--O-OO--O-O-OOOOOO-OOO
+OO--O--OOOO-----OOOO-OO--
+OOO-OOOOOOOOOO---O-OOOO-O
+O--O--OO-O--OO-OOOO-O--O-
+O-O---OO--O-O-------OO-OO
+OOOOO--OOOOOO--O-OOOOOOO-
+-OOOO-OOO-OOO-O-OOOOO-OOO
+
+------------------------------------------------------------------
+GEN: 67
+FIT: 6723
+STEPS: 4209
+
+--OO----OOOO-O--OO---OOO-
+-O--OO---OO-O------OO--O-
+---OOOO----O-O-OO--OO--O-
+--OO------O-O-OOO---O---O
+---O-O-O-OOOO--O---O--OO-
+--O-OO---OOOOOO-OO----OOO
+--OO--O--O--------O-OOO-O
+---OOOO--O-O--OOOO-OOOOO-
+---OOO-OO-O-OOOOOO-OOOOOO
+---OO-OOO-O-OOOOO--OO-O--
+----O-----OOOOOOO-O--O--O
+----OOOOO-O--OO-O-----O--
+----OOO-OOO-OOO-----OO-OO
+-----OO-----O-O--O--OOO--
+-----O-OO--OOOOO-OO-OOO--
+--------O-OOO--O-OOO-----
+------OOO---O---OOO-O--O-
+-----OO-OO--OO--O---O-OOO
+------OOOO--OO-O--O-OO-OO
+-------O-OO-O-O-O-O-O---O
+------O-OOO-OOOO----OOO--
+-------O-O---O--O-OO-O-OO
+-------O-OOOO---OOO-OO---
+-------OOO-OOO-O-OOOO---O
+---------O--OOO-O-OOOOO-O
+
+------------------------------------------------------------------
+GEN: 68
+FIT: 7171
+STEPS: 4227
+
+-------------------------
+--O----------------------
+--O-O--------------------
+-OOOO-OO-----------------
+-OO----O-O---------------
+---OOO-OO-O--------------
+---OO--O-----O-----------
+---O-----O-O-------------
+--OO-O---OOO-O-----------
+---O-OO-OOOO--O-O-OO-----
+---OO----O---O--OO--O--O-
+----O------OO--------O-O-
+----OOOO--OOO-O-OO-O--O-O
+--OOOO-O-OOOOO---OOOO---O
+---OO-O-O--OOO---OOO--OO-
+---O-OO---O-O--O-O-OOO---
+----O---OOOO---OO-OOOOOO-
+-----O--OOOOOO--OO-O-O--O
+----O---O----OOOOOO-O----
+----O-OOOOOO--OOOO-O-O-OO
+------O-O----O--O-O--OO-O
+----O-----O-O---O--OOOO--
+----OOO-O---OO----O-O-OO-
+-----O-O-O--OO----O--O--O
+-----O-OOO--OO---OOOO-OOO
+
+------------------------------------------------------------------
+GEN: 69
+FIT: 6585
+STEPS: 3945
+
+-OOOO-OOOO-OOO---OOOO----
+-OO--O-OOOO--OOO--O--O---
+-O--OO-O-O-OO-O-OOO-O---O
+-O-OO--OO-O-----OO-OOO-O-
+--OO-OOOO-O-OO-OOOO-O---O
+OO---OOO--OO-OOO-OOOOO---
+----O-OO--O-O-----OOO----
+----OOO--O--O--OOOO-OOOOO
+OO-OOO--OOOOO---OO-OO--O-
+OO-OOOOOOOOOOO-OOO-OOOO-O
+O--OO-OOOOO--O-OO-OO---O-
+-OO---O----OO----OO----OO
+-O--O-------O---O-OOO-OO-
+-O-O-OOOO-OOOO--OOOOOOOOO
+-OO--O--O--O-OOOO--OO-OOO
+O-----OO---O-OOO-O-O---O-
+--OOOOOOO-OOO-OOOO-O----O
+--OO---O-OOO-OOOOOOOO-O--
+OO-OOOO---O-OOO--OO-O-OOO
+OOO-OO-OOOO-OOO--OO---O-O
+---------O-OO-OOOO-OOOOO-
+-O-OOO-O---OO-OOOOOO-O-OO
+O--OO-OO-O-O--O-OOOOOOO-O
+-OO--OOO-OOO-OOO-O-O-OO-O
+O--O---O-O--OOOO-OOOO---O
+
+------------------------------------------------------------------
+GEN: 70
+FIT: 9556
+STEPS: 5209
+
+OOOO-OOO-O-O-OOOO--OOOO--
+O-OO-OO-O-OOOOOOOOOO--O-O
+-OO---O-OOOO-OO-O--O--OOO
+O-O--O--OOOO-OO-O---OOOO-
+-OO--O-OOOOOO--OOO--OOOO-
+-O-O--OO-OOO---O-OOOOO-O-
+--OOOOO-OO--OO--O-OO--O--
+OOO--O-OO---O-OOOOO------
+O------OOOOO---O-----OO-O
+--OO-O-O---OOO--OOO--OOOO
+--O--O--OO-O-O-OOOOO-O-OO
+--OOOO----OOO-O--O-OOO--O
+-O--O--OO-------O--O-OOO-
+--OOOOO---OOO-OO-O-O--OO-
+O-O-O--O-O-OOOOO---O----O
+OO-OO-O--OO--OO-O-O----O-
+---O----O--OOO-OO--O--O--
+OO---OOO---OO-O-O-O-OOO-O
+----OO-O-OO---O-O-OO-O--O
+O-OOO--O--O-O---O-O-OOOOO
+O----OO-OOOOOOO-O-OO-OO-O
+O-OOO-OOOOOO-OOOO-OOOOOO-
+OOOOOOO---O--O--OO-OOOOO-
+-O--OO--OOOO--O-O-OOOO-OO
+O-O---O--O-----OO---OO-O-
+
+------------------------------------------------------------------
+GEN: 71
+FIT: 9252.5
+STEPS: 5302
+
+-------------------------
+--O----------------------
+O----OOO-----------------
+O--OO---OO-O-------------
+---OOOO--O-O--O----------
+--OO--OO-OO----OOO-------
+-----OO-----O--O-----O---
+OO--O-O-O-OOOO-O-OOOOOOOO
+OOO-O--OO----O---OOO-----
+---O-O-OOOOO--OO-O-----O-
+OOOOOOOO-OO-O--OOOO-OOO--
+-O-OOO-O-OOOOOOO-O-OOOOO-
+-O---OO-OO-OO-O---------O
+-OOOO-O-OOO-OOOOO------O-
+-OOO-OO-OO-O--O-O-O-----O
+------O-----OOO-O-O-O--O-
+-O-O---O--OO-O-O-O-OO----
+OOOOOO---O-O-OOO--OO-O--O
+O----OOOO--O-O-OOO-O---OO
+O--OOOO-OO--O----O-OO--O-
+OOOOO-O--O-OO-OO---O-OO--
+-OO---OO-O--O-O-OOO-O----
+--OOOOOO-O-OOOO-O-OO--OO-
+-OOO-O----OOOO-O-OOO-O-OO
+O--O----O-O-OOO---OO-O-O-
+
+------------------------------------------------------------------
+GEN: 72
+FIT: 7920
+STEPS: 4599
+
+----OO----O-OOOO-O-O--OOO
+-----OO-OOO-OOO-O-OO-O-OO
+OOOOOO--O----OO-O---OOO--
+-O-O-O---OO--O--O-OOOOO-O
+OOOOOOOOOOOO------OO-OOO-
+OO-OOOOOOO--O-OOO-OO--OOO
+----OO--OOOO--O-O-O-O--OO
+OO-OOO-OO-OOOOO-OOOOOOO--
+-OOOOOO-OO-OOO-OOO-OO-OOO
+O-OO--O-O----O-OO-O--O--O
+OO--OOOO-OOOOOOOO-OO-OOOO
+O-OO-O----O--O-OOOO-OO---
+-O--O----OOO-OOOO-OOO-O-O
+-OOOOOOOOO-O--O-OO-OO---O
+O-OOOO-O--OOO-OOOO-OOO-O-
+O---O-OO---OO--O---OO-OO-
+OOOOO-OO-OOO---OOOO-O--OO
+OOOOOOO-O-O-OOOO--O--O---
+-OOOO-O-OOO-OOO-OOO----OO
+OO-OOOO--OOOOOO-O-O-OO-OO
+--O-OO-O-OOOO-O---OOO-OOO
+OOO---O--O-OOO-OOOOO-OO--
+-O-O-OOOO-OOOOOOO--OO--OO
+O-O-O-O-OO--OOOO-OO---OOO
+---OOOOOO--OOO-O---OO--OO
+
+------------------------------------------------------------------
+GEN: 73
+FIT: 11285.5
+STEPS: 6842
+
+-------------------------
+-O----O-O----------------
+---O--O-OOO-----O--------
+O--O---OO----O-O---OO--OO
+OOO-OOO---O---OO---OOO--O
+--O-O--OO-OOOOOOOOOO---O-
+-----OO---O---OO-O--OO-O-
+-O-O-OOOOOO-OO-OO-OO-----
+OOO---OO--O-OO-O-OO-OO-OO
+OOOO-O--OOO-OOO--OOOO-OO-
+O-OO--OOOO-OO-OO--OO-OO--
+O-OOOOOO-O---OO--OO-OO---
+O-OOOOO-O-O---OOOOOOO-O--
+O--O-O--OOOO-OO---O--O-OO
+-OOO--O--O-OO--OO--OOO-OO
+OO-OO-O--OO--O--OO--O---O
+--O--OO-OO--OO-OOOO--OO-O
+OO-O-OOO--O-O--OOO-OO-O--
+OOOO-O-OO-OOOOOOOOO------
+-OOO--O--OO-OO-OO---OO-OO
+O--OOOOOO-OO-O----O-O---O
+OOO-O-O--O-----OOOOOOO-O-
+-OOO-OOOOO-OO-OOOO-O-O---
+--OOOOOO-O-O-O-O-OOOOO-OO
+-O-OO--O-O-O-OOO-OOO-O---
+
+------------------------------------------------------------------
+GEN: 74
+FIT: 8663.5
+STEPS: 5220
+
+-OO-OO---O-O-O-O--OO-OO--
+-O-OOO-O-O----O---O---OO-
+-O--OOOO-O---O-O---OO---O
+--OO-OOOOO-O-OOOO-OO--OO-
+--O-O--O----OOOOO-O-OO-O-
+---OOO--OOOOO-O---O-OO--O
+---O-------OO-O-O-OOOO-O-
+-------OOO-OOO---OOO-O-OO
+--------O--OO-OOO-O-O-OO-
+----O-O--O--OO-O---OOOO--
+--------O-OOOOO--OOO--OO-
+------OO-O-OOOO----O---O-
+------OO---O---OOOOO---OO
+------OO-O-O-OOOOOO---OO-
+-------OO--OOOOOOOOOO-OOO
+---------OO---OOO----O--O
+---------OOOO----OOO-O-OO
+----------OO-OOOO--OOOO-O
+--------OO----OOOOOO-OOO-
+---------OOOO---O-OOOO---
+---------O--OO-OO--------
+-----------O--------OOOO-
+-----------OO-OOOO--OOOOO
+-----------O-----OOOOOO--
+-----------O--O-OO-O-O--O
+
+------------------------------------------------------------------
+GEN: 75
+FIT: 8227.5
+STEPS: 4894
+
+--O----OOO-OO-----O-OOOOO
+-----OOO-OO-OO-O----OOO-O
+-O--OO---OO---OOOOOO--OOO
+----OOOOO-O-OO-OOO-OOOO-O
+-O-O--OOO-O--O--O---OOOOO
+OO-O--OOO-O-O-OO---O--OO-
+---OOO---OOO-O---OOO---OO
+-OO---O-O--OO-OO-O-OOOOOO
+--OO-O-O--O-OOO--O--O--OO
+--O------O-O--OOO-OOO--OO
+--OO-OO-OOOO--OOOOO-OOO-O
+-O-----OOOO-----O---OOO--
+-O-OO-OOO--O--OO---OOO---
+---OOOOOOO-O-OO-O----O---
+--O--OO---OO-O--O-OO-OOOO
+--------OO---OO-O-O--OOOO
+-OOO--O--O--OO-OO-OO---OO
+OO----O-OOOOOO-O--OOOOOOO
+O-OOO-O--OOO--O-OOO-OO-O-
+--O-OOOO--OOOOO-O-O----OO
+--OOO--O--O-OOO-O-O-OO--O
+-OO-O--OOOO-OO-O---O-O-O-
+--O---O-O-OO-O-OO--O-O---
+--OOOO-OO---OO--O--O-O--O
+--O-OOO-OO-OO---OO--OO-O-
+
+------------------------------------------------------------------
+GEN: 76
+FIT: 7360
+STEPS: 4581
+
+OO--O-O-O--O--OOOOOOOOO--
+-O-O-O-O--O----O-O--O---O
+OOOOO--O-O---OOO--O-OOO--
+---OOO-OOO-OO--OOO--O---O
+-O---O-OOOOOO---O-OOOOO-O
+-O--O-OO-O--OO-OOOOOO---O
+O--O------O--O-OO---O-OOO
+-OOOOOO---OOOOO-O-O-O-OO-
+O--O--O----OOOOOO-O-OOO-O
+O-OO-OOO-O--O--O-O-OOOO-O
+O--O------O-OO-OOO-OO--O-
+OOOOO-OOO------O--O-OO-O-
+OO-OOOOOOOO-O-OO--OO-O-OO
+O-O--OO---OO---O-OOOOO-O-
+---O-------O--O--OOOOO-OO
+O------OOOOO---OOOOOOOOOO
+OO-OO-OOOO--OO--OOO--OO--
+-O-OOOOO-O-O-OO----OOOOO-
+-O-OOOOOO-OO-OOO--O-O-OOO
+OO---OOOOOO-OOOO-OO---OOO
+OOO--O-OOO-O-O-O-OO-OO-OO
+--OO---OOOO---OO-OO-O----
+OOOO--O----OOOOO---OO--OO
+O---OO-O-O-O-O-OO-OOO-O-O
+--O-O-OO------OO-OOO-----
+
+------------------------------------------------------------------
+GEN: 77
+FIT: 7592.5
+STEPS: 4334
+
+---OO---OO--OOOOO-OOOO---
+----O-O---O-OO-OO---O---O
+OOOO--OOO--O----OOOOO--O-
+-O-OOOOOOO----OOOOOOOOO-O
+OOO---OOO-OOOO---O--O--O-
+--O-O--O--O-OOO---OO-O-O-
+OOO---O---OO-O-O---OO-OOO
+OO-O--OOO----OOO-O-OO---O
+O-OOO-O--O--OOO-O-OOOOO-O
+-OOO--OOOOO-OO-OO--OO-OO-
+OOO-O-OO-O-O-O---O----OOO
+-OOOO-OOO-O-OOO---O-O-OOO
+-----O---O-OO-OO-O----OO-
+OO--OO-O-O--OO-OOOOO-OOOO
+OOOO-O-----O-----O-O-OO--
+O--O--OO-O-OOOOOOOOO--O-O
+OOOO--O-OO---OO--OOOO-OOO
+OOO--OO-OOO-O-O-OO-O-O-OO
+OOOOO-O--O-O-OOO-O-O-O-O-
+-O-OO--O--------OO-O---OO
+-------OO--OOO-OOOOOOOO-O
+-O-OO--OOOO-O-O-O--O-OOOO
+---OO-O--O-O--OOOOO-OOOOO
+OO---O--OO--OO---OOO-----
+OO-OO--OO-OO-O--O-OO--OO-
+
+------------------------------------------------------------------
+GEN: 78
+FIT: 9892.5
+STEPS: 6120
+
+---O-OO-O--O-OO---OOOO-OO
+-O--O---O-OO--OOOO-OO-OO-
+---O-OOOO-O--O-OO-OO-----
+-O-OOOO-OO-OO---O---O-OO-
+-OOO-OO-O--OOO-O---OO-OO-
+OOOO----OOO-----OOOO-O-O-
+-OOO--OO-O-OO-OOO--O-OO-O
+-OO-OOOOO-O-----O-O-O-OOO
+-OOOOOO-OO-OO-O-OOOOOOOO-
+----O-O-OOOO--OO-O-O--O-O
+-OOOOOOOO-OOOOOO-----O--O
+-O-OO--O--OOOO----O-OOO--
+----OO-OO----O---O---OOOO
+O--OO---O-O-OO-----OO-O-O
+OOO---O----O-O-OOOOO-OO-O
+O--OO-O--OO-OOOOO--OOOOOO
+---OO--O--OOO-----O--O--O
+-OO-OO--OO--OO----OO-OO-O
+OOO---OOO--O--O--O-OO-OOO
+O---OOO-OOOOOOO----O-OO--
+OOOO----OOOOOO---OO-OO--O
+OOO-OO----O----O--O-OOOOO
+OOO-O-OO-----O-OOOO----OO
+O-OOO-OOO-O-----OOOOOOOOO
+O-OOOOOO-O-OOO-O--OOOO-O-
+
+------------------------------------------------------------------
+GEN: 79
+FIT: 11796.5
+STEPS: 7130
+
+O---OOO-OO---OOOOOO-O-O-O
+O--O--OO-----OO-O----O-OO
+--OOOO-OO-O-OOOOO--O-OOO-
+-O-O----OO--O-O-O-OOO-O-O
+---O----O-OOOO---OO--OO--
+-O---O-O--O---O---OO---O-
+OOOOOO-O--O-OOOO--OO---OO
+---OOOO-O-OO--OOO--O-----
+-OOOO-OOO---OO-OO-OO--OO-
+O-O--OO---O-O---OOOOOO--O
+OOOOO-OOO-O-O-O-O-----OOO
+--O---OOO-OO-OOOOOO----O-
+-OOOO-OO-OOOO----O-O-O-O-
+-OO----O-OOO-OO-OO-OOO-OO
+---OOO--O-OOO-O--O--OOO-O
+O--OOOO-OOO----O-OOOOOOO-
+OOO-OO-O-O--OOOO-OO-OO---
+OOOO-OOO----OOOOO-OO--O-O
+OOOO-----O-O-OOOO--OOO--O
+OOOOO-O-O--OOOOOO-OO---OO
+-O--O---OO----OOOOO-OO--O
+-OO----O--O-OO--OO-----OO
+OO-O-O-OO-OO--O-O-OO--OOO
+-OO-O----O---O--OO-OOOOO-
+OOO--OOO--OOO--OOOO-O--OO
+
+------------------------------------------------------------------
+GEN: 80
+FIT: 16981.5
+STEPS: 10488
+
+OOOO---OOOO----O-OOO--O--
+-O-O-O-OO---OOO-O-OO--OOO
+---O---O-O---OO-OOOO-O---
+O-O-O--O-OOOO---OOOO-O--O
+---OO-OO-OO---OO-OOO-O-O-
+--O--OOO--OOOO-OOOO-OOO-O
+-OOO--OO-OO-O-OOOO---O---
+--O-O-OO--OOOOOO-OO---OOO
+OOO---OO-O-OO-OO-O-OOO-O-
+O-O--O-OO-O-----O--OOOOOO
+O-OOO-OOOOOOOO---OOO-OOOO
+--OOOO--OO---OO-OOOOOO-O-
+-OO----OO-----OO--O-OOOOO
+-O-O-O-O--O--O-OO-O-OOOO-
+----O-OOO-O--O--OO-O-OO-O
+OOOOOO---OO--OOO-O--OOOOO
+OOO-----OOO-OO-O----O-O--
+OOOOOOOO-O-----OOOO-O-O-O
+O---OO-O----O-O-----O----
+OOO----O---O--OOOOOOOO---
+--O-----OO---OOOOOOOOOOOO
+-O----OOOO-OO-OO-O---OOO-
+---OOOOOOOOO-OO---OOO-OO-
+-O-OO--OO-OOO--O-OOO-----
+O-O-O---O--O-O-O--OO--OOO
+
+------------------------------------------------------------------
+GEN: 81
+FIT: 7473
+STEPS: 4511
+
+OO--OO-OO-OO--O-OO-O-OO--
+----O-OOO---OOO---OO----O
+--OO-O--O--O---OOOO-O--O-
+-O-OO---O-O--O-O-OO--OO--
+-OOOO-O--OOO--O-O------OO
+OOO-O-OO-O----OOO--OO--O-
+OOO-OO-O---OOO--OO--O--O-
+---O---O-OO-OO--OOOOO-OO-
+OO--O-O--O--OOO-OO-OOOO-O
+--O-OOO----OOOO--OOOO-OO-
+O-OO-O--OO-O-OOOO-O--O--O
+O-O-O-OOO---O-OO---O-OOO-
+O---O-O-O-OO-----OO-OOOO-
+OO-OO--OO---O-OO--OOO-O--
+O-O-O-O-O---OOO-O--O---O-
+-O-OO--O-O---OO---OO-OO--
+--OO-OO-O---O-O-O-O----OO
+--OO-OOOO--OOO----OOO--OO
+----OO--O-O--O-OOO-OO----
+O-O---O-O-O---OO-OO-OOO-O
+OOO---OOO---OOOO---O-O---
+-O-O-O-OOO--O-O-OOOOOO---
+----OO-O---OOO--OOOO-OOO-
+-O-O-O--OO-OO--O-O-OOO--O
+------O--O-OOO-O-OO-O--O-
+
+------------------------------------------------------------------
+GEN: 82
+FIT: 7187
+STEPS: 4315
+
+O-OOOOOO-OO-OOOOOOOOOOO--
+-OOOO-OOOOO-O-OO-OOOOOO-O
+---OOOOOOOO-OOOOOOOOOOOOO
+OO-O-OO-O-OOOOOOOOOOOOO-O
+O-O-OOOO-O-OOO-OOOOOOOO-O
+-O-O--OOOOOOOOOOOOOOO--OO
+-OOOOOO-OO-OOO-OO-OOOOO-O
+---OOOOOOO-OOOOOOOOOOOOOO
+O--O-OOO--O-O-OOOOOOOO--O
+-OOOOO-OOOOO-OOOOOOOOOO--
+-O-O-OO-OOOOOOO--OO--O--O
+O--OOOOO--OOOOOO-OOO----O
+-O-OOO-O--OOOOOO-OOOOOOOO
+-OOO-OOOOOOOOOOOOOOO-OOOO
+-O--OOOOO-OOOOOOOOOOOOOOO
+O---OO-OO-O-OOOOO-OOOOOOO
+-OOOOOO--OOO-OOOO-OO-OOOO
+OOO-O-OOOOO-OOOOOO-OOO--O
+-O-O-O-OO-OOOO-OOOOO-OOOO
+O--OOO--OOOOOOOOOOO-O-O-O
+O--OOOOOO-OOO-OO-OOOOOOOO
+-O-------OOOOOOOO-OOOO-O-
+-O----O--OO--O-OO-O--OOOO
+OO---O----O-OOOOOOOOOO-O-
+OO--O--O-OOOOO--OOOOOOOOO
+
+------------------------------------------------------------------
+GEN: 83
+FIT: 19698.5
+STEPS: 11846
+
+--OOOO-O-OO-OO-O--OO-----
+O-OOOOOOOO-OOOO-O--O-OO--
+OOO-O-OOOO--O----OO-OOOO-
+OO-OOO-OOOOOO--O-OOOOOOO-
+O-O---OOO-OO-OOO----OOO--
+---O-OOO--O--OO--O-O-OOO-
+OOO-O---O-OO--O------O-OO
+O---O--O---OO--OOO---OOOO
+O--O-O----OO--OO-O--O---O
+O---OOO-O-OO-O-OOO--OOOOO
+-O--OOO--O-OOO-O---OOOO-O
+-OOO-OO--OOOOOOOO-OO-O--O
+-O-OO---O-OOOOO--OO-O--O-
+----OO------O--OOO--OOOO-
+-O-O--O----OO-O-OO-OO-O-O
+-OO--OOO----OO--OOOO--O-O
+---OO-O-O--OO--OOOO--OOOO
+-------O-OOO-O-----OO----
+OO---O-OO-OO-OOOO---OO--O
+----O----O---OOO-O--O--OO
+OOOOO------OO--OOO-OOOO-O
+-OOO-OO-O--OO-OOOOOO-OOO-
+OOOOO-OO---OO--OOO-OOO-OO
+-O--OO-O-OO-O-O-OO-O-OOO-
+---OOO-O-O-------OOOOO-O-
+
+------------------------------------------------------------------
+GEN: 84
+FIT: 8039.5
+STEPS: 4854
+
+--OOOOO-OOOOO-O-O-O-O-OO-
+-O-O-OO--O--OOOOO--OO-OO-
+OOOO-O-O-OO---OOOOO-O---O
+O-OOOOO-OOOO-OOOO--OO-O-O
+-OOO-OOOOOO-OOO-OOOO-O-OO
+---OOOOOOOO-O-O--O--OOO-O
+OOO-O--O-OOOO---O-O-O--OO
+O-O-OO-OO-O-OOOO-O---O---
+-OOO-O-O-OO---O-OO-O-----
+O-O-OOOO--OO-O---O-OO--OO
+OOO---OO-OOO--OOOOO---OOO
+OO-O-O-OOOOOOOOOO----O--O
+O---OOO--O-OOOO-------OOO
+OOOOO-----OO--O-OO-O--OOO
+OO--O-OO-O--OOO---OOO-O-O
+-OOOO--OOOOOOOOO-----O-OO
+O-OO---OO-OO---OO-OOOO--O
+O-OOOOO--OOO-O-OO-O-O--OO
+OOO-OOO-O--O--OOOOOOOOOO-
+OO-O--O---OOOO--O-O-----O
+---OOOO-O----O-O--OOO-OOO
+OO--OOO-O-O-OOOO-OO-OOO-O
+OOOO-O-OOO--O-O-OOO-O--O-
+OOO-----O-OOOO-OOOO--OOOO
+O--O--O-OOOO-OO---OOOO-O-
+
+------------------------------------------------------------------
+GEN: 85
+FIT: 9369
+STEPS: 5563
+
+-O--OO--O-OOO-OOOO-OO--OO
+-OOO--O-OOO-OOO-OOO-O----
+---OO-OOO-O-----O--O-O--O
+-OO-O--O--O-O---O----OOO-
+---O-OOOO-OO-OO-OOOO--OOO
+O----OO-OOO-OOO--O-O-O--O
+-O---O---O-OO-------O-OOO
+O----O-OO---OOOOOOOO--O--
+OO-OO---O-------OO----O-O
+OOOO--O----OO-OOOOOOO----
+O-O-O-OOOO-O--OOOO--OO--O
+O-O-O-OO-O-OO--OO--O-OOO-
+O------OO--OO--OO------OO
+-O----OOOOOOO--OOO-OOOO-O
+OOOOO-O-O-O--O--OO---O--O
+OOOO--O--OO--OO------OOO-
+O-OOO----O-OO-O---O-O-O--
+O-O---OO-----O-OOO-OO-O--
+OOO---O-O-OO--O--O----O--
+O--O----O--O-OO--OO----O-
+O--O-OOO-OO---OOO-------O
+OO--O--OOO--OOOO-O-O--O-O
+OOOO-O--O----OOO-O-----OO
+OOOO-O--O-OOO-OO-O-OOOOO-
+O-O------O---O--OO-------
+
+------------------------------------------------------------------
+GEN: 86
+FIT: 5842
+STEPS: 3641
+
+OOOO-OO-O-O-OOOOOOO--OO-O
+OO---O-O-O--O-OOO-----O--
+-OOO---O-OO-O-O-OOO-OOO--
+--OOO-OOO--O-----O-OOO--O
+OO-OOOO-O--OO-O--OO---OOO
+OO-OO-O-O-OOOOO-OOO------
+O-O----OOOO--OO-OO--OO-O-
+-O---OO-OOOOOO---OOO---O-
+---O-OOOOOO-OOOOO-O-O---O
+-O-OOOOOO-OOO-OO--OO-O---
+-OO-O-O-OO-OOO-OOOOOO--O-
+OOOOO-OO-OOOOO--OOO-OO-OO
+-O--OOO--OO---O-OO-OO---O
+-OOOO----OO-O-OOOO-OOO--O
+OO-OO-O-O--O--O-OO--OO-O-
+--OO---O--OO-O-O-OOO----O
+O---O-OO-O-OOO--O-OOOOOO-
+-O--OOOO--O--OOO--OO--O-O
+-O-----OOO---O---O-O-O-OO
+OO-O--OOOOOO----OOOOOO-O-
+O-OOOOOOOO-O-O-O-O---O-OO
+OOO-O----OOOOO-OOOOOOO--O
+-OO---OOOOOOOO-O-OO-O--O-
+-O--OO--OO-O--O-OOOOOO-O-
+O-O-O-OO-OO-O-OO-O-OOO---
+
+------------------------------------------------------------------
+GEN: 87
+FIT: 7946
+STEPS: 4653
+
+---O---OOOOO-O-OO-----OO-
+--OOO-O-OOOO-O---OO-OO--O
+-O--OOO-------OOOOO--OOO-
+--O---O--OOOOOO-OO-----OO
+--OO----O--OO---O--OOOOOO
+--O--OOOOOOO--OOO-O-OO-OO
+---O-OOOO---OO-O-OO-O---O
+---O-O--------O--OOOOOOO-
+----OO-O---O-OO-----O--O-
+-----OO----O--OOOOOO-O---
+----OO-OO--OOOOOO-OOOO-OO
+-----O-O-OO--O---O--OOOOO
+-----OO-O-OO---O-O-OO----
+-----OOOO-O-O-O--O---O--O
+-------OOO-O---O-OO--O--O
+-----------OO-O--OO--OOO-
+-------O---O-OO--OOOO----
+---------O-O-OOO----OO-OO
+----------OO-O----OOO--O-
+---------O-O-OO--O-OO--OO
+-----------OOOOO-------OO
+---------OOOO--O---O-O-O-
+----------O-O-O-O-OOOOO--
+----------O-OO---OOOO-OOO
+----------O-OOO-O--OOOOOO
+
+------------------------------------------------------------------
+GEN: 88
+FIT: 9016
+STEPS: 5425
+
+--OOO---O-OOOO-O-OOOO----
+-O--O---OOO--OOO-O----OOO
+OO-O-O---OOO---OOOO-O-O-O
+----O-OO--OO-O----OOO---O
+O-O--O-OOOOOO-OO--OOOO--O
+OO-O-OOO-----OO---O---OO-
+---OOOOOOO--O-OO-------O-
+-OO----OO---OO--O--OOOOO-
+OOO-O-OOOOOOOOO----OOOOO-
+OOO-OOOOO-O-OOO-O-O-OOOOO
+O--O--OOOO-O--------OO--O
+OOOO--O-OO-O-O-OO-OO-O---
+OOOO-O-O-O--O-OOOOO--O-OO
+O-OO-O--O--O-OO-OOO-OO-O-
+OOO-OOO--OO-OO--OOO--O---
+---OO-OO---O--OO----OO---
+O----OOOO-O--OOO-OOOO-O--
+OO----O--OO---OO--------O
+--O-OO----OOOO-O-------OO
+--O---O--OOO-OOO-OO----O-
+OOOO---OOO--O--OOOO--O--O
+-O-----O-----OOO-O-OOO-OO
+--O-OO-O--O-O-OOO-OO-OO--
+O-O-O-OOO-OO--OOO-O-O-O-O
+OOO-O-OO-O---O-O-OO---O--
+
+------------------------------------------------------------------
+GEN: 89
+FIT: 7077.5
+STEPS: 4236
+
+O--O-OO-OO-OOOOOOO--O-O-O
+-O---OOOOOO---OOOOO--OOO-
+OOO-OO--OO--O-OO-O-O-O--O
+-O--OO-O-OO-OOOOOOO--OOO-
+OO-OO--OO-O----O--O---O--
+OO---O----O----O-OOOOO-O-
+-O---OO-O-OOOOO-O-OOOO---
+O-O---O---OOOOO-OOO-OOO--
+-OOO---OOO---O---O-O--O-O
+-O-OO-O-O--O----O--O-OO--
+--O--O--O-OO---O----OO---
+-OOO-OOOOOO-O--O-O------O
+-OOOO-OOOOO-O-O-----OO--O
+OOO-OO-OOOOOOOO--OOOOOOOO
+O-O-O-OOOO-OO--O--OO---O-
+-OOOO----O---O-O-OO-OOOOO
+O-O-O-O--OOO-OO-O---OOOO-
+OOOOO-OOO-OOOOOOO--OO-OO-
+OOOO-O------O-OOOOO-OOO--
+---O-OOO----O--OO-OOOOO-O
+O--OO-OOOOO--O--OO--O--O-
+OOOOOO-OOO-O---OO--O-OOO-
+OO-O-OOOOO---O-O-O--O-O--
+O-OO-OO-O-O-O--OO-OO-OO--
+O-OO---O-OOOOO-O--O-OO--O
+
+------------------------------------------------------------------
+GEN: 90
+FIT: 11309.5
+STEPS: 6602
+
+---O-O----O--OOO----O--O-
+---O--OO----OOOOOOO-OOOO-
+--OOO-OO-OOO-O---OOOO-OO-
+-O-O-O-OO----OO-OO-O---O-
+--O-O-OOO--OO-OOO-OOOO--O
+-O-OOOOO-OOO-O----OOOOOOO
+---O-----OOOOO--O--OOOOOO
+--OOOO-O-OO-OOO-O-OOO-OOO
+---OOO--OO-O---O--OO--O--
+-OO-OO--O-O-OOOO--O-OO-O-
+--O------OO--O--OOOO--OO-
+---OO--OOOOOO---O--O-OOOO
+-OOO--O---O--OOOO---OOOOO
+-O-OOO--O-O-O---O-O-OOO-O
+--O-O--OO----OO-O--OO----
+-----O-O-OOOO----OOOOOO-O
+----OOO--OO-OO-O-OO---O--
+-OO--OO-OOOO---OOOO---OO-
+-O-OOO-O-OOOO-O-O-OOO-OOO
+---OOOOO--OOOOO------O-OO
+-OOOOOO-O--O--O--OO-OOOO-
+----O-OO-O--O-OOOO---OOO-
+--O-O---O-OO---OO-OOOOO--
+-OOO-O--OOO-------O-OOOOO
+-OOOO---O-OO---O-O---O--O
+
+------------------------------------------------------------------
+GEN: 91
+FIT: 10664.5
+STEPS: 6492
+
+-------------------------
+-O-----------------------
+-------------------------
+-------------------------
+----O--------------------
+-----OO------------------
+------OO-----------------
+-------OO----------------
+-----O-OO----------------
+------O-OO-OO------------
+------OOOOOOO------------
+---------O-OOOO----------
+--------OO--OO-----------
+---------OO-OOOOOO-------
+---------O-O-O-O---------
+----------OO--O---O------
+---------O--O-O---O--O---
+-----------OOO--O--OOO---
+-------------O-OO-O--OO--
+-----------O-O--OO---OOO-
+------------OO--OO---O-OO
+-------------OOO---OO-OO-
+--------------O-OOOOO-O-O
+-------------OO---O-OO--O
+---------------OOOO-O-O-O
+
+------------------------------------------------------------------
+GEN: 92
+FIT: 6810.5
+STEPS: 4102
+
+-------------------------
+OO-----------------------
+-OO----------------------
+--OO---------------------
+O--OO--------------------
+-OOO-O-------------------
+--O-O--------------------
+-O-O-O--O----------------
+O--O--O-O----------------
+--OO--OO-O---------------
+---O---OO--O-------------
+O--OO--OOOO-O------------
+O---O--O--OOOO-----------
+OOO-OOOOO-----O----------
+-OO-O-O--O---O-O---------
+OO---OO-O---O----O-------
+OO-OO-O-O-------O--------
+OO--O---OOOOO-O----O-----
+-O--OOO-OO--O-OOO--OOO---
+OO--O--OO-OOO-O-O-O-OOO--
+---OO-O-OO--O-OO-----OO--
+OO---O------OOOO--O----O-
+OO-OOO-OO-------O-OO-OOOO
+--O-O-OO----OO-O-OOO-O-OO
+O--O-OO--OOOOO-O-OO-OOOOO
+
+------------------------------------------------------------------
+GEN: 93
+FIT: 10563.5
+STEPS: 6060
+
+OO----OO-OO----O-OO----O-
+OO--O-OOOOOO---OOO-O--O--
+-OOOOO----OOOOO------O-OO
+OO-----OOOO--O---O-O---OO
+O-O----OO--OO-OOO---O-OOO
+O--O----OO--OO--O-OO-OOOO
+----OOO-----OOOOO-OOO-O-O
+-OOOOO----O--OOO-OOO-OO--
+O--O-----OO-O--O-----OO-O
+-O-----O-------O---OOO--O
+-----OO--OO---OO-----OOOO
+O--O-OO-O-O--OO-O-OOO--O-
+-O-OO-O-OOO---O-O-O-OO--O
+--OO-OOOO---O--O--OO--O--
+OOOO---OO---OOO-O--OOOO-O
+O---OOO---------OO--OO-OO
+-O---OO-O-O-OO--OO-O---OO
+OOO-----O-O-OO-----O-OOO-
+OOOOOOO--O--O-OOOO-OOOOO-
+-OOO-O--O-O----OO--OO-O--
+O-OOOOO----O---O----O-O--
+O-OOO-OOOOOO----OO-OO--O-
+O-O------OO-OO--O-O-----O
+O-OO-OOO-OOO--O--OO-OOO--
+OO---OOOOOOO---O---OOOO--
+
+------------------------------------------------------------------
+GEN: 94
+FIT: 12760.5
+STEPS: 7660
+
+-O--O--O-----O-OO--OOO-O-
+---OO--OOO-OOOO--O---O---
+OO-O--OO-OO--OOOO-O-O----
+OOOOOO-OOOO-OOO--OOO-O--O
+-OOO----OO-OO-----O--OOOO
+O--OO--OO--OO-OO--OOO-O--
+-OO--OO-OO-OOOO-OO---OOOO
+-OOOOO-OO-OO--OOO-OOOOOO-
+-OO-O--OOOOOOOO-O---OOO-O
+-O-OOOO-O--OO-OOOOOOO-OOO
+O-OOO---O--OOOO-OOOO-OOOO
+O-O--OOOOOO-O--O-O-O-----
+--OOOOOOOO--OOO-OO----O-O
+OOOOOO-OO-OOOOO-OO-OO---O
+-OOO-O-O---O-OOO--OOO-OOO
+OO-O--O-OOOOOOOO-O-O--OO-
+OOO-OO-OOO-O-OO-OOOOOO-OO
+OO-OO-OOOOO-OO-OOOOOO-O-O
+OO-OOO-O---OO-OOOOO--OOO-
+OO--OOOO-O-OO-O-O-OOO-O--
+-OOOOOOOOO-O-OOOOOOOO-O--
+-O--OOOOO--OOOO-OOOOOO--O
+-O--OO--OOOO-OOOO--O-OOO-
+O--OO-O-OOOO---O-O-OO-OOO
+OOOOOOO---OO-OO-OOO-OOO-O
+
+------------------------------------------------------------------
+GEN: 95
+FIT: 8522
+STEPS: 5169
+
+-------------------------
+OO-OO-OOOO---OO-----OOOO-
+-OOOOOO--O---OO-O-O-OOOOO
+OOOOOOOOO-OOO-OO-OOO-O---
+OO-OOOOOO-OO-OO---OOOO---
+OOOO-OOOO-OOOOOOO--OOOOOO
+OOOO-OOOOOOOOOOO-OO-OOOOO
+OOOOOOOOOO-OOO-OO--O----O
+OOOOO-OOOOOOOOO-OOO--O---
+OOOOOOOOOOOOOO-OO-OOOOOOO
+OOOOOOOOOOOOOOOOOOOO-OOOO
+OOOOOOOOOOOOO-OOOOOOOOOOO
+OOOOOOOOOOOOOOO-OOOO-OO--
+OOOOOOOOOO-OOOOOOOOOOOOOO
+OOOOO-OOO-O-OOO-OOOOO-OO-
+O-OO-OOOOOOOOOOOOOOOOOOOO
+OOOOOOO-OOO-OOOOO-OOOOOOO
+O-OOOOOOOOOOOOOOOOOOOOO--
+OOO-OOOOO-OOOOOOOOOOOOO-O
+OOOO-OOOO-OOOOOOOOOOO--OO
+OOOOOOOO-OOOOOOOOOOOOOOO-
+OOOOO-OO--O--OOOOOOO-OOOO
+OOO-OOOOOOOOOOOOOOOOOOOO-
+OOOOOOOOOOOOO-OO-OOOOOOOO
+OOOOOOO---O-OOOOOOOOOOOO-
+
+------------------------------------------------------------------
+GEN: 96
+FIT: 8207.5
+STEPS: 0
+
+-O-O-OO-OOO-OO-OOOOO-OO--
+-OOOOO-OOO-OO---O--OOO-OO
+-O-O--O-OOOO--OO-OO--O--O
+---O--OOOOOOOO-OOOOOOO--O
+--OO-----OO-O-O-OOOOO-OOO
+-OOO---OOOO--O------OOO-O
+-O----OOOO-O--O-OOOOOOOO-
+---OO--OOOOOO----OO-OOO-O
+-O-OOO-O--O--O--O--O--O-O
+--OOO-OOOOO--OOO-OO--OOO-
+--OO--O--OO-OOO-O---O-O--
+--O---OO-OOO--OO--OO--OO-
+-----OO-O-OOO-OOO-O--OOOO
+--O-O-OO-O-OO-OO----OO---
+-O--O-O-OOOO---OOO--OOOOO
+------O--OOOOO-OOOO-O-OO-
+-O-OO--OOOO-O-OO---O--OOO
+---OO-O-OOOOOO-OOOO-O--O-
+----O-OOOOOO-OO-OOOOOOOOO
+-O-O-OO-OO--OOOO--OO--O-O
+-O-OOOO-O-OOOOO--OO--OOOO
+---O-O--O--O-OOO-OO-OO-OO
+--OOOOO--O-O---O--OOOO-O-
+---OOOOOO-OOOO-O-O--OOOOO
+---OOOO-O-OO-OOO-O-O-O-OO

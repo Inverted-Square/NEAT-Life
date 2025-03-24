@@ -29,12 +29,14 @@ double complexity_fitness(Board &board);
 
 double complex_methuselah_fitness(Board &board);
 
+double many_live_fitness(Board &board);
+
 bool is_stable(const std::vector<double> &activities, unsigned int &unique_count);
 
 int main()
 {
-    run_neat_experiment();
-//    test_pattern();
+//    run_neat_experiment();
+    test_pattern();
     return EXIT_SUCCESS;
 }
 
@@ -48,6 +50,9 @@ void run_neat_experiment()
         break;
     case 'c':
         fitness_func = complexity_fitness;
+        break;
+    case 'l':
+        fitness_func = many_live_fitness;
         break;
     default:
         fitness_func = complex_methuselah_fitness;
@@ -73,8 +78,10 @@ void run_neat_experiment()
     Board board(neat_config::infinite_board);
     std::vector<double> activities;
     std::vector<Board::pattern> saved_patterns;
+    std::vector<int> saved_pattern_steps(neat_config::num_gen);
     int best_gen = 0;
     int curr_displaying_step = 0;
+    bool done = false;
     while (window.isOpen())
     {
         event_handler.process_events(window);
@@ -89,6 +96,15 @@ void run_neat_experiment()
             continue;
         }
 
+        if (curr_displaying_step != 0)
+        {
+            std::cout << "Steps taken on best found pattern: " << curr_displaying_step << '\n';
+            if (!done)
+            {
+                saved_pattern_steps[curr_gen - 1] = curr_displaying_step;
+            }
+        }
+
         curr_displaying_step = 0;
         activities.clear();
         curr_gen_best_fitness = 0;
@@ -98,6 +114,7 @@ void run_neat_experiment()
             board.set_pattern(best_pattern);
             board.draw(window);
             displaying_board = true;
+            done = true;
             sf::sleep(sf::milliseconds(1000));
             continue;
         }
@@ -183,7 +200,8 @@ void run_neat_experiment()
          << "\nweight_prob = " << neat_config::weight_prob << "\nnode_prob = " << neat_config::node_prob
          << "\nconn_prob = " << neat_config::conn_prob << "\nmax_steps = " << neat_config::max_steps << "\nmax_same = "
          << neat_config::max_same << "\nfitness_function = " << neat_config::fitness_function << "\ninfinite_board = "
-         << neat_config::infinite_board << "\ninfinite_axis = " << neat_config::infinite_axis << '\n';
+         << neat_config::infinite_board << "\ninfinite_axis = " << neat_config::infinite_axis << "\nrandom_element = "
+         << neat_config::random_element << '\n';
     file << "rows = " << board_config::rows << "\ncolumns = " << board_config::columns << '\n';
 
     file << "\nOther notable patterns:\n\n";
@@ -199,8 +217,10 @@ void run_neat_experiment()
     int p_gen = 0;
     for (const auto &pattern : saved_patterns)
     {
-        file << "\n------------------------------------------------------------------\nGEN: " << p_gen++ << "\nFIT: "
-             << pattern_fitnesses.at(pattern) << "\n\n";
+        file << "\n------------------------------------------------------------------\nGEN: " << p_gen << "\nFIT: "
+             << pattern_fitnesses.at(pattern) << "\nSTEPS: " << saved_pattern_steps[p_gen] << "\n\n";
+        ++p_gen;
+
         for (const auto &pattern_row : pattern)
         {
             file << pattern_row << '\n';
@@ -214,7 +234,7 @@ void test_pattern()
     auto window = sf::RenderWindow{{win_config::width_u, win_config::height_u}, "NEAT-Life", win_config::style};
     window.setFramerateLimit(win_config::frame_rate);
 
-    Board board(patterns::big_boi, neat_config::infinite_board);
+    Board board(patterns::_101, neat_config::infinite_board);
     auto view = sf::View(sf::FloatRect(0.0f, 0.0f, win_config::width_f, win_config::height_f));
     setup_view(view, board.is_infinite(), static_cast<int>(board.get_pattern_width()),
                static_cast<int>(board.get_pattern_height()));
@@ -294,17 +314,16 @@ Board::pattern set_board_using_net(NeuralNetwork &network)
     Board::pattern net_pattern(neat_config::pattern_height);
     std::unordered_set<Board::coord, Board::hash_pair> live_in_pattern;
     int total_live = 0;
-    std::vector<double> inputs(neat_config::area + 3);
+    std::vector<double> inputs(neat_config::area + 2);
     for (int row = 0; row < neat_config::pattern_height; ++row)
     {
         for (int column = 0; column < neat_config::pattern_width; ++column)
         {
             inputs[neat_config::area] = row;
             inputs[neat_config::area + 1] = column;
-            inputs[neat_config::area + 2] = total_live;
+//            inputs[neat_config::area + 2] = total_live;
             const std::vector<double> &outputs = network.activate(inputs);
-            const bool light_cell =
-                    outputs[0] > outputs[1];// && outputs[0] > rand_prob(gen);  // > rand_prob(gen);  // > outputs[1];
+            const bool light_cell = outputs[0] > outputs[1] && (!neat_config::random_element || outputs[0] > rand_prob(gen));
             net_pattern[row] += light_cell ? 'O' : '-';
             if (light_cell)
             {
@@ -399,6 +418,31 @@ double complex_methuselah_fitness(Board &board)
     return 1.5 * neat_config::max_steps + max_complexity;
 }
 
+double many_live_fitness(Board &board)
+{
+    std::vector<double> activities;
+    unsigned int max_live_count = board.get_num_live();
+    for (int step = 0; step < neat_config::max_steps; ++step)
+    {
+        board.update_generation();
+        const unsigned int curr_live_count = board.get_num_live();
+        if (curr_live_count > max_live_count)
+        {
+            max_live_count = curr_live_count;
+        }
+
+        activities.push_back(board.average_activity());
+        unsigned int unique_count = 0;
+        if (is_stable(activities, unique_count))
+        {
+            const double fitness = step + 1 - neat_config::max_same;
+            return 1.5 * (fitness == 0 ? unique_count : fitness) + max_live_count;
+        }
+    }
+
+    return 1.5 * neat_config::max_steps + max_live_count;
+}
+
 bool is_stable(const std::vector<double> &activities, unsigned int &unique_count)
 {
     if (activities.size() < neat_config::max_same)
@@ -413,7 +457,7 @@ bool is_stable(const std::vector<double> &activities, unsigned int &unique_count
     for (int i = static_cast<int>(activities.size()) - 1; i >= lower_bound; --i)
     {
         unique_activities.insert(activities[i]);
-        if (unique_activities.size() > 24)
+        if (unique_activities.size() > 16)
         {
             unique_count = unique_activities.size();
             return false;
