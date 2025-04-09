@@ -134,7 +134,7 @@ void NeuralNetwork::mutate_weights()
         for (auto &conn : node_connections.second)
         {
             conn->weight = rand_prob(gen) < neat_config::weight_prob ? conn->weight * mutate_power(gen) : conn->weight;
-            conn->enabled = conn->enabled || rand_prob(gen) < neat_config::weight_prob;  // TODO: maybe use a different probability for this
+            conn->enabled = conn->enabled || rand_prob(gen) < neat_config::weight_prob;
         }
     }
 }
@@ -190,7 +190,6 @@ void NeuralNetwork::inherit_either_parent(const Connection *conn1, const Connect
 
 void NeuralNetwork::inherit_gene(const Connection *const conn, const NeuralNetwork &p)
 {
-    // TODO: tbh as add_node does try emplace anyways these if statements might not be needed
     const int from_node = conn->from;
     if (node_refs.count(from_node) == 0)
     {

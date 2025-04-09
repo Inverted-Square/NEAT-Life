@@ -1,34 +1,6 @@
 #include <array>
 #include "neural_network.hpp"
 
-/* TODO: List of methods
- *   NeuralNetwork() = default - NOT TESTED (UNNECESSARY)
- *   explicit NeuralNetwork(const ints &layers_counts) - HEADERS DONE
- *   const node_layers &get_nodes() const - NOT TESTED (UNNECESSARY)
- *   const innovation_to_conn &get_conn_refs() const - NOT TESTED (UNNECESSARY)
- *   void connect_to_next_layer(int layer, int &innovation_id) - NOT TESTED (PRIVATE)
- *   void add_node(int id, int layer) - HEADERS DONE
- *   void add_node(int id, double bias, int layer) - HEADERS DONE
- *   int make_space_between(int layer1, int layer2) - HEADERS DONE
- *   void add_connection(const Node &from, const Node &to, int innovation) - HEADERS DONE
- *   void add_connection(const Node &from, const Node &to, double weight, int innovation) - HEADERS DONE
- *   void mutate_weights() - HEADERS DONE
- *   void disable_connection(int inno) - NOT TESTED (UNNECESSARY)
- *   NeuralNetwork operator*(const NeuralNetwork &other_net) const - HEADERS DONE
- *   void inherit_either_parent(const Connection *conn1, const Connection *conn2, std::unordered_set<int> &added_nodes) - NOT TESTED (PRIVATE)
- *   void inherit_gene(const Connection *conn, std::unordered_set<int> &added_nodes) - NOT TESTED (PRIVATE)
- *   const NeuralNetwork::Node &find_node_at(const Node &given_node, int layer) const - NOT TESTED (PRIVATE)
- *   bool operator==(const NeuralNetwork &other_net) const - HEADERS DONE
- *   doubles activate(const doubles &activation_values) - HEADERS DONE
- *   void feed_layer(int layer, char activation_func) - NOT TESTED (PRIVATE)
- *   void scale_values(int layer) - NOT TESTED (PRIVATE)
- *   void relu(int layer) - NOT TESTED (PRIVATE)
- *   void softmax() - NOT TESTED (PRIVATE)
- *   std::string to_string() const - NOT TESTED (UNNECESSARY)
- *   std::string node_connections_to_string(const Node &node) const - NOT TESTED (PRIVATE)
- *   std::ostream &operator<<(std::ostream &os, NeuralNetwork &neural_network) - NOT TESTED (UNNECESSARY)
- */
-
 bool check_creation(const std::vector<int> &layer_counts);
 
 bool has_correct_structure(const NeuralNetwork &network, const std::vector<int> &layer_counts);
@@ -533,7 +505,7 @@ bool activate_with_many_hidden_layers()
 
 int main()
 {
-    /** TODO: what I've gained from doing these tests
+    /** What I've gained from doing these tests
      *    - Made me realise crossover function was bad as it would duplicate both nodes and connections. This was fixed
      *      by adding in the default constructor which I forgot I still didn't add (this would then let me build the
      *      child network from scratch) along with also keeping track of what nodes have been added so that I don't add
@@ -569,7 +541,7 @@ int main()
     for (int test = 0; test < static_cast<int>(tests.size()); ++test)
     {
         std::cout << "TEST " << test + 1;
-        passed += tests[test]();  // TODO: I don't like this syntax, we need to find C++'s equivalent to Python's enumerate
+        passed += tests[test]();
         std::cout << "\n";
     }
 

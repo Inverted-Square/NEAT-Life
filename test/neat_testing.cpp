@@ -1,28 +1,5 @@
 #include "neat.hpp"
 
-/* TODO: list of methods
- *   NEAT()
- *   const std::vector<NeuralNetwork> &get_curr_population() const - NOT TESTED (UNNECESSARY)
- *   int get_next_innovation_id() const - NOT TESTED (UNNECESSARY)
- *   int get_next_node_id() const - NOT TESTED (UNNECESSARY)
- *   void set_individual_fitness(int index, double fitness) - NOT TESTED (UNNECESSARY)
- *   void generate_next_population()
- *   species_groups network_speciation(double &population_mean_fitness) const - NOT TESTED (PRIVATE)
- *   static int find_species(const species_groups &groups, const NeuralNetwork &network) - NOT TESTED (PRIVATE)
- *   void repopulate_species(const species &group, double population_mean_fitness) - NOT TESTED (PRIVATE)
- *   static int get_new_size(double total_adj_fitness, double population_mean_fitness, int prev_size) - NOT TESTED (PRIVATE)
- *   static const NeuralNetwork *run_tournament(const species &group) - NOT TESTED (PRIVATE)
- *   void mutate_networks() - NOT TESTED (PRIVATE)
- *   void mutate_add_connection(NeuralNetwork &network) - NOT TESTED (PRIVATE)
- *   void check_previous_nodes(const NeuralNetwork::node_layers &layer_nodes, const NeuralNetwork::Node &to_node,
-                              NeuralNetwork &network) - NOT TESTED (PRIVATE)
- *   void check_previous_node(const NeuralNetwork::Node &from_node, const NeuralNetwork::Node &to_node,
-                             NeuralNetwork &network) - NOT TESTED (PRIVATE)
- *   void mutate_add_node(NeuralNetwork &network) - NOT TESTED (PRIVATE)
- *   int node_id(int innovation) - NOT TESTED (PRIVATE)
- *   int connection_innovation(const std::pair<int, int> &from_to_ids) - NOT TESTED (PRIVATE)
- * */
-
 void set_random_fitnesses(NEAT &neat);
 
 bool set_up_with_zero_population_size()
@@ -168,9 +145,6 @@ bool run_next_generation_on_complex_nets_many_times_with_many_individuals()
         neat.generate_next_population();
     }
 
-    std::vector<double> ins{5.4, 2.567, 8.66, 1.01};
-    const std::vector<double> &outs = neat.get_curr_population()[0].activate(ins);
-    std::cout << ": " << outs[0] << ' ' << outs[1];
     std::cout << " 'PASSED'\n";
     return true;
 }
@@ -191,7 +165,7 @@ int main()
     for (int test = 0; test < static_cast<int>(tests.size()); ++test)
     {
         std::cout << "TEST " << test + 1;
-        passed += tests[test]();  // TODO: I don't like this syntax, we need to find C++'s equivalent to Python's enumerate
+        passed += tests[test]();
         std::cout << "\n";
     }
 

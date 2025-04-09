@@ -35,8 +35,8 @@ bool is_stable(const std::vector<double> &activities, unsigned int &unique_count
 
 int main()
 {
-//    run_neat_experiment();
-    test_pattern();
+    run_neat_experiment();
+//    test_pattern();
     return EXIT_SUCCESS;
 }
 
@@ -116,6 +116,7 @@ void run_neat_experiment()
             displaying_board = true;
             done = true;
             sf::sleep(sf::milliseconds(1000));
+//            window.close();
             continue;
         }
 
@@ -234,7 +235,7 @@ void test_pattern()
     auto window = sf::RenderWindow{{win_config::width_u, win_config::height_u}, "NEAT-Life", win_config::style};
     window.setFramerateLimit(win_config::frame_rate);
 
-    Board board(patterns::_101, neat_config::infinite_board);
+    Board board(patterns::bunnies_10b, neat_config::infinite_board);
     auto view = sf::View(sf::FloatRect(0.0f, 0.0f, win_config::width_f, win_config::height_f));
     setup_view(view, board.is_infinite(), static_cast<int>(board.get_pattern_width()),
                static_cast<int>(board.get_pattern_height()));
@@ -248,7 +249,7 @@ void test_pattern()
         event_handler.process_events(window);
         event_handler.update_view(window, view);
         board.update_generation();
-        if (++steps == 736692)  // number of steps for big boi to finish
+        if (++steps == 5000)  // number of steps for big boi to finish
         {
             std::cout << "Finished\n";
             window.close();
@@ -374,23 +375,29 @@ double methuselah_fitness(Board &board)
         if (is_stable(activities, unique_count))
         {
             const double fitness = step + 1 - neat_config::max_same;
-            return (fitness == 0 ? unique_count : fitness) * live_cell_scale;
+            return (fitness == 0 ? unique_count : fitness);// * live_cell_scale;
         }
     }
 
-    return neat_config::max_steps * live_cell_scale;
+    return neat_config::max_steps;// * live_cell_scale;
 }
 
 double complexity_fitness(Board &board)
 {
-    unsigned int total_complexity = 0;
+//    unsigned int total_complexity = 0;
+    unsigned int max_complexity = 0;
     for (int step = 0; step < 1000; ++step)
     {
         board.update_generation();
-        total_complexity += board.get_complexity();
+//        total_complexity += board.get_complexity();
+        const unsigned int curr_complexity = board.get_complexity();
+        if (curr_complexity > max_complexity)
+        {
+            max_complexity = curr_complexity;
+        }
     }
 
-    return total_complexity / 1000.0;
+    return max_complexity * board.get_complexity();
 }
 
 double complex_methuselah_fitness(Board &board)

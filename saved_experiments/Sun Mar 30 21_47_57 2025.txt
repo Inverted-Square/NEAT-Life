@@ -1,0 +1,38 @@
+pattern_width = 100
+pattern_height = 3
+target_cells = 13
+population_size = 50
+num_gen = 150
+tournament_size = 3
+weight_prob = 0.8
+node_prob = 0.001
+conn_prob = 0.0001
+max_steps = 20000
+max_same = 100
+fitness_function = b
+infinite_board = 0
+infinite_axis = -
+random_element = 1
+rows = 600
+columns = 100
+
+Other notable patterns:
+
+
+------------------------------------------------------------------
+------------------------------------------------------------------
+BEST GEN: 0
+FIT: 8318.5
+
+--OOOO-OO--O-OOO---O-OOOO--OO-OO-OO-OO-OOO--O-OOO--OOO-OOO-OOO------OO-OO-OO-O-O-OO-OOOO-OOOO-OO-OOO
+-OO--OOO-OO-O-O---OOO------O-OOOOO--O-O----O--O-O--------OO--O--O-OO-O---O-O-O-O---OOOOO-OO---OOOO-O
+--OO-OOO-O--OO-OOOOO-O---O-O--O-OO--O--O--O-O--O---O--OOO-O-OOOO-OOOO-O-----------O-O-O-O---OOO-O-OO
+
+------------------------------------------------------------------
+GEN: 0
+FIT: 8318.5
+STEPS: 0
+
+--OOOO-OO--O-OOO---O-OOOO--OO-OO-OO-OO-OOO--O-OOO--OOO-OOO-OOO------OO-OO-OO-O-O-OO-OOOO-OOOO-OO-OOO
+-OO--OOO-OO-O-O---OOO------O-OOOOO--O-O----O--O-O--------OO--O--O-OO-O---O-O-O-O---OOOOO-OO---OOOO-O
+--OO-OOO-O--OO-OOOOO-O---O-O--O-OO--O--O--O-O--O---O--OOO-O-OOOO-OOOO-O-----------O-O-O-O---OOO-O-OO

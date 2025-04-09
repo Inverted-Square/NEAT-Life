@@ -1,0 +1,38 @@
+pattern_width = 7
+pattern_height = 3
+target_cells = 13
+population_size = 50
+num_gen = 50
+tournament_size = 3
+weight_prob = 0.8
+node_prob = 0.001
+conn_prob = 0.0001
+max_steps = 20000
+max_same = 150
+fitness_function = m
+infinite_board = 1
+infinite_axis = -
+random_element = 1
+rows = 200
+columns = 200
+
+Other notable patterns:
+
+
+------------------------------------------------------------------
+------------------------------------------------------------------
+BEST GEN: 0
+FIT: 406
+
+-O--O-O
+-O-O--O
+O-O-OO-
+
+------------------------------------------------------------------
+GEN: 0
+FIT: 406
+STEPS: 0
+
+-O--O-O
+-O-O--O
+O-O-OO-
