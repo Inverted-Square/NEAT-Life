@@ -122,6 +122,26 @@ void NeuralNetwork::add_connection(const int from, const int to, const double we
     connections[to].push_back(&conn_refs.at(innovation));
 }
 
+void NeuralNetwork::remove_connection(const int inno)
+{
+    const int to = conn_refs.at(inno).to;
+    std::vector<Connection *> &to_conns = connections.at(to);
+    for (unsigned int idx = 0; idx < to_conns.size(); ++idx)
+    {
+        if (to_conns[idx]->innovation == inno)
+        {
+            to_conns.erase(to_conns.begin() + idx);
+            conn_refs.erase(inno);
+            break;
+        }
+    }
+
+    if (to_conns.empty())
+    {
+        connections.erase(to);
+    }
+}
+
 void NeuralNetwork::mutate_weights()
 {
     for (auto &[id, node] : node_refs)

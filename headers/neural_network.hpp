@@ -94,6 +94,8 @@ public:
 
     void add_connection(int from, int to, double weight, int innovation, bool enabled = true);
 
+    void remove_connection(int inno);
+
     void mutate_weights();
 
     void disable_connection(int inno);

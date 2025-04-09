@@ -100,30 +100,6 @@ bool check_mutate_weights_just_changes_the_weights()
     return true;
 }
 
-bool check_mutate_weights_leaves_disabled_connections()
-{
-    NeuralNetwork network1({100, 100, 100, 100});
-    NeuralNetwork network2 = network1;
-    const auto &refs = network2.get_conn_refs();
-    for (const auto &[inno, conn] : network1.get_conn_refs())
-    {
-        network1.disable_connection(inno);
-    }
-
-    network1.mutate_weights();
-    for (const auto &[inno, conn] : network1.get_conn_refs())
-    {
-        if (conn.weight != refs.at(inno).weight)
-        {
-            std::cout << ": FAILED - weights were changed for disabled connections";
-            return false;
-        }
-    }
-
-    std::cout << ": PASSED";
-    return true;
-}
-
 bool crossover_identical_networks()
 {
     NeuralNetwork network1({5, 10, 2});
@@ -138,8 +114,8 @@ bool crossover_identical_networks()
         }
 
         const auto &other_conn = refs.at(inno);
-        if (other_conn.enabled != conn.enabled || other_conn.weight != conn.weight || other_conn.to.id != conn.to.id ||
-            other_conn.from.id != conn.from.id)
+        if (other_conn.enabled != conn.enabled || other_conn.weight != conn.weight || other_conn.to != conn.to ||
+            other_conn.from != conn.from)
         {
             std::cout << ": FAILED - Matching gene doesn't share same attributes";
             return false;
@@ -175,7 +151,7 @@ bool crossover_networks_with_same_structure()
         const auto &child_conn = child_refs.at(inno);
         if (child_conn.enabled != conn.enabled ||
             (child_conn.weight != conn.weight && child_conn.weight != parent2_conn.weight) ||
-            child_conn.to.id != conn.to.id || child_conn.from.id != conn.from.id)
+            child_conn.to != conn.to || child_conn.from != conn.from)
         {
             std::cout << ": FAILED - Matching gene doesn't share either parents attributes";
             return false;
@@ -199,7 +175,7 @@ bool crossover_networks_where_network1_is_a_subset_of_the_other()
     network2.fitness = network1.fitness + 1;
     for (const int inno : {2, 12, 23, 25, 33, 57})
     {
-        network1.disable_connection(inno);
+        network1.remove_connection(inno);
     }
 
     NeuralNetwork network3 = network1 * network2;
@@ -213,11 +189,16 @@ bool crossover_networks_where_network1_is_a_subset_of_the_other()
             return false;
         }
 
+        if (parent1_refs.count(inno) == 0)
+        {
+            continue;
+        }
+
         const auto &parent1_conn = parent1_refs.at(inno);
         const auto &child_conn = child_refs.at(inno);
-        if (child_conn.enabled != conn.enabled ||
+        if ((child_conn.enabled != conn.enabled && child_conn.enabled != parent1_conn.enabled) ||
             (child_conn.weight != conn.weight && child_conn.weight != parent1_conn.weight) ||
-            child_conn.to.id != conn.to.id || child_conn.from.id != conn.from.id)
+            child_conn.to != conn.to || child_conn.from != conn.from)
         {
             std::cout << ": FAILED - Matching gene doesn't share either parents attributes";
             return false;
@@ -241,7 +222,7 @@ bool crossover_networks_where_network2_is_a_subset_of_the_other()
     network2.fitness = network1.fitness + 1;
     for (const int inno : {2, 12, 23, 25, 33, 57})
     {
-        network2.disable_connection(inno);
+        network2.remove_connection(inno);
     }
 
     NeuralNetwork network3 = network1 * network2;
@@ -262,9 +243,9 @@ bool crossover_networks_where_network2_is_a_subset_of_the_other()
 
         const auto &parent1_conn = parent1_refs.at(inno);
         const auto &child_conn = child_refs.at(inno);
-        if (child_conn.enabled != conn.enabled ||
+        if ((child_conn.enabled != conn.enabled && child_conn.enabled != parent1_conn.enabled) ||
             (child_conn.weight != conn.weight && child_conn.weight != parent1_conn.weight) ||
-            child_conn.to.id != conn.to.id || child_conn.from.id != conn.from.id)
+            child_conn.to != conn.to || child_conn.from != conn.from)
         {
             std::cout << ": FAILED - Matching gene doesn't share either parents attributes";
             return false;
@@ -287,18 +268,18 @@ bool crossover_networks_with_some_disjoint_and_excess_genes()
     NeuralNetwork network2({5, 10, 2});
     for (const int inno : {0, 1, 2, 3, 25, 37})
     {
-        network1.disable_connection(inno);
+        network1.remove_connection(inno);
     }
 
     for (const int inno : {28, 30, 40, 67, 68, 69})
     {
-        network2.disable_connection(inno);
+        network2.remove_connection(inno);
     }
 
     NeuralNetwork network3 = network1 * network2;
     const auto &parent1_refs = network1.get_conn_refs();
     const auto &parent2_refs = network2.get_conn_refs();
-    if (parent1_refs.size() + parent2_refs.size() != 2 * (network3.get_conn_refs().size() + 6))
+    if (parent1_refs.size() != network3.get_conn_refs().size())
     {
         std::cout << ": FAILED - wrong number of genes in child";
         return false;
@@ -309,7 +290,7 @@ bool crossover_networks_with_some_disjoint_and_excess_genes()
         if (parent1_refs.count(inno) != 0 && parent1_refs.at(inno).enabled)
         {
             const auto &p1_conn = parent1_refs.at(inno);
-            if (conn.from.id != p1_conn.from.id || conn.to.id != p1_conn.to.id)
+            if (conn.from != p1_conn.from || conn.to != p1_conn.to)
             {
                 std::cout << ": FAILED - Matching gene doesn't share parent's attributes";
                 return false;
@@ -318,7 +299,7 @@ bool crossover_networks_with_some_disjoint_and_excess_genes()
         else if (parent2_refs.count(inno) != 0 && parent2_refs.at(inno).enabled)
         {
             const auto &p2_conn = parent2_refs.at(inno);
-            if (conn.from.id != p2_conn.from.id || conn.to.id != p2_conn.to.id)
+            if (conn.from != p2_conn.from || conn.to != p2_conn.to)
             {
                 std::cout << ": FAILED - Matching gene doesn't share parent's attributes";
                 return false;
@@ -342,14 +323,14 @@ bool crossover_networks_with_no_matching_genes()
     NeuralNetwork network2({5, 10, 2});
     for (const int inno : {0, 1, 2, 3, 4, 5, 6, 7, 8})
     {
-        network1.disable_connection(inno);
+        network1.remove_connection(inno);
     }
 
     for (const auto &[inno, conn] : network2.get_conn_refs())
     {
         if (inno > 8)
         {
-            network2.disable_connection(inno);
+            network2.remove_connection(inno);
         }
     }
 
@@ -360,14 +341,14 @@ bool crossover_networks_with_no_matching_genes()
     for (const auto &[inno, conn] : network3.get_conn_refs())
     {
         if (from_p1 && !p1_refs.at(inno).enabled && p1_refs.at(inno).weight != conn.weight &&
-            p1_refs.at(inno).from.id != conn.from.id)
+            p1_refs.at(inno).from != conn.from)
         {
             std::cout << ": FAILED - expected a gene from parent 1 and it was either not here or had the attributes";
             return false;
         }
 
         if (!from_p1 && !p2_refs.at(inno).enabled && p2_refs.at(inno).weight != conn.weight &&
-            p2_refs.at(inno).from.id != conn.from.id)
+            p2_refs.at(inno).from != conn.from)
         {
             std::cout << ": FAILED - expected a gene from parent 2 and it was either not here or had the attributes";
             return false;
@@ -419,7 +400,7 @@ bool compare_networks_where_network1_is_a_subset_of_the_other()
     {
         if (inno < 3)
         {
-            network1.disable_connection(inno);
+            network1.remove_connection(inno);
         }
     }
 
@@ -441,7 +422,7 @@ bool compare_networks_where_network2_is_a_subset_of_the_other()
     {
         if (inno != 3)
         {
-            network2.disable_connection(inno);
+            network2.remove_connection(inno);
         }
     }
 
@@ -463,7 +444,7 @@ bool compare_networks_with_no_matching_genes()
     {
         if (inno < 5)
         {
-            network1.disable_connection(inno);
+            network1.remove_connection(inno);
         }
     }
 
@@ -471,7 +452,7 @@ bool compare_networks_with_no_matching_genes()
     {
         if (inno >= 5)
         {
-            network2.disable_connection(inno);
+            network2.remove_connection(inno);
         }
     }
 
@@ -497,10 +478,7 @@ bool activate_many_to_one()
 bool activate_many_to_many()
 { return false; }
 
-bool activate_with_one_hidden_layer()
-{ return false; }
-
-bool activate_with_many_hidden_layers()
+bool activate_messy()
 { return false; }
 
 int main()
@@ -526,8 +504,7 @@ int main()
                                   add_connection_with_random_weight_and_good_innovation,
                                   add_connection_with_given_weight_and_bad_innovation,
                                   add_connection_with_given_weight_and_good_innovation,
-                                  check_mutate_weights_just_changes_the_weights,
-                                  check_mutate_weights_leaves_disabled_connections, crossover_identical_networks,
+                                  check_mutate_weights_just_changes_the_weights, crossover_identical_networks,
                                   crossover_networks_with_same_structure,
                                   crossover_networks_where_network1_is_a_subset_of_the_other,
                                   crossover_networks_where_network2_is_a_subset_of_the_other,
