@@ -10,7 +10,7 @@
 
 void run_neat_experiment();
 
-void test_pattern();
+void test_pattern(const Board::pattern &pattern);
 
 void test_neural_networks();
 
@@ -36,7 +36,7 @@ bool is_stable(const std::vector<double> &activities, unsigned int &unique_count
 int main()
 {
     run_neat_experiment();
-//    test_pattern();
+//    test_pattern(patterns::bunnies_10b);
     return EXIT_SUCCESS;
 }
 
@@ -230,12 +230,12 @@ void run_neat_experiment()
     file.close();
 }
 
-void test_pattern()
+void test_pattern(const Board::pattern &pattern)
 {
     auto window = sf::RenderWindow{{win_config::width_u, win_config::height_u}, "NEAT-Life", win_config::style};
     window.setFramerateLimit(win_config::frame_rate);
 
-    Board board(patterns::bunnies_10b, neat_config::infinite_board);
+    Board board(pattern, neat_config::infinite_board);
     auto view = sf::View(sf::FloatRect(0.0f, 0.0f, win_config::width_f, win_config::height_f));
     setup_view(view, board.is_infinite(), static_cast<int>(board.get_pattern_width()),
                static_cast<int>(board.get_pattern_height()));
